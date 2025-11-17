@@ -35,7 +35,6 @@ const SelectIndividualOptions = ({
   // media query
   // const isMobile = useMediaQuery({ query: '(max-width:600px)' });
   const locations = useSelector(selectLocations);
-  console.log(isSpecificLocationSelected,"isSpecificLocationSelectedTest12")
   const [displayMachines, setDisplayMachines] = useState(false);
   const [displaySpecificLocations, setDisplaySpecificLocations] =
     useState(false);

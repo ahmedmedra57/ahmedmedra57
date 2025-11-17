@@ -30,11 +30,9 @@ export const getAdminHeatersService = async (partNumber) => {
 export const addAdminHeatersService = async (data) => {
     try {
         const response = await axios.post(`/heaters`, data);
-        console.log(response?.data?.data, "response?.data?.data")
         return response?.data?.data;
 
     } catch (error) {
-        console.log(error?.response?.data, "error?.response?.data")
         throw error?.response?.data;
     }
 }

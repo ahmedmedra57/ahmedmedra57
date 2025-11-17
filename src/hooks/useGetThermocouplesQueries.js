@@ -30,7 +30,6 @@ export const useGetThermocouplesQueries = (switchStatus, swtName) => {
                             }
                         },
                         onError: (error) => {
-                            console.error('get thermocouples fail:', error.message);
                         },
                         staleTime: Infinity
                     }))

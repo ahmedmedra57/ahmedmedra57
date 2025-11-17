@@ -61,7 +61,6 @@ const AuditTrailMain = () => {
     const endDate = formatTime(selectedData[1].end, true);
     if (selectedData[0]) {
       //serach by user name
-      console.log(0);
       setUserSelect(selectedData);
       const userIds = extractUniquePropertyValues(selectedData[2], 'user_id');
       const AuditTrailPayload = (actionType = '', deviceType = '') => ({

@@ -15,7 +15,6 @@ export const shutOffHandler = (
   swt,
   messageBoxHandler
 ) => {
-  console.log({location,
     specificLocation,
     machine,
     essZones: zones,

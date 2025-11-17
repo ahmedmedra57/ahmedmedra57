@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { reduce } from 'lodash';
+import reduce from 'lodash/reduce';
 import { electricalFaultsList, gasFaultsList } from '../../../helpers/helpers';
 
 const initialState = {

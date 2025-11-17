@@ -17,7 +17,6 @@ const ActivateButton = ({
 }) => {
   // media query
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
-  console.log({handleButtons,
     isSelected,
     buttonTitles,
     isApplied,

@@ -75,7 +75,9 @@ import AllSettingsSelectOptions from './settingsOptions/AllSettingsSelectOptions
 import InvisibleDivForEditButton from './messageBoxes/InvisibleDivForEditButton';
 import Interface from './interfaceMode/Interface';
 import { addAdminHeatersService } from '../../services/ssrs.service';
-import { groupBy, mapValues, reduce } from 'lodash';
+import groupBy from 'lodash/groupBy';
+import mapValues from 'lodash/mapValues';
+import reduce from 'lodash/reduce';
 import {
   getUserProfileDataService,
   updateUserProfileService,
@@ -441,9 +443,7 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
       handleMessageBox(sysIndex);
       // setUpdateProfileError(null);
     } catch (error) {
-      console.log('error:', error);
       if (error === 'ORGANIZATION_NOT_EXISTS') {
-        console.log('ITS in wrong company name:', sysIndex);
         // setUpdateProfileError('wrong company name. Please try again.');
         handleMessageBox(sysIndex, 'wrong company name. Please try again.');
       } else {
@@ -671,13 +671,11 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
       //   messageBoxContent = updateProfileError;
       // }
       if (profileMessage || updateProfileError) {
-        console.log('updateProfileError:', profileMessage);
         messageBoxTitle = 'settings';
         subtitle = 'profile information';
         theme = 'change profile information';
         messageBoxContent = profileMessage || updateProfileError;
       } else {
-        console.log('updateProfileError1:', profileMessage);
         messageBoxTitle = 'settings';
         subtitle = 'profile information';
         theme = 'change profile information';
@@ -1007,7 +1005,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
             );
             const deviceIds = [];
             const result = getLocationsSpecificLocationsMachines(locations);
-            console.log('selectAtsButtonsState:', locations, result);
 
             result.forEach((el) => {
               const [location, machine, specificLocation] = el;
@@ -1286,7 +1283,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
 
             result.forEach((el) => {
               const [location, machine, specificLocation] = el;
-              console.log('burningChamberX', el, result);
               let accessMachineData = {};
               if (el.length === 2) {
                 accessMachineData =
@@ -1299,7 +1295,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
                     specificLocation
                   ]?.devices[machine];
               }
-              console.log('outsideTempX', accessMachineData);
               if (accessMachineData?.isBurningChamberSelected) {
                 blowerDeviceIds.push(accessMachineData.deviceMac);
                 countAllDevicesIds++;
@@ -1580,7 +1575,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
 
             const essState = selectAdminState.essSpec;
             const locations = Object.entries(essState);
-            console.log('saveChanges:', locations);
 
             const result = getLocationsSpecificLocationsMachines(locations);
 
@@ -1659,7 +1653,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
               dispatch(handleAddElementToBank(saveInputElement));
               setSaveChanges(SaveChangesInitialState);
             } catch (error) {
-              console.error(error);
               messageBoxContent = `Failed to apply changes: ${
                 error.message || 'Unknown error'
               }`;
@@ -1684,7 +1677,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
             'please confirm each gas value position before applying';
           const tgsState = selectAdminState.tgsSpec;
           const tgsStateSpec = selectAdminState.tgs;
-          console.log('gasValueXX:', tgsState);
           const locations = Object.entries(tgsState);
           const result = getLocationsSpecificLocationsMachines(locations);
           const deviceIds = [];
@@ -1762,7 +1754,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
                 accessMachineData = tgsStateSpec[location][machine];
               }
               if (accessMachineData?.gasValue.isConfirm) {
-                console.log(accessMachineData?.gasValue, 'tgsStateSpec');
 
                 if (!specificLocation) {
                   devicesValve.push({
@@ -1948,7 +1939,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
               dispatch(handleAddElementToBank(saveInputElement));
               setSaveChanges(SaveChangesInitialState);
             } catch (error) {
-              console.error(error);
               messageBoxContent = `Failed to apply changes: ${
                 error.message || 'Unknown error'
               }`;
@@ -1969,7 +1959,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
           if (saveChanges.systemIdentification) {
             // Create
             if (isCreateEditOrSave === 0) {
-              console.log('ITS IN SYSTEM IDENTIFICATION!!!');
               // saves all the individual grouped switches that was clicked to save.
               if (saveChanges.systemIdentification === 'someUOSSaved') {
                 const allSavedSwitches = [];
@@ -2214,7 +2203,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
                   //   })
                   // );
                   // // !!END
-                  console.log('ITS IN ALL THE UOS SAVED!!!', sortedSwitchesArr,"switches",switches);
                   updateUOSZoneService(
                     updateSysIdentificationData(sortedSwitchesArr)
                   ).then(() => {
@@ -2288,7 +2276,6 @@ const SettingsMain = ({ essRefetch, tgsRefetch, tesRefetch }) => {
                   //   })
                   // );
                   // // !!END
-                  console.log('ITS IN ALL THE UOS SAVEDXX!!!');
                   updateUOSZoneService(
                     updateSysIdentificationData(switches)
                   ).then(() => {

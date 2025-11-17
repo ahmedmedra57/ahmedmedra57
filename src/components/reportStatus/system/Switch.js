@@ -65,7 +65,6 @@ const Switch = ({
   if (switchData[machineValues.zone_id]) {
     heatingOptions = switchData[machineValues.zone_id][machineValues.deviceMac];
   }
-  console.log(heatingOptions, "heatingOptionsheatingOptions");
 
   const machineIsEnabled = machineValues.isMachineEnabled;
   const machineIsFault = machineValues.gpEbpWifiAlertStatus.isFault;
@@ -267,7 +266,6 @@ const Switch = ({
             {/* 5 logos and status. 'ex:constant temp, snow sensor' */}
             <ControllersWrapper enable={machineIsEnabled}>
               {controllersIcons.map(({ icon, status, disabledIcon }, idx) => {
-                console.log({ icon, status, disabledIcon }, "controllersIcons");
                 return (
                   <ControllersAndStatus key={idx} enable={machineIsEnabled}>
                     <ControllersIcons

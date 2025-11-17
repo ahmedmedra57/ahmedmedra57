@@ -53,7 +53,6 @@ const SelectLocationsBox = ({
     data =
       sysIndex === 0 ? ess : sysIndex === 1 ? tgs : sysIndex === 2 ? tes : sys;
   }
-  console.log(data,sysIndex,"SelectLocationsBox");
   const selectLocationHandler = () => {
     multipleSelectBoxes
       ? handleOpenSelectLocations(sysOptions, swt, sysIndex)

@@ -1,4 +1,4 @@
-import { sum } from 'lodash';
+import sum from 'lodash/sum';
 import { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import {

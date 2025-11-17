@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { clone, isNumber, reduce } from 'lodash';
+import clone from 'lodash/clone';
+import isNumber from 'lodash/isNumber';
+import reduce from 'lodash/reduce';
 import { convertCelsiusToFahrenheit } from '../../../helpers/helpers';
 
 const initialState = {
@@ -407,7 +409,6 @@ const tgsSwitchSlice = createSlice({
           resetHeatingSchedule;
     },
     tgsHandleReadyHeatingSchedule: (state, action) => {
-      console.log('tgsHandleReadyHeatingSchedule', action.payload);
       const { location, machine } = action.payload;
         state.flatTgsSwitch[location][machine].heatingSchedule.isReady = action.payload.state;
     },

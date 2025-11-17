@@ -61,7 +61,6 @@ export const mainSelectIndicatorHandler = (propObj) => {
     const modifiedList = [locationList, specificLocationList, machineList].map(
       (list) => changeObjKeysHandler(list)
     );
-    console.log({ modifiedList }, "mainSelectIndicatorHandler");
     selectAllIndicatorDispatcherHandler(
       dispatch,
       swtName,
@@ -71,7 +70,6 @@ export const mainSelectIndicatorHandler = (propObj) => {
     );
   } else if (option !== "all" && machine === undefined) {
     // ======= select location logic =====
-    console.log(
       {
         data,
         option,
@@ -142,7 +140,6 @@ export const mainSelectIndicatorHandler = (propObj) => {
         data,
         selectedMachines
       );
-    console.log(
       {
         option,
         machine,

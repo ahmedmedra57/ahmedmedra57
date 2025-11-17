@@ -128,7 +128,6 @@ function AllSettingsSelectOptions() {
             <SelectionsWrapper isMobile={true}>
               {settingsData.map((data, index) => {
               const isDisabled=!allowedSettings?.includes(data.key);
-              console.log(allowedSettings,"allowedSettings")
               return (
                   <ContainerOfEachSelectMeasurement
                     key={index}

@@ -62,7 +62,6 @@ function ValveSettings({
   const [inputSearch, setInputSearch] = useState([""]);
   const [selectSearchMethod, setSelectSearchMethod] = useState(null);
   const [searchedMachines, setSelectedMachines] = useState([]);
-  console.log(selectSearchMethod,"selectSearchMethod")
   // handles the 3 input fields to direct each data entered gets save at the right place in useState at useContext
   const handleInput = (inputIdx, location, machine, inputNumber) => {
     const value = Number(inputNumber);
@@ -160,7 +159,6 @@ function ValveSettings({
         inputSearch[0].length > 7 && inputSearch[0].split(" - ").pop();
       const value = inputSearch[0].length > 7 && inputSearch[0].split(" - ");
       const location = value && value[0];
-      console.log("inputSearch", machineNumber,value,location);
       if (location && machineNumber) {
         const { gasType, sysIdentification, gasValue } =
           tgs[location][machineNumber];
@@ -186,7 +184,6 @@ function ValveSettings({
         Object.keys(value?.subLocations).forEach((subLocation) => {
           Object.entries(value?.subLocations[subLocation]?.devices).forEach(
             ([machineNumber, el]) => {
-          console.log("newLocations",el, machineNumber);
               if (el.isSelectedValveSettings) {
                 const AllLocationsInfo = {
                   location,
@@ -247,7 +244,6 @@ function ValveSettings({
   }, [inputSearch, tgs, selectSearchMethod]);
 
   const handleConfirmButton = (location, machine) => {
-    console.log("handleConfirmButton", location, machine,tgsState[location][machine]);
     if (
       tgsState[location][machine].gasValue.startPosition &&
       tgsState[location][machine].gasValue.minPosition &&

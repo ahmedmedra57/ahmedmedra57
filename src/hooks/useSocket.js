@@ -46,11 +46,9 @@ export const useSocket = (room, accessToken) => {
 
       // Listen for the WebSocket connection to be established
       newSocket.on('connect', () => {
-        console.log('WebSocket connection established.');
       });
 
       newSocket.on('connect_error', (e) => {
-        console.log('WebSocket connection error.', e);
       })
 
       // Listen for messages from the server
@@ -164,7 +162,6 @@ export const useSocket = (room, accessToken) => {
 
       // Listen for the WebSocket connection to be closed
       newSocket.on('disconnect', () => {
-        console.log('WebSocket connection closed.');
       });
 
       setSocket(newSocket);
@@ -180,7 +177,6 @@ export const useSocket = (room, accessToken) => {
     if (socket && socket.connected) {
       socket.send(message);
     } else {
-      console.log('WebSocket connection is not open yet.');
     }
   };
 

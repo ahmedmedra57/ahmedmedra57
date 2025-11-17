@@ -13,7 +13,7 @@ import {
 } from '../../../styles/commonStyles';
 import SpecificLocationDropBox from './SpecificLocationDropBox';
 import { testSpecificLocation } from './testSpecificLocation';
-import { isObject } from 'lodash';
+import isObject from 'lodash/isObject';
 
 const LocationDropBox = ({
   locations,

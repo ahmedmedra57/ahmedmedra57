@@ -89,7 +89,6 @@ const SnowSensor = ({
       );
       setOpenMessageBox(true);
       setMessages(['select locations', 'please select location to continue']);
-    console.log(messages,"handleSubmitXX")
     } else {
       handleOnClick('snowSensor', 'on', scope);
       // if mobile and location scope, close the expanded state

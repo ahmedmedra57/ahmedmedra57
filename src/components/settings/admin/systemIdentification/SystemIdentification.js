@@ -147,7 +147,6 @@ const SystemIdentification = ({
         ? [...sysSSRSelected[switches.UOS], switches.selectedSSR]
         : [switches.selectedSSR];
     });
-    console.log(sysHeating, "sysHeating")
     setSaveHeatingSysTemporary(sysHeating);
     setSaveSSRRatingTemporary(sysSSRRating);
     setSaveSSRSelectedTemporary(sysSSRSelected);
@@ -291,7 +290,6 @@ const SystemIdentification = ({
       } 
       else if (numOfUOS && numOfSSR && numSwitches) {
         handleCreateUOSAndSSRList(numOfUOS, numOfSSR);
-        console.log('numOfSSRSelectedXX3', numOfSSR);
         const createSwitchesArr = [];
         for (let i = 0; i < numSwitches; i++) {
           createSwitchesArr.push({

@@ -13,7 +13,6 @@ export const selectAllIndicatorDispatcherHandler = (
   machineList
 ) => {
   // dispatch all
-  console.log(specificLocationList, 'specificLocationListTest');
   dispatch(handleSettingsSelectAll({ switch: name, status: true }));
   // dispatch locations
   dispatch(handleSettingsLocationSelect(locationList.newLocationList));

@@ -79,7 +79,6 @@ const SSRElements = ({
           );
         })
         .catch((err) => {
-          console.log('fail get admin heater:', err.message);
         });
     }
   }, [inputPartNumberDebounced]);
@@ -404,7 +403,6 @@ const SSRElements = ({
                       const selectedSSR2 = Object.entries(ssr);
                       const key = selectedSSR2[0][0];
                       const value = selectedSSR2[0][1];
-                      console.log()
                       return (
                         <div key={selectedSSRIdx}>
                           {key === SSR &&

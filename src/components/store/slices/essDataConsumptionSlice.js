@@ -36,7 +36,6 @@ const essDataConsumptionSlice = createSlice({
       state,
       action
     ) => {
-      console.log(
         action.payload,
         "essDataConsumptionSpecificLocationUnselectMachineHandler"
       );

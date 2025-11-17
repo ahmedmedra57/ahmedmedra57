@@ -253,7 +253,6 @@ const EssControlBox = ({
             );
           })
           .catch((err) => {
-            console.log('delete heating schedule fail:', err);
           });
       } else if (heatingScheduleList.length - 1 === index) {
       } else {
@@ -271,7 +270,6 @@ const EssControlBox = ({
             );
           })
           .catch((err) => {
-            console.log('delete heating schedule fail:', err);
           });
       }
     } else {
@@ -304,7 +302,6 @@ const EssControlBox = ({
             );
           })
           .catch((e) => {
-            console.log('update heating schedule fail:', e.message);
           });
       } else {
         createScheduleService(scheduleData)
@@ -323,7 +320,6 @@ const EssControlBox = ({
             );
           })
           .catch((e) => {
-            console.log('create heating schedule fail:', e.message);
           });
       }
     }

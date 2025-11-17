@@ -116,7 +116,6 @@ const { EBP_mode } = flatTgsSwitch[location][machine];
   const { isReady } = snowSensor;
   const permissions = useSelector(selectUserPermissions);
   const disabled = !permissions.WRITE;
-  console.log(permissions, 'disabledXXxsXX');
   // local state
   // const [showTurnOffMessageBox, setShowTurnOffMessageBox] = useState(false);
   const [inputTemp, setInputTemp] = useState('');
@@ -211,7 +210,6 @@ const { EBP_mode } = flatTgsSwitch[location][machine];
   }, [instantHeat.inputTemp, isF]);
 
   const handleHeaderButton = (btnName) => {
-    console.log(btnName);
   };
 
   const handleButtonClick = (btnName) => {
@@ -222,7 +220,6 @@ const { EBP_mode } = flatTgsSwitch[location][machine];
             dispatch(tgsHandleShutOff({ location, machine }));
           })
           .catch((err) => {
-            console.log('fail freeze device: ', err.message);
           });
         break;
       }

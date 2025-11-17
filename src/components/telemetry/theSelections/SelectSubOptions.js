@@ -42,7 +42,6 @@ const SelectSubOptions = ({
   if (Object.keys(locations?.all).length > 0) {
     if (specLocationName) {
       const findSpecificLocation = locations?.all[specLocationName];
-      console.log(findSpecificLocation, "findSpecificLocation");
       locationName = findSpecificLocation?.locationName;
       machineName = findSpecificLocation?.devices[machine]?.machineName;
       // !! TEST TGS Purpose Only

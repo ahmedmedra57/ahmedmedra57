@@ -371,7 +371,6 @@ const AdminSSRItemDetails = ({
           setPartNumberSuggestions(res.map((el) => el.partNumber));
         })
         .catch((err) => {
-          console.log('fail get admin heater:', err.message);
         });
     }
   }, [inputPartNumberDebounced]);

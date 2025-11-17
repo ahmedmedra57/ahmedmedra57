@@ -35,7 +35,6 @@ export const useGetGraphQueries = (location, machine, swtName) => {
                 }
             },
             onError: (error) => {
-                console.error('get graph fail:', error.message);
             },
             staleTime: Infinity,
         }))

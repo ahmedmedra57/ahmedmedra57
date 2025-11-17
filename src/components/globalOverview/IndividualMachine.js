@@ -9,7 +9,7 @@ import { selectEssSwitch } from '../store/slices/essSwitchSlice';
 import { selectTgsSwitch } from '../store/slices/tgsSwitchSlice';
 import { selectTesSwitch } from '../store/slices/tesSwitchSlice';
 import { useMemo } from 'react';
-import { isNumber } from 'lodash';
+import isNumber from 'lodash/isNumber';
 import { selectLocations } from '../store/slices/locationsSlice';
 import { selectUnits } from '../store/slices/settings/unitsSlice';
 import { calculateTotalEnergyConsumption } from '../../helpers/helpers';

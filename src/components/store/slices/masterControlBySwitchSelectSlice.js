@@ -75,7 +75,6 @@ const masterControlSelectBySwitchSlice = createSlice({
     },
     // select machine by selected locations
     handleMachineSelectAllBySwitch: (state, action) => {
-      console.log("MachineSelect","handleMachineSelectAllBySwitch",action.payload)
       state[action.payload.controller].isMachineSelected[
         action.payload.locationIdx
       ][action.payload.machineIdx] = true;
@@ -95,13 +94,11 @@ const masterControlSelectBySwitchSlice = createSlice({
       state[action.payload.controller].selectedMachines = action.payload.arr;
     },
     handleMachineSelectAltBySwitch: (state, action) => {
-      console.log("MachineSelect","handleMachineSelectAltBySwitch",action.payload)
       state[action.payload.controller].isMachineSelected[
         action.payload.locationIdx
       ][action.payload.machineIdx] = true;
     },
     handleMachineSelectWithSpecLocationAltBySwitch: (state, action) => {
-      console.log("MachineSelect","handleMachineSelectWithSpecLocationAltBySwitch",action.payload)
       state[action.payload.controller].isMachineSelected[
         action.payload.locationIdx
       ][action.payload.specLocationIdx][action.payload.machineIdx] = true;

@@ -18,7 +18,7 @@ import {
   handleTesSwitch,
   selectTesSwitch,
 } from './components/store/slices/tesSwitchSlice';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense, useCallback, useRef } from 'react';
 import {
   handleEssInitialState,
   handleOpenMasterControl,
@@ -45,21 +45,23 @@ import {
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Sidebar from './components/sidebar/Sidebar';
-import GlobalOverviewMain from './components/globalOverview/GlobalOverViewMain';
-import TelemetryMain from './components/telemetry/TelemetryMain';
-import EssMain from './components/ess/EssMain';
-import TgsMain from './components/tgs/TgsMain';
-import TesMain from './components/tes/TesMain';
-import HeatingPlatformMain from './components/heatingPlatform';
-import SettingsMain from './components/settings/SettingsMain';
-import AuditTrailMain from './components/auditTrail/AuditTrailMain';
-import FaultsMain from './components/faults/FaultsMain';
-import ReportStatusMain from './components/reportStatus/ReportStatusMain';
-import MasterControlMain from './components/masterControl/MasterControlMain';
-import MobileMain from './components/mobileMain/MobileMain';
 import MainLoadingPage from './components/loading/MainLoadingPage';
-import MobileMasterControl from './components/masterControl/MobileMasterControl';
-// import LoginBox from './components/landingPage/LoginBox';
+
+const GlobalOverviewMain = lazy(() => import('./components/globalOverview/GlobalOverViewMain'));
+const TelemetryMain = lazy(() => import('./components/telemetry/TelemetryMain'));
+const EssMain = lazy(() => import('./components/ess/EssMain'));
+const TgsMain = lazy(() => import('./components/tgs/TgsMain'));
+const TesMain = lazy(() => import('./components/tes/TesMain'));
+const HeatingPlatformMain = lazy(() => import('./components/heatingPlatform'));
+const SettingsMain = lazy(() => import('./components/settings/SettingsMain'));
+const AuditTrailMain = lazy(() => import('./components/auditTrail/AuditTrailMain'));
+const FaultsMain = lazy(() => import('./components/faults/FaultsMain'));
+const ReportStatusMain = lazy(() => import('./components/reportStatus/ReportStatusMain'));
+const MasterControlMain = lazy(() => import('./components/masterControl/MasterControlMain'));
+const MobileMain = lazy(() => import('./components/mobileMain/MobileMain'));
+const MobileMasterControl = lazy(() => import('./components/masterControl/MobileMasterControl'));
+const HomePage = lazy(() => import('./components/newLandingPage/LandingPage'));
+
 import { useQuery } from 'react-query';
 import {
   getAllUsers,
@@ -94,7 +96,6 @@ import {
 } from './components/store/slices/settings/unitsSlice';
 import { createBrowserHistory } from 'history';
 import qs from 'qs';
-import HomePage from './components/landingPage/HomePage';
 import {
   handleEssAdminSelect,
   handleSysAdminSelect,
@@ -116,10 +117,8 @@ const MainPage = () => {
        try{
          const users= await getUserProfileDataService();
          users.forEach(user =>{
-          console.log(user);
          })
        }catch(error){
-        console.error("error: does not exist");
        }
     }
   },[])
@@ -141,21 +140,23 @@ const MainPage = () => {
   const storedAccessToken = localStorage.getItem('access_token');
 
   // start handle logout after 15 minutes of inactivity
-  let timer = null;
+  const timerRef = useRef(null);
 
-  const startTimer = () => {
-    timer = setTimeout(() => {
+  const startTimer = useCallback(() => {
+    timerRef.current = setTimeout(() => {
       logoutService().then(() => {
         localStorage.removeItem('access_token');
         dispatch(handleAccessToken(null));
       });
     }, 15 * 60 * 1000);
-  };
+  }, [dispatch]);
 
-  const resetTimer = () => {
-    clearTimeout(timer);
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
     startTimer();
-  };
+  }, [startTimer]);
 
   useEffect(() => {
     if (accessToken) {
@@ -164,12 +165,14 @@ const MainPage = () => {
       window.addEventListener('keydown', resetTimer);
 
       return () => {
-        clearTimeout(timer);
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
         window.removeEventListener('mousemove', resetTimer);
         window.removeEventListener('keydown', resetTimer);
       };
     }
-  }, [accessToken]);
+  }, [accessToken, startTimer, resetTimer]);
   // end handle logout after 15 minutes of inactivity
 
   useSocket(user.user_id, accessToken);
@@ -205,25 +208,6 @@ const MainPage = () => {
       handleMessagesFaults({ flatEssSwitch, flatTgsSwitch, flatTesSwitch })
     );
   }, [flatEssSwitch, flatTgsSwitch, flatTesSwitch]);
-
-  // const searchSpecificLocationHandler = (switchType) => {
-  //   return Object.values(switchType).map((el) => {
-  //     if (
-  //       Object.keys(el).length === 0 ||
-  //       Object.values(el).some((checkEl) => checkEl.machineType)
-  //     ) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   });
-  // };
-
-  // !!TEST
-  // useSetZoneOpeningsState(testEssSwitch, isEssSwitch, null, 'ess', true);
-  // useSetZoneOpeningsState(testTgsSwitch, isTgsSwitch, null, 'tgs', true);
-  // useSetZoneOpeningsState(testTesSwitch, isTesSwitch, null, 'tes', true);
-  // !!END
 
   useSetZoneOpeningsState(essSwitches, isEssSwitch, null, 'ess', true);
   useSetZoneOpeningsState(tgsSwitches, isTgsSwitch, null, 'tgs', true);
@@ -444,36 +428,38 @@ const MainPage = () => {
               <Header />
               <MobileMainContentsWrapper>
                 <EssTgsTesProvider>
-                  <Routes>
-                    <Route path='/' element={<MobileMain />} />
-                    <Route path='ess' element={<EssMain />} />
-                    <Route path='tgs' element={<TgsMain />} />
-                    <Route path='tes' element={<TesMain />} />
+                  <Suspense fallback={<MainLoadingPage />}>
+                    <Routes>
+                      <Route path='/' element={<MobileMain />} />
+                      <Route path='ess' element={<EssMain />} />
+                      <Route path='tgs' element={<TgsMain />} />
+                      <Route path='tes' element={<TesMain />} />
 
-                    <Route
-                      path='masterControl'
-                      element={<MobileMasterControl />}
-                    />
-                    <Route path='telemetry' element={<TelemetryMain />} />
+                      <Route
+                        path='masterControl'
+                        element={<MobileMasterControl />}
+                      />
+                      <Route path='telemetry' element={<TelemetryMain />} />
 
-                    <Route
-                      path='heatingPlatform'
-                      element={<HeatingPlatformMain />}
-                    />
+                      <Route
+                        path='heatingPlatform'
+                        element={<HeatingPlatformMain />}
+                      />
 
-                    <Route
-                      path='settings'
-                      element={
-                        <SettingsMain
-                          essRefetch={essRefetch}
-                          tgsRefetch={tgsRefetch}
-                          tesRefetch={tesRefetch}
-                        />
-                      }
-                    />
-                    <Route path='faults' element={<FaultsMain />} />
-                    <Route path='reportStatus' element={<ReportStatusMain />} />
-                  </Routes>
+                      <Route
+                        path='settings'
+                        element={
+                          <SettingsMain
+                            essRefetch={essRefetch}
+                            tgsRefetch={tgsRefetch}
+                            tesRefetch={tesRefetch}
+                          />
+                        }
+                      />
+                      <Route path='faults' element={<FaultsMain />} />
+                      <Route path='reportStatus' element={<ReportStatusMain />} />
+                    </Routes>
+                  </Suspense>
                 </EssTgsTesProvider>
               </MobileMainContentsWrapper>
               <Footer />
@@ -481,11 +467,13 @@ const MainPage = () => {
           </MobileWrapper>
         ) : (
           <Wrapper>
-            <Routes>
-              <Route path='/login' element={<HomePage />} />
-              <Route path='/login/fr' element={<HomePage />} />
-              <Route path='*' element={<Navigate to='/login' />} />
-            </Routes>
+            <Suspense fallback={<MainLoadingPage />}>
+              <Routes>
+                <Route path='/login' element={<HomePage />} />
+                <Route path='/login/fr' element={<HomePage />} />
+                <Route path='*' element={<Navigate to='/login' />} />
+              </Routes>
+            </Suspense>
           </Wrapper>
         )
       ) : accessToken || storedAccessToken ? (
@@ -497,41 +485,43 @@ const MainPage = () => {
               <MainContentsWrapper>
                 <Sidebar />
                 <EssTgsTesProvider>
-                  <Routes>
-                    <Route path='/' element={<GlobalOverviewMain />} />
+                  <Suspense fallback={<MainLoadingPage />}>
+                    <Routes>
+                      <Route path='/' element={<GlobalOverviewMain />} />
 
-                    <Route path='/telemetry' element={<TelemetryMain />} />
-                    <Route
-                      path='masterControl'
-                      element={<MasterControlMain />}
-                    />
+                      <Route path='/telemetry' element={<TelemetryMain />} />
+                      <Route
+                        path='masterControl'
+                        element={<MasterControlMain />}
+                      />
 
-                    <Route path='ess' element={<EssMain />} />
-                    <Route path='tgs' element={<TgsMain />} />
-                    <Route path='tes' element={<TesMain />} />
+                      <Route path='ess' element={<EssMain />} />
+                      <Route path='tgs' element={<TgsMain />} />
+                      <Route path='tes' element={<TesMain />} />
 
-                    <Route
-                      path='heatingPlatform'
-                      element={<HeatingPlatformMain />}
-                    />
-                    <Route
-                      path='settings'
-                      element={
-                        <SettingsMain
-                          essRefetch={essRefetch}
-                          tgsRefetch={tgsRefetch}
-                          tesRefetch={tesRefetch}
-                        />
-                      }
-                    />
-                    <Route path='auditTrail' element={<AuditTrailMain />} />
-                    <Route path='faults' element={<FaultsMain />} />
-                    <Route path='reportStatus' element={<ReportStatusMain />} />
-                    <Route
-                      path='*'
-                      element={<Navigate to={savedPrevParam} />}
-                    />
-                  </Routes>
+                      <Route
+                        path='heatingPlatform'
+                        element={<HeatingPlatformMain />}
+                      />
+                      <Route
+                        path='settings'
+                        element={
+                          <SettingsMain
+                            essRefetch={essRefetch}
+                            tgsRefetch={tgsRefetch}
+                            tesRefetch={tesRefetch}
+                          />
+                        }
+                      />
+                      <Route path='auditTrail' element={<AuditTrailMain />} />
+                      <Route path='faults' element={<FaultsMain />} />
+                      <Route path='reportStatus' element={<ReportStatusMain />} />
+                      <Route
+                        path='*'
+                        element={<Navigate to={savedPrevParam} />}
+                      />
+                    </Routes>
+                  </Suspense>
                 </EssTgsTesProvider>
               </MainContentsWrapper>
               <Footer />
@@ -540,13 +530,13 @@ const MainPage = () => {
         </MainWrapper>
       ) : (
         <Wrapper>
-          <Routes>
-            // <Route path='/login' element={<LandingPage />} />
-            // <Route path='/login/fr' element={<LandingPage />} />
-            <Route path='/login' element={<HomePage />} />
-            <Route path='/login/fr' element={<HomePage />} /> 
-            <Route path='*' element={<Navigate to='/login' />} />
-          </Routes>
+          <Suspense fallback={<MainLoadingPage />}>
+            <Routes>
+              <Route path='/login' element={<HomePage />} />
+              <Route path='/login/fr' element={<HomePage />} />
+              <Route path='*' element={<Navigate to='/login' />} />
+            </Routes>
+          </Suspense>
         </Wrapper>
       )}
     </BrowserRouter>
@@ -575,7 +565,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* justify-content: space-around; */
 
   padding: 10rem 20rem;
   padding-top: 0;
@@ -606,7 +595,6 @@ const MainContentsWrapper = styled.div`
 
 const MobileWrapper = styled.div`
   width: 332px;
-  /* ${flexDirectionColumn} */
   ${justifyContentFlexStart}
   flex-direction: column;
 `;

@@ -41,7 +41,6 @@ const SwitchNameSelector = ({
 
   useEffect(() => {
     if (switchNameSelection.includes(`#${data.size} - ${data.name}`)) {
-      console.log(data.name,"switchNameSelectionXD",data.size)
       setSSRSwitchName(`#${data.size} - ${data.name}`);
     }
   }, [data]);

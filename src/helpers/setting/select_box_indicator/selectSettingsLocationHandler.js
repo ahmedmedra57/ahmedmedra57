@@ -6,7 +6,6 @@ export const selectSettingsLocationHandler = (
   isMachineSelected,
   selectedLocations
 ) => {
-  console.log({ data,
     option,
     locations,
     isLocationSelected,

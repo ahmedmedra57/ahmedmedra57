@@ -53,8 +53,6 @@ const { essSwitch, tgsSwitch, tesSwitch,flatEssSwitch,flatTgsSwitch,flatTesSwitc
    const switchStatus =
     swtName === 'ess' ? flatEssSwitch : swtName === 'tgs' ? flatTgsSwitch : flatTesSwitch;
     const { isEbp,EBP_mode } = switchStatus[location][machine];
-    console.log(isEbp);
-    console.log(EBP_mode);
   // temporary variables
   // const isF = false;
   // temporary variables
@@ -93,7 +91,6 @@ const { essSwitch, tgsSwitch, tesSwitch,flatEssSwitch,flatTgsSwitch,flatTesSwitc
   const Logo = (EBP_mode === 0 && isEbp)|| isDisabled
     ? '/images/logo-instantHeat-disabled.svg'
     : '/images/logo-instantHeat.svg';
-console.log("ebpmode",EBP_mode);
   return (
     <>
       {isMobile ? (

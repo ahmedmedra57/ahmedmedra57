@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { memo } from 'react';
 import { flexBoxCenter, layerADark } from './styles/commonStyles';
 import { useMediaQuery } from 'react-responsive';
 
@@ -24,7 +25,7 @@ const TitleContainer = ({ title }) => {
   );
 };
 
-export default TitleContainer;
+export default memo(TitleContainer);
 
 const Wrapper = styled.div`
   ${({ isMobile }) =>

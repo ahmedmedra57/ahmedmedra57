@@ -1,4 +1,6 @@
-import { groupBy, isEmpty, sum } from 'lodash';
+import groupBy from 'lodash/groupBy';
+import isEmpty from 'lodash/isEmpty';
+import sum from 'lodash/sum';
 import moment from 'moment';
 import { ROLE_PERMISSIONS } from '../constants';
 import { useEffect } from 'react';
@@ -98,7 +100,6 @@ export const getTitle = (gender) => {
 
 export const getLocationsMachinesName = (deviceIds, switches) => {
   const locationsMachines = [];
-  console.log('deviceIds', { deviceIds, switches });
   deviceIds.map((deviceId) => {
     Object.values(switches).map((zone, zoneIndex) => {
       Object.values(zone).map((machine, machineIndex) => {
@@ -1596,7 +1597,6 @@ export const getSelectedDeviceIds = (
           }
         } else if (el) {
           const location = Object.values(swtSwitch)[idxArr]?.devices;
-          console.log(location, 'getSelectedDeviceIds');
           return Object.keys(location)[edxEl];
         }
         return false;
@@ -1816,23 +1816,18 @@ export const filteredSuggestionsHandler = (list, locations, inputValue) => {
     // Convert parts to searchable names
     const searchableNames = parts.map((part, index) => {
       const locationData = locations.all[part];
-      console.log(`   🟢 part[${index}]:`, part, "→ locationData:", locationData);
 
-     
       // Handle first part (location)
       if (index === 0) {
         // Check if it's a specific location
         if (locationData?.parent_location_id != null) {
-           console.log("  Found parent_location_id:", locationData.parent_location_id);
-
           const parentLocation = locations.all[locationData.parent_location_id];
        
           const specificLocation = parentLocation?.specific_location?.find(
             spec => spec.zone_id === part
           );
-           
+
             if (!specificLocation) {
-            console.warn(" specificLocation not found for part:", part);
             return locationData.locationName || "";
           }
  
@@ -1957,7 +1952,6 @@ export const getFaultsAlertsHandler = (data) => {
   );
 
   const faultsState = filteredData.map((el) => {
-    console.log('getFaultsAlertsHandler', el);
     return el[1].some((el) => {
       if (el.machines) {
         return el.machines.some((machine) => {
@@ -1971,6 +1965,5 @@ export const getFaultsAlertsHandler = (data) => {
       // return Object.values(el)[0].gpEbpWifiAlertStatus.isFault === true;
     });
   });
-  console.log(faultsState, 'getFaultsAlertsHandler');
   return { faultsState, filteredData };
 };

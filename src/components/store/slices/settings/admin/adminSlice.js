@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { reduce } from 'lodash';
+import reduce from 'lodash/reduce';
 const initialState = {
   ess: {
     isSelected: false,
@@ -230,7 +230,6 @@ const adminSlice = createSlice({
       const { location, specificLocation, machine, swt, isSelectedSys } =
         action.payload;
         const swtSpec = swt === "ess" ? "essSpec" : swt === "tgs" ? "tgsSpec" : swt === "tes" ? "tesSpec" : "sysSpec";
-        console.log({location, specificLocation, machine, swt, isSelectedSys, swtSpec},"handleAdminSelectIndividualMachine")
         if (specificLocation) {
           if (isSelectedSys) {
             //   // !!TEST
@@ -256,7 +255,6 @@ const adminSlice = createSlice({
       const { location, specificLocation, machine, swt, isSelectedSys } =
         action.payload;
         const swtSpec = swt === "ess" ? "essSpec" : swt === "tgs" ? "tgsSpec" : swt === "tes" ? "tesSpec" : "sysSpec";
-      console.log({location, specificLocation, machine, swt, isSelectedSys},"handleAdminUnSelectIndividualMachine")
       if (specificLocation) {
         if (isSelectedSys) {
           state[swtSpec][location].subLocations[specificLocation].devices[machine][isSelectedSys] = false;
@@ -285,7 +283,6 @@ const adminSlice = createSlice({
     handleGasValuePosition: (state, action) => {
       const { location, specificLocation, machine, position, value } =
         action.payload;
-        console.log({location, specificLocation, machine, position, value},"handleGasValuePosition")
         state.tgs[location][machine].gasValue[position] = value;
     },
     handleResetUnApplyMachinesOfGasInputs: (state, action) => {
