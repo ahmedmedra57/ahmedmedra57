@@ -1,0 +1,101 @@
+import { useState } from 'react';
+import styled, { css } from 'styled-components';
+import { useSelector } from 'react-redux';
+import { selectTelemetry } from '../store/slices/telemetrySlice';
+
+import TitleContainer from '../TitleContainer';
+import MainChart from './chart/MainChart';
+import MainSelections from './theSelections/MainSelections';
+import MessageBox from '../userMessages/messageBox';
+
+const TelemetryMain = () => {
+  const [selectedSystemTitle, setSelectedSystemTitle] = useState(null);
+  const [controlSelectionDisplay, setControlSelectionDisplay] = useState(false);
+  const [telemetryData, setTelemetryData] = useState([]);
+  const [doubleTelemetryData, setDoubleTelemetryData] = useState([]);
+  const [doubleTelemetryKeys, setDoubleTelemetryKeys] = useState([]);
+  const [telemetryDataKeys, setTelemetryDataKeys] = useState([]);
+  const [copyTelemetryState, setCopyTelemetryState] = useState([]);
+  const [copyTelemetryStateKeys, setCopyTelemetryStateKeys] = useState([]);
+  const [copyTelemetryDailyState, setCopyTelemetryDailyState] = useState([]);
+  const [scheduleData, setScheduleData] = useState({
+    start: { date: null, time: null },
+    end: { date: null, time: null },
+  });
+  const [popUpBox, setPopUpBox] = useState(false);
+
+  const { isSearch } = useSelector(selectTelemetry);
+
+  const handleMessageBoxForSelectBoxes = () => {
+    if (isSearch) return;
+    return setPopUpBox(true);
+  };
+  return (
+    <Wrapper>
+      <TitleContainer title='global system telemetry overview' />
+      <MainSelections
+        selectedSystemTitle={selectedSystemTitle}
+        setSelectedSystemTitle={setSelectedSystemTitle}
+        setControlSelectionDisplay={setControlSelectionDisplay}
+        setTelemetryData={setTelemetryData}
+        setTelemetryDataKeys={setTelemetryDataKeys}
+        setCopyTelemetryState={setCopyTelemetryState}
+        setCopyTelemetryStateKeys={setCopyTelemetryStateKeys}
+        setCopyTelemetryDailyState={setCopyTelemetryDailyState}
+        scheduleData={scheduleData}
+        setScheduleData={setScheduleData}
+      />
+      <div onClick={handleMessageBoxForSelectBoxes}>
+        <MainChart
+          selectedSystemTitle={selectedSystemTitle}
+          controlSelectionDisplay={controlSelectionDisplay}
+          telemetryData={telemetryData}
+          telemetryDataKeys={telemetryDataKeys}
+          setTelemetryData={setTelemetryData}
+          setTelemetryDataKeys={setTelemetryDataKeys}
+          copyTelemetryState={copyTelemetryState}
+          copyTelemetryStateKeys={copyTelemetryStateKeys}
+          copyTelemetryDailyState={copyTelemetryDailyState}
+          setCopyTelemetryState={setCopyTelemetryState}
+          setCopyTelemetryStateKeys={setCopyTelemetryStateKeys}
+          setCopyTelemetryDailyState={setCopyTelemetryDailyState}
+          doubleTelemetryData={doubleTelemetryData}
+          setDoubleTelemetryData={setDoubleTelemetryData}
+          doubleTelemetryKeys={doubleTelemetryKeys}
+          setDoubleTelemetryKeys={setDoubleTelemetryKeys}
+          scheduleData={scheduleData}
+          isSearch={isSearch}
+        />
+      </div>
+      {popUpBox && (
+        <MessageBoxWrapper>
+          <MessageBox
+            onClose={() => setPopUpBox(false)}
+            title={'global system telemetry overview'}
+            subtitle={'selection box'}
+            messages={[
+              'in order to view your global system telemetry overview, please select all the selection boxes.',
+            ]}
+          />
+        </MessageBoxWrapper>
+      )}
+    </Wrapper>
+  );
+};
+
+export default TelemetryMain;
+
+const Wrapper = styled.div`
+  height: auto;
+  width: 1216rem;
+
+  /* Hi Johnson I just put this temporary I think you should   */
+  margin-bottom: 40px;
+  position: relative;
+`;
+
+const MessageBoxWrapper = styled.div`
+  position: absolute;
+  top: 25%;
+  left: 36%;
+`;
