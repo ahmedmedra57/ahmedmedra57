@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   flexBoxCenter,
   justifyContentFlexStart,
@@ -31,6 +32,7 @@ function SnowSensorMain({
 }) {
   // media query
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
+  const { t } = useTranslation();
 
   const snowSensorSubTitles = [
     'ess-snow sensor trigger',
@@ -74,7 +76,7 @@ function SnowSensorMain({
                   <InvisibleDivForEditButton height={'280px'} />
                 </EditBoxWrapper>
               )}
-            <TitleOfSelectedOption title={'snow sensor trigger'} />
+            <TitleOfSelectedOption title={t('settings.snowSensor')} />
 
             {snowSensorSubTitles.map((title, idx) => {
               return (
@@ -118,7 +120,7 @@ function SnowSensorMain({
                 </EditBoxWrapper>
               )}
             <TitleWrapper>
-              <TitleOfSelectedOption title={'snow sensor trigger'} />
+              <TitleOfSelectedOption title={t('settings.snowSensor')} />
             </TitleWrapper>
             <ContentsWrapper>
               {snowSensorSubTitles.map((title, idx) => {

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
 import {
@@ -15,6 +16,7 @@ import {
 import ButtonComponent from './ButtonComponent';
 
 const ActionLoginHistory = ({ data, index }) => {
+  const { t } = useTranslation();
   // ------------ temporary date formatting-----------
   const loginHour =
     (Number(data.login?.getHours()) > 12
@@ -71,22 +73,22 @@ const ActionLoginHistory = ({ data, index }) => {
     <Wrapper>
       <SectionDisplay>
         <SectionLog>
-          <Title>log in</Title>
+          <Title>{t('auditTrail.logIn')}</Title>
           <Divider>-</Divider>
           {loginHour && (
             <Date>
-              date : {loginHour}:{loginMinute} {loginIsPm ? 'pm' : 'am'}{' '}
+              {t('common.date')} : {loginHour}:{loginMinute} {loginIsPm ? t('common.pm') : t('common.am')}{' '}
               {data?.login?.toLocaleDateString()}
             </Date>
           )}
         </SectionLog>
         <Divider>-</Divider>
         <SectionLog>
-          <Title>log out</Title>
+          <Title>{t('auditTrail.logOut')}</Title>
           <Divider>-</Divider>
           {logoutHour && (
             <Date>
-              date : {logoutHour}:{logoutMinute} {logoutIsPm ? 'pm' : 'am'}{' '}
+              {t('common.date')} : {logoutHour}:{logoutMinute} {logoutIsPm ? t('common.pm') : t('common.am')}{' '}
               {data?.logout?.toLocaleDateString()}
             </Date>
           )}

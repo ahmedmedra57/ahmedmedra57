@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 
 import {
@@ -11,8 +12,9 @@ import {
 } from '../styles/commonStyles';
 
 const ActDetail = () => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
-  const button = isExpanded ? 'close' : 'expand';
+  const button = isExpanded ? t('common.close') : t('common.expand');
 
   const address = 'boston messachusettes';
   const date = '3:50am - 02/06/2022';
@@ -33,7 +35,7 @@ const ActDetail = () => {
         <InvisibleWrapper>
           <SectionDetail>
             <InfoSpan option={'location'}>{address}</InfoSpan>
-            <InfoSpan option={'date'}>date : {date}</InfoSpan>
+            <InfoSpan option={'date'}>{t('common.date')} : {date}</InfoSpan>
             <InfoSpan>-</InfoSpan>
             <InfoSpan option={'command'}>{fileName}</InfoSpan>
           </SectionDetail>

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { selectUnits } from '../../../store/slices/settings/unitsSlice';
 import { selectTelemetry } from '../../../store/slices/telemetrySlice';
 import {
@@ -41,6 +42,7 @@ const SwitchSpecification = ({
   setSearchedSwtName,
   setIsExpand,
 }) => {
+  const { t } = useTranslation();
   const telemetryState = useSelector(selectTelemetry);
   const isSearch = telemetryState.isSearch;
   const settingsUnitsState = useSelector(selectUnits);
@@ -191,25 +193,25 @@ const SwitchSpecification = ({
                   <IndentTitle>
                     <TitleWrapper>
                       <Title>
-                        switch <br /> specification
+                        {t('telemetry.switchSpecification.title')}
                       </Title>
 
                       <Title>
-                        usage <br></br> hours
+                        {t('telemetry.usageHours')}
                       </Title>
 
                       <Title>
                         {verificationOfDataConsump ? (
                           <>
-                            data <br></br> consumption
+                            {t('telemetry.dataConsumption')}
                           </>
                         ) : swtName === 'tgs' ? (
                           <>
-                            gas <br></br> consumption
+                            {t('telemetry.gasConsumption')}
                           </>
                         ) : (
                           <>
-                            energy <br></br> consumption
+                            {t('telemetry.energyConsumption')}
                           </>
                         )}
                       </Title>
@@ -230,7 +232,7 @@ const SwitchSpecification = ({
                             <P1>{locationName}</P1>
                           </ImgLocationWrapper>
                           <Info isSwitches={true}>
-                            {totalNumOfSwt[index]} switches
+                            {totalNumOfSwt[index]} {t('telemetry.switches')}
                           </Info>
                           <Info isHours={true}>
                             {totalUsageHours[index] ? totalUsageHours[index] : '-' } Hrs
@@ -352,23 +354,23 @@ const SwitchSpecification = ({
                 <IndentTitle>
                   <TitleWrapper>
                     <Title>
-                      switch <br></br> specification
+                      {t('telemetry.switchSpecification.title')}
                     </Title>
                     <Title>
-                      usage <br></br> hours
+                      {t('telemetry.usageHours')}
                     </Title>
                     <Title>
                       {verificationOfDataConsump ? (
                         <>
-                          data <br></br> consumption
+                          {t('telemetry.dataConsumption')}
                         </>
                       ) : swtName === 'tgs' ? (
                         <>
-                          gas <br></br> consumption
+                          {t('telemetry.gasConsumption')}
                         </>
                       ) : (
                         <>
-                          energy <br></br> consumption
+                          {t('telemetry.energyConsumption')}
                         </>
                       )}
                     </Title>

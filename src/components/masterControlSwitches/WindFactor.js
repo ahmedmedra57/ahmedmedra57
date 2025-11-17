@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 
@@ -31,6 +32,7 @@ const WindFactor = ({
   specificLocation,
   disabled
 }) => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
   // global
@@ -59,7 +61,7 @@ const WindFactor = ({
     if (!selectedOne) {
       // Message box
       setOpenMessageBox(true);
-      setMessages(['select locations', 'please select location to continue']);
+      setMessages([t('masterControl.windFactor.selectLocations'), t('masterControl.windFactor.selectLocationPrompt')]);
       // please select locations first
       handleOnClick(
         'windFactor',
@@ -102,7 +104,7 @@ const WindFactor = ({
 
                     <SectionHeatButton>
                       <HeatButton onClick={handleApply}>
-                        wind factor<br></br> program
+                        {t('masterControl.programs.windFactor')}
                       </HeatButton>
                     </SectionHeatButton>
 
@@ -143,8 +145,8 @@ const WindFactor = ({
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
                     onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
-                    subtitle={'wind factor program'}
+                    title={t('masterControl.title')}
+                    subtitle={t('masterControl.programs.windFactor')}
                     messages={messages}
                     isMobile={isMobile}
                   />
@@ -179,7 +181,7 @@ const WindFactor = ({
                   <MobileHole isSmall={true}>
                     <MobileTop isSmall={true}>
                       <HeatButton onClick={handleApply} isSmall={true}>
-                        wind factor program
+                        {t('masterControl.programs.windFactor')}
                       </HeatButton>
                     </MobileTop>
                   </MobileHole>
@@ -189,8 +191,8 @@ const WindFactor = ({
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
                     onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
-                    subtitle={'wind factor program'}
+                    title={t('masterControl.title')}
+                    subtitle={t('masterControl.programs.windFactor')}
                     messages={messages}
                     isMobile={isMobile}
                   />

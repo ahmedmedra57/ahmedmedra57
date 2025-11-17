@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import ImperialMetricMeasurementReader from './ImperialMetricMeasurementReader';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -32,19 +33,20 @@ const UnitsMain = ({
 }) => {
   // media query
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
+  const { t } = useTranslation();
 
   const measurementsArr = [
     {
-      title: 'Imperial',
-      temp: 'F °- FAHRENHEIT',
+      title: t('settings.imperial'),
+      temp: t('settings.fahrenheit'),
       energy: 'Kw - KILOWATTS',
       measure: 'In - INCHES - Ft - FEET',
       gas: 'FT³- CUBIC FEET',
       backgroundColor: '360',
     },
     {
-      title: 'Metric',
-      temp: 'C ° - CENTIGRADE',
+      title: t('settings.metric'),
+      temp: t('settings.celsius'),
       energy: 'Kw - KILOWATTS',
       measure: 'M - METERS',
       gas: 'M³ - CUBIC METERS',
@@ -91,7 +93,7 @@ const UnitsMain = ({
                   <InvisibleDivForEditButton height={'481px'} />
                 </EditBoxWrapper>
               )}
-              <TitleOfSelectedOption title={'select units of measurement'} />
+              <TitleOfSelectedOption title={t('settings.selectUnitsOfMeasurement')} />
 
               {measurementsArr.map((value, index) => {
                 return (
@@ -128,7 +130,7 @@ const UnitsMain = ({
                 <InvisibleDivForEditButton height={'230px'} />
               </EditBoxWrapper>
             )}
-            <TitleOfSelectedOption title={'select units of measurement'} />
+            <TitleOfSelectedOption title={t('settings.selectUnitsOfMeasurement')} />
             <MetricImperialBaseLayer>
               <MetricImperialWrapper>
                 {measurementsArr.map((value, index) => {

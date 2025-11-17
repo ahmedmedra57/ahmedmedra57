@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { selectTelemetry } from '../store/slices/telemetrySlice';
 
 import TitleContainer from '../TitleContainer';
@@ -9,6 +10,7 @@ import MainSelections from './theSelections/MainSelections';
 import MessageBox from '../userMessages/messageBox';
 
 const TelemetryMain = () => {
+  const { t } = useTranslation();
   const [selectedSystemTitle, setSelectedSystemTitle] = useState(null);
   const [controlSelectionDisplay, setControlSelectionDisplay] = useState(false);
   const [telemetryData, setTelemetryData] = useState([]);
@@ -32,7 +34,7 @@ const TelemetryMain = () => {
   };
   return (
     <Wrapper>
-      <TitleContainer title='global system telemetry overview' />
+      <TitleContainer title={t('telemetry.title')} />
       <MainSelections
         selectedSystemTitle={selectedSystemTitle}
         setSelectedSystemTitle={setSelectedSystemTitle}
@@ -71,10 +73,10 @@ const TelemetryMain = () => {
         <MessageBoxWrapper>
           <MessageBox
             onClose={() => setPopUpBox(false)}
-            title={'global system telemetry overview'}
-            subtitle={'selection box'}
+            title={t('telemetry.title')}
+            subtitle={t('telemetry.selectionBox')}
             messages={[
-              'in order to view your global system telemetry overview, please select all the selection boxes.',
+              t('telemetry.messages.selectAllBoxes'),
             ]}
           />
         </MessageBoxWrapper>

@@ -18,8 +18,10 @@ import { selectEssSwitch } from "../store/slices/essSwitchSlice";
 import { useGetAllSSRsQueries, useGetThermocouplesQueries } from "../../hooks";
 import { selectTesSwitch } from "../store/slices/tesSwitchSlice";
 import { selectUserInfo } from "../store/slices/userSlice";
+import { useTranslation } from 'react-i18next';
 
 const FaultsMain = () => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: "(max-width:600px)" });
 
   const { height } = useViewport();
@@ -40,35 +42,35 @@ const FaultsMain = () => {
   const faults = [
     {
       name: "ess",
-      title: "electric switch systems",
+      title: t('faults.systems.ess'),
       disabled: !isEssSwitch,
       message: essFaultMessages,
       comments: [],
     },
     {
       name: "tgs",
-      title: "typhoon gas systems",
+      title: t('faults.systems.tgs'),
       disabled: !isTgsSwitch,
       message: tgsFaultMessages,
       comments: [],
     },
     {
       name: "tes",
-      title: "typhoon electric systems",
+      title: t('faults.systems.tes'),
       disabled: !isTesSwitch,
       message: tesFaultMessages,
       comments: [],
     },
     {
       name: "hp",
-      title: "heating platforms",
+      title: t('faults.systems.hp'),
       disabled: !isHpSwitch,
       message: [],
       comments: [],
     },
     {
       name: "ate",
-      title: "additional track equipment",
+      title: t('faults.systems.ate'),
       disabled: !isAteSwitch,
       message: [],
       comments: [],
@@ -79,7 +81,7 @@ const FaultsMain = () => {
       {isMobile ? (
         <BaseLayer height={height - 156}>
           <WrapperMobile height={height - 162}>
-            <TitleContainer title="faults" />
+            <TitleContainer title={t('faults.title')} />
             <MobileSectionContent>
               {faults.map((fault) => (
                 <FaultSwitch
@@ -96,7 +98,7 @@ const FaultsMain = () => {
         </BaseLayer>
       ) : (
         <Wrapper>
-          <TitleContainer title="faults" />
+          <TitleContainer title={t('faults.title')} />
           <SectionContent>
           {faults.map((fault) => {
               return (

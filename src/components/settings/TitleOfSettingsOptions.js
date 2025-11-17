@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { selectSettingsOptions } from '../store/slices/settings/settingsOptionsSlice';
 import {
   layerADark,
@@ -12,6 +13,7 @@ import { useMediaQuery } from 'react-responsive';
 function TitleOfAllSettings() {
   // // media query
   // const isMobile = useMediaQuery({ query: '(max-width:600px)' });
+  const { t } = useTranslation();
 
   const settingsOptionsState = useSelector(selectSettingsOptions);
   const {
@@ -24,25 +26,25 @@ function TitleOfAllSettings() {
   } = settingsOptionsState.allSettingsOptions;
 
   const settingsTitles = isUserProfileSelected
-    ? 'profile information'
+    ? t('settings.userProfile')
     : isUnitsSelected
-    ? 'units settings'
+    ? t('settings.units')
     : isWindFactorSelected
-    ? 'wind factor trigger'
+    ? t('settings.windFactor')
     : isSnowSensorSelected
-    ? 'snow sensor trigger'
+    ? t('settings.snowSensor')
     : isForceAndCommandsSelected
-    ? 'force & commands'
+    ? t('settings.forceCommands')
     : isAdminSelected
-    ? 'administration settings'
-    : 'interface mode';
+    ? t('settings.admin')
+    : t('settings.interfaceMode');
 
   return (
     <Wrapper>
       <SubWrapper>
         <ContainerOptions>
           <SettingTitle>
-            SETTINGS//SETTINGS OPTIONS//
+            {t('settings.title').toUpperCase()}//{t('settings.settingsOptions').toUpperCase()}//
             <Span>{settingsTitles}</Span>
           </SettingTitle>
 

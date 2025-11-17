@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 
 import styled, { css } from 'styled-components';
 
@@ -36,6 +37,7 @@ const FaultAddAction = ({
   address,
   deviceType,
 }) => {
+  const { t } = useTranslation();
   // media query
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
   const [inputUserName, setInputUserName] = useState(null);
@@ -76,12 +78,12 @@ const FaultAddAction = ({
     } else {
       if (!inputUserName && !inputAction) {
         setMessage(
-          'please fill the user name input and the action taken input '
+          t('faults.attend.fillAllInputs')
         );
       } else if (!inputUserName) {
-        setMessage('please fill the  user name input');
+        setMessage(t('faults.attend.fillUserName'));
       } else {
-        setMessage('please fill the action taken input');
+        setMessage(t('faults.attend.fillActionTaken'));
       }
       setActivateMessageBox(true);
     }
@@ -145,10 +147,10 @@ const FaultAddAction = ({
             </FlexEndWrapper>
             <FaultsWrapper isMobile={isMobile}>
               <FlexCenterWrapper>
-                <Title>faults</Title>
+                <Title>{t('faults.attend.title')}</Title>
               </FlexCenterWrapper>
               <FlexStartWrapper>
-                <Title>time & date:{date} </Title>
+                <Title>{t('faults.attend.timeAndDate')}{date} </Title>
               </FlexStartWrapper>
               <FlexCenterWrapper>
                 <ComponentTitle isMobile={isMobile}>
@@ -169,13 +171,13 @@ const FaultAddAction = ({
             <SectionHeader>
               <TitleWrapper isLogo={true}>
                 <img src={'/images/logo-red.svg'} />
-                <ComponentTitle>attend</ComponentTitle>
+                <ComponentTitle>{t('faults.attend.title')}</ComponentTitle>
               </TitleWrapper>
               <InputBoxWrapper>
-                <InputTitle>uos user name :</InputTitle>
+                <InputTitle>{t('faults.attend.userName')}</InputTitle>
                 <InputUserName
                   type='text'
-                  placeholder='please input your name'
+                  placeholder={t('faults.attend.inputNamePlaceholder')}
                   // onClick={() => {
                   //   setFocusedInput('name');
                   // }}
@@ -187,7 +189,7 @@ const FaultAddAction = ({
 
             <SectionFaultType>
               <TitleWrapper>
-                <ComponentTitle>fault</ComponentTitle>
+                <ComponentTitle>{t('faults.attend.fault')}</ComponentTitle>
               </TitleWrapper>
 
               <FaultsTypeWrapper>
@@ -197,7 +199,7 @@ const FaultAddAction = ({
 
             <SectionDisplayActions type='actionTaken'>
               <TitleWrapper>
-                <ComponentTitle>previous comments</ComponentTitle>
+                <ComponentTitle>{t('faults.attend.previousComments')}</ComponentTitle>
               </TitleWrapper>
 
               <ActionTakenWrapper>
@@ -212,15 +214,15 @@ const FaultAddAction = ({
 
             <SectionAddAction>
               <TitleWrapper>
-                <ComponentTitle>add a comment</ComponentTitle>
+                <ComponentTitle>{t('faults.attend.addComment')}</ComponentTitle>
               </TitleWrapper>
               <CommentInput
-                placeholder='please leave your actions here..'
+                placeholder={t('faults.attend.actionPlaceholder')}
                 onClick={() => {
                   if (inputUserName) {
                     setFocusedInput('action');
                   } else {
-                    setMessage('please input user name first');
+                    setMessage(t('faults.attend.inputUserNameFirst'));
                     setActivateMessageBox(true);
                   }
                 }}
@@ -233,7 +235,7 @@ const FaultAddAction = ({
               <Button onClick={handleCommentButtonClick}>
                 <ButtonInner>
                   <ButtonHole>
-                    <ButtonTop>confirm</ButtonTop>
+                    <ButtonTop>{t('common.confirm')}</ButtonTop>
                   </ButtonHole>
                 </ButtonInner>
               </Button>
@@ -241,7 +243,7 @@ const FaultAddAction = ({
           </ContentsWrapper>
           {activateMessageBox && (
             <SettingConfirmedMessage
-              title='fault - attend'
+              title={t('faults.attend.messageTitle')}
               message={message}
               onClose={() => {
                 setActivateMessageBox(false);

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import DisplaySSR from '../../commonComponentsMC/DisplaySSR';
 import { selectEssSwitch } from '../../store/slices/essSwitchSlice';
 import { selectTesSwitch } from '../../store/slices/tesSwitchSlice';
@@ -27,6 +28,7 @@ const RSHeaterStatus = ({
   machineIsEnabled,
 }) => {
   // global
+  const { t } = useTranslation();
   const { flatEssSwitch, flatTesSwitch } = useSelector(
     swtName === 'ess' ? selectEssSwitch : selectTesSwitch
   );
@@ -44,7 +46,7 @@ const RSHeaterStatus = ({
     <BaseLayer>
       <Wrapper isFaults={isFaults}>
         <SectionHeader isExpanded={isExpanded}>
-          <Title>heater status</Title>
+          <Title>{t('reportStatus.heaterStatus')}</Title>
         </SectionHeader>
         <SectionDisplaySSR>
           <SectionSSRDisplayWrapper>

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { useTranslation } from 'react-i18next';
 import {
   flexBoxCenter,
   justifyContentSpaceEvenly,
@@ -121,12 +122,13 @@ const MainSelections = ({
   scheduleData,
   setScheduleData,
 }) => {
+  const { t } = useTranslation();
   // **********************************buttons names************************
   const buttonsTitle = ["clear", "apply"];
   // ******************************this should come from backend***********************
   const selectConsumptionType = [
     "data consumption",
-    "energy consumption",
+    t('telemetry.energyConsumption'),
     "gas consumption",
   ];
 

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 import {
   flexBoxCenter,
@@ -17,7 +18,8 @@ const SelectByName = ({
   isSelected,
   setIsSelected,
 }) => {
-  const buttonTitles = ['clear', 'select'];
+  const { t } = useTranslation();
+  const buttonTitles = [t('common.clear'), t('common.select')];
 
   const handleSelect = (index) => {
     const copyArr = [...isSelected];

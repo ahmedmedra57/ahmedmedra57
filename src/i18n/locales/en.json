@@ -19,6 +19,16 @@
     "error": "Error",
     "success": "Success",
     "warning": "Warning",
+    "clear": "clear",
+    "all": "all",
+    "date": "date",
+    "pm": "pm",
+    "am": "am",
+    "name": "name",
+    "title": "title",
+    "time": "time",
+    "comment": "comment",
+    "printPdf": "print pdf",
     "thermocoupleOptions": {
       "tc01": "tc-01",
       "tc02": "tc-02",
@@ -191,6 +201,26 @@
     "selectBy": "select by",
     "selectStartDate": "select start date",
     "selectEndDate": "select end date",
+    "additionalActions": "additional actions",
+    "actionsHistory": "actions history",
+    "faultsHistory": "faults history",
+    "logInHistory": "log in history",
+    "settingsOptions": "settings options",
+    "faultDetails": "fault details",
+    "logIn": "log in",
+    "logOut": "log out",
+    "additionalActionHistory": "additional action history",
+    "actions": "actions",
+    "faults": "faults",
+    "components": {
+      "electricalSwitchSystems": "electrical switch systems",
+      "typhoonGasSystems": "typhoon gas systems",
+      "typhoonElectricSystems": "typhoon electric systems",
+      "heatingPlatforms": "heating platforms",
+      "additionalTrackEquipment": "additional track equipment",
+      "additionalActionTaken": "additional action taken",
+      "settings": "settings"
+    },
     "options": {
       "userName": "user name",
       "location": "location"
@@ -218,6 +248,15 @@
     "weekly": "Weekly",
     "monthly": "Monthly",
     "yearly": "Yearly",
+    "dataConsumption": "data consumption",
+    "gasConsumption": "gas consumption",
+    "switches": "switches",
+    "selectStartDate": "select start date",
+    "selectEndDate": "select end date",
+    "selectSystem": "select system",
+    "switchSpecification": {
+      "title": "switch specification"
+    },
     "messages": {
       "selectAllBoxes": "in order to view your global system telemetry overview, please select all the selection boxes."
     }
@@ -236,7 +275,16 @@
     "windFactor": "Wind Factor",
     "snowSensor": "Snow Sensor Settings",
     "interfaceMode": "Interface Mode",
-    "systemIdentification": "System Identification"
+    "systemIdentification": "System Identification",
+    "userProfile": "user profile",
+    "forceCommands": "force & commands",
+    "admin": "administration settings",
+    "settingsOptions": "settings options",
+    "imperial": "Imperial",
+    "metric": "Metric",
+    "selectUnitsOfMeasurement": "select units of measurement",
+    "darkMode": "dark mode",
+    "lightMode": "light mode"
   },
   "contact": {
     "title": "Contact us!",

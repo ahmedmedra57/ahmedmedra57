@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
 import { flexDirectionColumn, layerA } from '../styles/commonStyles';
@@ -18,6 +19,7 @@ import { selectLocations } from '../store/slices/locationsSlice';
 import { useCheckControlPermsission } from '../../hooks';
 
 const AuditTrailMain = () => {
+  const { t } = useTranslation();
   const [isReadyToRender, setIsReadyToRender] = useState(false);
   const [userSelect, setUserSelect] = useState([]);
   const [auditTrailData, setAuditTrailData] = useState({});
@@ -237,7 +239,7 @@ const AuditTrailMain = () => {
 
   return (
     <Wrapper>
-      <TitleContainer title='audit trail' />
+      <TitleContainer title={t('auditTrail.title')} />
       <ATMainSelect
         isReadyToRender={isReadyToRender}
         handleSelection={handleUserSelect}

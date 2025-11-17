@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from 'react-i18next';
 import styled, { css } from "styled-components";
 import {
   flexBoxCenter,
@@ -33,7 +34,8 @@ const SelectByLocation = ({
   setSpecificLocationInitStateHandler,
   setMachineInitStateHandler,
 }) => {
-  const buttonTitles = ["clear", "apply"];
+  const { t } = useTranslation();
+  const buttonTitles = [t('common.clear'), t('common.apply')];
   const selectLocationInitialState = setLocationInitStateHandler();
   const selectSpecificLocationInitialState =
     setSpecificLocationInitStateHandler();
@@ -323,7 +325,7 @@ const SelectByLocation = ({
           <RadioButton onClick={() => handleSelect("all")}>
             <RadioIndicator isSelected={isAllSelected}></RadioIndicator>
           </RadioButton>
-          <Option all={true}>all </Option>
+          <Option all={true}>{t('common.all')} </Option>
         </SelectOptions>
         {Object.keys(locationKeys).map((location, locationIdx) => {
           // console.log('specificLocationsWithLocationsKeys:', location);

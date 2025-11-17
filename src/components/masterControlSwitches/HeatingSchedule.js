@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
 
@@ -34,6 +35,7 @@ const HeatingSchedule = ({
   specificLocation,
   disabled
 }) => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
   // Global
@@ -86,8 +88,8 @@ const HeatingSchedule = ({
       // MessageBox
       setOpenMessageBox(true);
       setMessages([
-        'select locations and a schedule',
-        'please select location and a start date and end date',
+        t('masterControl.heatingSchedule.selectLocationsAndSchedule'),
+        t('masterControl.heatingSchedule.selectDateRange'),
       ]);
 
       // Please select location or schedule first
@@ -134,11 +136,11 @@ const HeatingSchedule = ({
           }
           setOpenMessageBox(true);
           setMessages([
-            'wrong temperature',
-            `in order to finalize instant heat program,`,
-            'please input your temperature first',
-            '( the minimum temperature is 121°C - 250°F )',
-            '( the maximum temperature is 999°C - 1830°F )',
+            t('masterControl.heatingSchedule.wrongTemperature'),
+            t('masterControl.heatingSchedule.finalizePrompt'),
+            t('masterControl.heatingSchedule.inputTempFirst'),
+            t('masterControl.heatingSchedule.minTemp'),
+            t('masterControl.heatingSchedule.maxTemp'),
           ]);
         } else {
           // check celsius(121°C/999°C)
@@ -155,11 +157,11 @@ const HeatingSchedule = ({
             // message - minimum and maximum temperature!!!
             setOpenMessageBox(true);
             setMessages([
-              'wrong temperature',
-              `in order to finalize instant heat program,`,
-              'please input your temperature first',
-              '( the minimum temperature is 121°C - 250°F )',
-              '( the maximum temperature is 999°C - 1830°F )',
+              t('masterControl.heatingSchedule.wrongTemperature'),
+              t('masterControl.heatingSchedule.finalizePrompt'),
+              t('masterControl.heatingSchedule.inputTempFirst'),
+              t('masterControl.heatingSchedule.minTemp'),
+              t('masterControl.heatingSchedule.maxTemp'),
             ]);
             handleOnClick(
               'heatingSchedule',
@@ -184,11 +186,11 @@ const HeatingSchedule = ({
         );
         setOpenMessageBox(true);
         setMessages([
-          'wrong temperature',
-          `in order to finalize instant heat program,`,
-          'please input your temperature first',
-          '( the minimum temperature is 121°C - 250°F )',
-          '( the maximum temperature is 999°C - 1830°F )',
+          t('masterControl.heatingSchedule.wrongTemperature'),
+          t('masterControl.heatingSchedule.finalizePrompt'),
+          t('masterControl.heatingSchedule.inputTempFirst'),
+          t('masterControl.heatingSchedule.minTemp'),
+          t('masterControl.heatingSchedule.maxTemp'),
         ]);
       }
     }
@@ -231,7 +233,7 @@ const HeatingSchedule = ({
 
                     <SectionHeatButton>
                       <HeatButton onClick={handleSubmit}>
-                        heating <br></br>schedule<br></br>program
+                        {t('masterControl.programs.heatingSchedule')}
                       </HeatButton>
                     </SectionHeatButton>
 
@@ -292,8 +294,8 @@ const HeatingSchedule = ({
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
                     onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
-                    subtitle={'heating schedule program'}
+                    title={t('masterControl.title')}
+                    subtitle={t('masterControl.programs.heatingSchedule')}
                     messages={messages}
                     isMobile={isMobile}
                   />
@@ -348,7 +350,7 @@ const HeatingSchedule = ({
 
                       <SectionHeatButton isSmall={true}>
                         <HeatButton onClick={handleSubmit} isSmall={true}>
-                          heating <br></br>schedule
+                          {t('masterControl.programs.heatingSchedule')}
                         </HeatButton>
                       </SectionHeatButton>
                     </MobileTop>
@@ -372,8 +374,8 @@ const HeatingSchedule = ({
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
                     onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
-                    subtitle={'heating schedule program'}
+                    title={t('masterControl.title')}
+                    subtitle={t('masterControl.programs.heatingSchedule')}
                     messages={messages}
                     isMobile={isMobile}
                   />
@@ -386,7 +388,7 @@ const HeatingSchedule = ({
         <Wrapper>
           <SectionTop>
             <TitleWrapper>
-              <Title>heating schedule program</Title>
+              <Title>{t('masterControl.programs.heatingSchedule')}</Title>
               <ImgWrapper>
                 <Img src='images/logo-schedule.svg' />
               </ImgWrapper>
@@ -402,7 +404,7 @@ const HeatingSchedule = ({
           </SectionTop>
 
           <SectionScheduler>
-            <SchedulerTitle>start & end date</SchedulerTitle>
+            <SchedulerTitle>{t('masterControl.heatingSchedule.startEndDate')}</SchedulerTitle>
             <SchedulerContainer2
               handleOpenScheduler={() => setOpenScheduler(!openScheduler)}
               start={scheduleData.start}
@@ -417,13 +419,13 @@ const HeatingSchedule = ({
                   type='text'
                   onChange={(e) => setTempInput(e.target.value)}
                   value={tempInput}
-                  placeholder='input temp.'
+                  placeholder={t('masterControl.heatingSchedule.inputTemp')}
                 />
               </InputWrapper>
 
               <ButtonWrapper disabled={disabled}>
                 <ButtonHole disabled={disabled}>
-                  <ButtonTop disabled={disabled}>apply</ButtonTop>
+                  <ButtonTop disabled={disabled}>{t('common.apply')}</ButtonTop>
                 </ButtonHole>
               </ButtonWrapper>
             </InputAndButtonWrapper>
@@ -445,8 +447,8 @@ const HeatingSchedule = ({
                 <MessageBoxWrapper>
                   <InputTempMessage
                     onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
-                    subtitle={'heating schedule program'}
+                    title={t('masterControl.title')}
+                    subtitle={t('masterControl.programs.heatingSchedule')}
                     messages={messages}
                     isMobile={isMobile}
                   />

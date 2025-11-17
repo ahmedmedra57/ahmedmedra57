@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styled, { css } from 'styled-components';
 
@@ -42,6 +43,7 @@ const AuditTrailComponentBySwitch = ({
   disableSettings,
   searchQuery
 }) => {
+  const { t } = useTranslation();
   // userSelect[0]=> true => name or false => location
 
   // const permissions = useSelector(selectUserInfo);
@@ -120,18 +122,18 @@ const AuditTrailComponentBySwitch = ({
 
   const componentTitle =
     componentName === 'ess'
-      ? 'electrical switch systems'
+      ? t('auditTrail.components.electricalSwitchSystems')
       : componentName === 'tgs'
-      ? 'typhoon gas systems'
+      ? t('auditTrail.components.typhoonGasSystems')
       : componentName === 'tes'
-      ? 'typhoon electric systems'
+      ? t('auditTrail.components.typhoonElectricSystems')
       : componentName === 'hp'
-      ? 'heating platforms'
+      ? t('auditTrail.components.heatingPlatforms')
       : componentName === 'ate'
-      ? 'additional track equipment'
+      ? t('auditTrail.components.additionalTrackEquipment')
       : componentName === 'aat'
-      ? 'additional action taken'
-      : 'settings';
+      ? t('auditTrail.components.additionalActionTaken')
+      : t('auditTrail.components.settings');
 
   const actionNumber = isReadyToRender ? actionData.length : 0;
   const faultsNumber = isReadyToRender ? faultData.length : 0;
@@ -170,7 +172,7 @@ const AuditTrailComponentBySwitch = ({
             >
               {active ? settingsNumber : 0}
             </DetailsNumber>
-            <DetailsTitle isOptional={true}>actions history</DetailsTitle>
+            <DetailsTitle isOptional={true}>{t('auditTrail.actionsHistory')}</DetailsTitle>
           </DisplaySummation>
         )}
         {componentName === 'aat' && (
@@ -181,7 +183,7 @@ const AuditTrailComponentBySwitch = ({
             >
               {active ? additionalActionTakenNumber : 0}
             </DetailsNumber>
-            <DetailsTitle isOptional={true}>additional action history</DetailsTitle>
+            <DetailsTitle isOptional={true}>{t('auditTrail.additionalActionHistory')}</DetailsTitle>
           </DisplaySummation>
         )}
         {componentName !== 'setting' && componentName !== 'aat' &&(
@@ -193,11 +195,11 @@ const AuditTrailComponentBySwitch = ({
               >
                 {active ? actionNumber : 0}
               </DetailsNumber>
-              <DetailsTitle>actions</DetailsTitle>
+              <DetailsTitle>{t('auditTrail.actions')}</DetailsTitle>
             </Flex>
             <DetailDivider />
             <Flex id='2'>
-              <DetailsTitle>faults</DetailsTitle>
+              <DetailsTitle>{t('auditTrail.faults')}</DetailsTitle>
               <DetailsNumber
                 isTripleDigits={active && faultsNumber > 99}
                 id='2'
@@ -212,7 +214,7 @@ const AuditTrailComponentBySwitch = ({
           handleOnClick={() =>
             active && isReadyToRender && setIsExpanded(!isExpanded)
           }
-          name={isExpanded ? 'close' : 'expand'}
+          name={isExpanded ? t('common.close') : t('common.expand')}
           disabled={!active}
         />
       </InnerWrapper>

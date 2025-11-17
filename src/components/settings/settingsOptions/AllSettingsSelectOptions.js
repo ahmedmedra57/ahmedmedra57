@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from 'react-i18next';
 import { selectInterfaceMode } from "../../store/slices/settings/interfaceModeSlice";
 import {
   flexBoxCenter,
@@ -26,37 +27,38 @@ import { useMemo } from "react";
 import { selectUserPermissions } from "../../store/slices/userSlice";
 
 function AllSettingsSelectOptions() {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: "(max-width:600px)" });
   const permissions = useSelector(selectUserPermissions);
   const allowedSettings = permissions[PERMISSIONS.ALLOWED_SETTINGS];
 
   const settingsData = [
     {
-      name: "user profile",
+      name: t('settings.userProfile'),
       key: SETTINGS_OPTIONS.USER_PROFILE,
     },
     {
-      name: "units",
+      name: t('settings.units'),
       key: SETTINGS_OPTIONS.UNITS,
     },
     {
-      name: "wind factor trigger",
+      name: t('settings.windFactor'),
       key: SETTINGS_OPTIONS.WIND_FACTOR,
     },
     {
-      name: "snow sensor trigger",
+      name: t('settings.snowSensor'),
       key: SETTINGS_OPTIONS.SNOW_SENSOR,
     },
     {
-      name: "force & commands",
+      name: t('settings.forceCommands'),
       key: SETTINGS_OPTIONS.FORCE_COMMANDS,
     },
     {
-      name: "admin.",
+      name: t('settings.admin'),
       key: SETTINGS_OPTIONS.ADMIN,
     },
     {
-      name: "interface mode",
+      name: t('settings.interfaceMode'),
       key: SETTINGS_OPTIONS.INTERFACE_MODE,
     },
   ];
@@ -122,7 +124,7 @@ function AllSettingsSelectOptions() {
               </Div>
             )}
             <WrapperTitle isMobile={true}>
-              <Title isMobile={true}>SETTINGS OPTIONS</Title>
+              <Title isMobile={true}>{t('settings.settingsOptions').toUpperCase()}</Title>
             </WrapperTitle>
 
             <SelectionsWrapper isMobile={true}>
@@ -163,7 +165,7 @@ function AllSettingsSelectOptions() {
             </Div>
           )}
           <WrapperTitle>
-            <Title>SETTINGS OPTIONS</Title>
+            <Title>{t('settings.settingsOptions').toUpperCase()}</Title>
           </WrapperTitle>
 
           <SelectionsWrapper>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 import {
   flexBoxCenter,
@@ -23,6 +24,7 @@ const IntegratedHistoryComponent = ({
   disableSettings,
   withExpand = true,
 }) => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const expandButtonHandler = () => {
@@ -55,14 +57,14 @@ const IntegratedHistoryComponent = ({
           <DisplayTitle>
             {title === 'actions'
               ? componentName === 'aat'
-                ? 'additional actions'
-                : 'actions history'
+                ? t('auditTrail.additionalActions')
+                : t('auditTrail.actionsHistory')
               : title === 'faults'
-              ? 'faults history'
+              ? t('auditTrail.faultsHistory')
               : title === 'settings'
-              ? 'log in history'
+              ? t('auditTrail.logInHistory')
               : title === 'settingsOptions'
-              ? 'settings options'
+              ? t('auditTrail.settingsOptions')
               : ''}
           </DisplayTitle>
         </SectionDisplay>
@@ -70,7 +72,7 @@ const IntegratedHistoryComponent = ({
         {withExpand&&<SectionButton>
           <Button onClick={expandButtonHandler}>
             <ButtonHole>
-              <ButtonTop>{isExpanded ? 'close' : 'expand'}</ButtonTop>
+              <ButtonTop>{isExpanded ? t('common.close') : t('common.expand')}</ButtonTop>
             </ButtonHole>
           </Button>
         </SectionButton>}

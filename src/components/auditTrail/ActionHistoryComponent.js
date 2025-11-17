@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 import styled, { css } from "styled-components";
 import {
@@ -31,6 +32,7 @@ const ActionHistoryComponent = ({
   searchQuery,
   isSettings,
 }) => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
   //redux
   const locations = useSelector(selectLocations);
@@ -222,15 +224,15 @@ const ActionHistoryComponent = ({
           <Title>{commandTitle}</Title>
           <Divider>-</Divider>
           <Date>
-            date : {hour}:{minute}
-            {isPm ? "pm" : "am"} {data.date.toLocaleDateString()}
+            {t('common.date')} : {hour}:{minute}
+            {isPm ? t('common.pm') : t('common.am')} {data.date.toLocaleDateString()}
           </Date>
           <Divider>-</Divider>
           <Command>{commandFileName}</Command>
         </SectionDisplay>
         {componentName !== "aat" && (
           <ButtonComponent
-            title={isExpanded ? "close" : "expand"}
+            title={isExpanded ? t('common.close') : t('common.expand')}
             buttonHandler={() => setIsExpanded(!isExpanded)}
           />
         )}
@@ -248,7 +250,7 @@ const ActionHistoryComponent = ({
                 <PrintButton onClick={handlePrintPDF}>
                   <PrintButtonWrapper>
                     <PrintButtonHole>
-                      <PrintButtonTop>print pdf</PrintButtonTop>
+                      <PrintButtonTop>{t('common.printPdf')}</PrintButtonTop>
                     </PrintButtonHole>
                   </PrintButtonWrapper>
                 </PrintButton>

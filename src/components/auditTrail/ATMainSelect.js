@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 import ScheduleCalendar from "../masterControl/controls/heatingScheduler/ScheduleCalendar";
 
@@ -31,6 +32,7 @@ import { selectTesSwitch } from "../store/slices/tesSwitchSlice";
 import { selectTgsSwitch } from "../store/slices/tgsSwitchSlice";
 
 const ATMainSelect = ({ handleSelection, setDisableSettings }) => {
+  const { t } = useTranslation();
   const [openSelectBox, setOpenSelectBox] = useState([false, false]);
   const [openDateSelect, setOpenDateSelect] = useState(false);
 
@@ -171,7 +173,7 @@ const ATMainSelect = ({ handleSelection, setDisableSettings }) => {
     end: { date: null, time: null },
   });
 
-  const selectOption = ["user name", "location"];
+  const selectOption = [t('auditTrail.options.userName'), t('auditTrail.options.location')];
 
   // date format logic
   // ** deconstruction
@@ -326,7 +328,7 @@ const ATMainSelect = ({ handleSelection, setDisableSettings }) => {
       <InnerWrapper>
         <SectionMain>
           <SectionInnerWrapper>
-            <SelectedOneSpan>select by</SelectedOneSpan>
+            <SelectedOneSpan>{t('auditTrail.selectBy')}</SelectedOneSpan>
             <SectionSelectBy isOpen={openSelectBox[0]}>
               <SelectedOneAndArrowWrapper>
                 <SelectBy>
@@ -414,8 +416,8 @@ const ATMainSelect = ({ handleSelection, setDisableSettings }) => {
 
           <SectionInnerWrapper>
             <TitleWrapper>
-              <SelectedOneSpan>select start date</SelectedOneSpan>
-              <SelectedOneSpan>select end date</SelectedOneSpan>
+              <SelectedOneSpan>{t('auditTrail.selectStartDate')}</SelectedOneSpan>
+              <SelectedOneSpan>{t('auditTrail.selectEndDate')}</SelectedOneSpan>
             </TitleWrapper>
 
             <SectionDate>
@@ -438,7 +440,7 @@ const ATMainSelect = ({ handleSelection, setDisableSettings }) => {
         <SectionSearchButton>
           <SearchButton onClick={handleSearchButton}>
             <SearchButtonHole>
-              <SearchButtonTop>search</SearchButtonTop>
+              <SearchButtonTop>{t('common.search')}</SearchButtonTop>
             </SearchButtonHole>
           </SearchButton>
         </SectionSearchButton>
@@ -459,11 +461,11 @@ const ATMainSelect = ({ handleSelection, setDisableSettings }) => {
         <PopupBoxWrapper>
           <MessageBox
             onClose={() => setOpenMessageBox(false)}
-            title={"audit trail"}
-            subtitle={"selection box"}
+            title={t('auditTrail.title')}
+            subtitle={t('auditTrail.selectionBox')}
             messages={[
-              "in order to finalize your audit trail",
-              "please choose all the selections",
+              t('auditTrail.messages.finalizePrompt'),
+              t('auditTrail.messages.chooseAllSelections'),
             ]}
           />
         </PopupBoxWrapper>

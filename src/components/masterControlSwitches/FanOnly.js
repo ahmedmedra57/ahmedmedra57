@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
@@ -22,6 +22,7 @@ import InputTempMessage from '../userMessages/inputTempMessage';
 // import { selectUnits } from '../store/slices/settings/unitsSlice';
 
 const FanOnly = ({ scope, handleOnClick, swtName, handleClose }) => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
   // Global
@@ -66,7 +67,7 @@ const FanOnly = ({ scope, handleOnClick, swtName, handleClose }) => {
     if (!selectedOne) {
       // Message box
       setOpenMessageBox(true);
-      setMessages(['select locations', 'please select location to continue']);
+      setMessages([t('masterControl.fanOnly.selectLocations'), t('masterControl.fanOnly.selectLocationPrompt')]);
       // please select locations first
       handleOnClick('fanOnly', 'selectA', scope, '_', '_', type);
 
@@ -98,7 +99,7 @@ const FanOnly = ({ scope, handleOnClick, swtName, handleClose }) => {
 
                 <SectionHeatButton>
                   <HeatButton onClick={handleApply}>
-                    fan only program
+                    {t('masterControl.programs.fanOnly')}
                   </HeatButton>
                 </SectionHeatButton>
 
@@ -135,8 +136,8 @@ const FanOnly = ({ scope, handleOnClick, swtName, handleClose }) => {
             <MobileMessageBoxWrapper>
               <InputTempMessage
                 onClose={() => setOpenMessageBox(false)}
-                title={'master control'}
-                subtitle={'fan only program'}
+                title={t('masterControl.title')}
+                subtitle={t('masterControl.programs.fanOnly')}
                 messages={messages}
                 isMobile={isMobile}
               />
@@ -165,7 +166,7 @@ const FanOnly = ({ scope, handleOnClick, swtName, handleClose }) => {
               <MobileHole isSmall={true}>
                 <MobileTop isSmall={true}>
                   <HeatButton onClick={handleApply} isSmall={true}>
-                    fan only program
+                    {t('masterControl.programs.fanOnly')}
                   </HeatButton>
                 </MobileTop>
               </MobileHole>
@@ -176,8 +177,8 @@ const FanOnly = ({ scope, handleOnClick, swtName, handleClose }) => {
             <MobileMessageBoxWrapper>
               <InputTempMessage
                 onClose={() => setOpenMessageBox(false)}
-                title={'master control'}
-                subtitle={'fan only program'}
+                title={t('masterControl.title')}
+                subtitle={t('masterControl.programs.fanOnly')}
                 messages={messages}
                 isMobile={isMobile}
               />

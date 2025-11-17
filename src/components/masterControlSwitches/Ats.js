@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
 
@@ -36,6 +37,7 @@ const Ats = ({
   specificLocation,
   disabled,
 }) => {
+  const { t } = useTranslation();
   // const disabled = false;
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
@@ -64,17 +66,17 @@ const Ats = ({
 
   const selectOptions = {
     ess: [
-      'BLOCK AND DO NOT ALLOW ESS TO OPERATE WHEN ON EBP (EMERGENCY BACKUP POWER)',
-      ' REACTIVATES ESS WHEN POWERED BY EBP (EMERGENCY BACKUP POWER)',
+      t('masterControl.ats.options.ess.block'),
+      t('masterControl.ats.options.ess.reactivate'),
     ],
     tgs: [
-      'REACTIVATE TGS (TYPHOON GAS POWER HEATING SYSTEM) WHEN ON EBP (EMERGENCY BACKUP POWER)',
-      'BLOCK AND DO NOT ALLOW TGS TO OPERATE WHEN ON EBP (EMERGENCY BACKUP POWER)',
+      t('masterControl.ats.options.tgs.reactivate'),
+      t('masterControl.ats.options.tgs.block'),
     ],
     tes: [
-      'SWITCH TO tgs (TYPHOON GAS POWERED HEATING SYSTEM) WHEN ON EBP (EMERGENCY BACKUP POWER)',
-      'reactivate TES WHEN POWERED BY EBP (EMERGENCY BACKUP POWER)',
-      'TES TO REMAIN OFF WHEN POWERED BY EBP (EMERGENCY BACKUP POWER)',
+      t('masterControl.ats.options.tes.switchToTgs'),
+      t('masterControl.ats.options.tes.reactivate'),
+      t('masterControl.ats.options.tes.remainOff'),
     ],
   };
 
@@ -82,7 +84,7 @@ const Ats = ({
     if (!selectedOne) {
       // Message box
       setOpenMessageBox(true);
-      setMessages(['select locations', 'please select location to continue']);
+      setMessages([t('masterControl.ats.selectLocations'), t('masterControl.ats.selectLocationPrompt')]);
       // please select locations first
       handleOnClick('ats', 'selectA', scope, '_', '_', type, specificLocation);
     } else if (!isSelected.includes(true)) {
@@ -97,7 +99,7 @@ const Ats = ({
       );
       // Message box
       setOpenMessageBox(true);
-      setMessages(['select ats', 'please select an ats option to continue']);
+      setMessages([t('masterControl.ats.selectAts'), t('masterControl.ats.selectAtsPrompt')]);
     } else {
       // turn on
       handleOnClick('ats', 'on', scope, null, isSelected);
@@ -178,7 +180,7 @@ const Ats = ({
 
                         <SectionHeatButton disabled={disabled}>
                           <HeatButton onClick={handleApply} disabled={disabled}>
-                            select<br></br>ats
+                            {t('masterControl.ats.title')}
                           </HeatButton>
                         </SectionHeatButton>
 

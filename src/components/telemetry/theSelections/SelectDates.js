@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 // import ScheduleCalendar from '../../masterControl/controls/heatingScheduler/ScheduleCalendar';
 import { selectMC } from '../../store/slices/mCSlice';
 import { selectedMachinesState } from '../../store/slices/selectedMachinesSlice';
@@ -9,6 +10,7 @@ import SchedulerDisplay from './SchedulerDisplay';
 import ScheduleCalendar from '../../masterControl/controls/heatingScheduler/ScheduleCalendar';
 
 const SelectDates = ({ scheduleData, setScheduleData }) => {
+  const { t } = useTranslation();
   // redux
   const selectsState = useSelector(selectedMachinesState);
 
@@ -36,8 +38,8 @@ const SelectDates = ({ scheduleData, setScheduleData }) => {
   return (
     <Wrapper>
       <WrapperTitles>
-        <Title id={1}>select start date</Title>
-        <Title id={2}>select end date</Title>
+        <Title id={1}>{t('telemetry.selectStartDate')}</Title>
+        <Title id={2}>{t('telemetry.selectEndDate')}</Title>
       </WrapperTitles>
       <WrapperSchedule>
         <SchedulerDisplay

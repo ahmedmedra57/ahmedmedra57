@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import Button from '../buttons/Button';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,8 +21,9 @@ import { useMediaQuery } from 'react-responsive';
 function Interface() {
   // media query
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
+  const { t } = useTranslation();
 
-  const modesData = ['dark mode', 'light mode'];
+  const modesData = [t('settings.darkMode'), t('settings.lightMode')];
   // states
   const [interfaceModeButton, setInterfaceModeButton] = useState(0);
   // redux
@@ -47,7 +49,7 @@ function Interface() {
         <BaseLayer>
           <Wrapper isMobile={true}>
             <InterfaceContainer>
-              <InterfaceP>INTERFACE MODE</InterfaceP>
+              <InterfaceP>{t('settings.interfaceMode').toUpperCase()}</InterfaceP>
             </InterfaceContainer>
             <ControlContainer>
               {modesData.map((data, index) => {
@@ -78,7 +80,7 @@ function Interface() {
       ) : (
         <Wrapper>
           <InterfaceContainer>
-            <InterfaceP>INTERFACE MODE</InterfaceP>
+            <InterfaceP>{t('settings.interfaceMode').toUpperCase()}</InterfaceP>
           </InterfaceContainer>
           <ControlContainer>
             {modesData.map((data, index) => {

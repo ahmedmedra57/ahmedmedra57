@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { getAllAdminHeatersService } from '../../../../services';
 import {
   getSSRsRatingListService,
@@ -76,6 +77,7 @@ const SystemIdentification = ({
   setIsConfirmed,
   // specificLocationRef,
 }) => {
+  const { t } = useTranslation();
   const buttonTitles = ['create', 'edit', 'confirm', 'save'];
 
   // useState
@@ -818,7 +820,7 @@ const SystemIdentification = ({
     <BaseLayer>
       <Wrapper>
         <TitleWrapper>
-          <Title>system identification</Title>
+          <Title>{t('settings.systemIdentification')}</Title>
         </TitleWrapper>
         {/* location, address, switches and close button */}
         <ContentBaseLayer>
@@ -1086,9 +1088,9 @@ const SystemIdentification = ({
         {deleteSwitch[0] && (
           <MessageBoxWrapper>
             <DeleteSwitchMessageBox
-              title={'settings/system identification'}
-              subtitle={'administration settings'}
-              theme={'system identification'}
+              title={`${t('settings.title')}/${t('settings.systemIdentification')}`}
+              subtitle={t('settings.admin')}
+              theme={t('settings.systemIdentification')}
               messages={[
                 `you are about to delete switch ${
                   switches[deleteSwitch[1]]?.switchName

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { useTranslation } from 'react-i18next';
 import {
   borderADisabled,
   borderBlue,

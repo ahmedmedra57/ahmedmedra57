@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
 
@@ -31,6 +32,7 @@ const OptionalConstant = ({
   // isSpecificLocation,
   specificLocation,
 }) => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
   // Global states
@@ -63,7 +65,7 @@ const OptionalConstant = ({
         // please select locations first
         handleOnClick('constantTemp', 'selectA', scope, '_', '_', type);
         setOpenMessageBox(true);
-        setMessages(['select locations', 'please select location to continue']);
+        setMessages([t('masterControl.optionalConstant.selectLocations'), t('masterControl.optionalConstant.selectLocationPrompt')]);
       } else {
         const temp = Number(tempInput);
         // check for the validation (minimum and maximum)
@@ -82,11 +84,11 @@ const OptionalConstant = ({
             handleOnClick('constantTemp', 'tempB', scope);
             setOpenMessageBox(true);
             setMessages([
-              'wrong temperature',
-              `in order to finalize instant heat program,`,
-              'please input your temperature first',
-              '( the minimum temperature is 24°C - 77°F )',
-              '( the maximum temperature is 120°C - 248°F )',
+              t('masterControl.optionalConstant.wrongTemperature'),
+              t('masterControl.optionalConstant.finalizePrompt'),
+              t('masterControl.optionalConstant.inputTempFirst'),
+              t('masterControl.optionalConstant.minTemp'),
+              t('masterControl.optionalConstant.maxTemp'),
             ]);
           }
         } else {
@@ -104,11 +106,11 @@ const OptionalConstant = ({
             handleOnClick('constantTemp', 'tempB', scope);
             setOpenMessageBox(true);
             setMessages([
-              'wrong temperature',
-              `in order to finalize instant heat program,`,
-              'please input your temperature first',
-              '( the minimum temperature is 24°C - 77°F )',
-              '( the maximum temperature is 120°C - 248°F )',
+              t('masterControl.optionalConstant.wrongTemperature'),
+              t('masterControl.optionalConstant.finalizePrompt'),
+              t('masterControl.optionalConstant.inputTempFirst'),
+              t('masterControl.optionalConstant.minTemp'),
+              t('masterControl.optionalConstant.maxTemp'),
             ]);
           }
         }
@@ -160,7 +162,7 @@ const OptionalConstant = ({
 
                     <SectionHeatButton disabled={disabled}>
                       <HeatButton onClick={handleSubmit} disabled={disabled}>
-                        opt. const.<br></br>temperature<br></br>program
+                        {t('masterControl.programs.optionalConstant')}
                       </HeatButton>
                     </SectionHeatButton>
 
@@ -207,8 +209,8 @@ const OptionalConstant = ({
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
                     onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
-                    subtitle={'optional constant program'}
+                    title={t('masterControl.title')}
+                    subtitle={t('masterControl.programs.optionalConstant')}
                     messages={messages}
                     isMobile={isMobile}
                   />
@@ -271,7 +273,7 @@ const OptionalConstant = ({
                           disabled={disabled}
                           isSmall={true}
                         >
-                          opt. const.<br></br>temperature
+                          {t('masterControl.programs.optionalConstant')}
                         </HeatButton>
                       </SectionHeatButton>
                     </MobileTop>
@@ -282,8 +284,8 @@ const OptionalConstant = ({
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
                     onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
-                    subtitle={'optional constant program'}
+                    title={t('masterControl.title')}
+                    subtitle={t('masterControl.programs.optionalConstant')}
                     messages={messages}
                     isMobile={isMobile}
                   />
@@ -337,7 +339,7 @@ const OptionalConstant = ({
             <MessageBoxWrapper>
               <InputTempMessage
                 onClose={() => setOpenMessageBox(false)}
-                title={'master control'}
+                title={t('masterControl.title')}
                 messages={messages}
               />
             </MessageBoxWrapper>

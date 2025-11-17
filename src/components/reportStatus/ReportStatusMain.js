@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { selectEssSwitch } from '../store/slices/essSwitchSlice';
 import { selectTgsSwitch } from '../store/slices/tgsSwitchSlice';
 import { selectTesSwitch } from '../store/slices/tesSwitchSlice';
@@ -15,6 +16,7 @@ import { selectUnits } from '../store/slices/settings/unitsSlice';
 
 const ReportStatusMain = () => {
   // const [isHover, setIsHover] = useState([]);
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
   const locations = useSelector(selectReportStatus);
@@ -95,7 +97,7 @@ const ReportStatusMain = () => {
 
   return (
     <Wrapper>
-      <TitleContainer title='report status' />
+      <TitleContainer title={t('reportStatus.title')} />
       {/* !!TEST PURPOSE ONLY */}
       {/* {testData.map((location, index) => (
         <EachLocationReportStatus

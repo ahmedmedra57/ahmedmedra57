@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 import { selectTelemetry } from '../../store/slices/telemetrySlice';
 import {
@@ -15,15 +16,16 @@ import { selectUnits } from '../../store/slices/settings/unitsSlice';
 import { postAuditTrailLogService } from '../../../services';
 
 const ChartTotalHoursAndEnergy = ({ swtName, isDc }) => {
+  const { t } = useTranslation();
   const { isF } = useSelector(selectUnits);
   const gasUnit = isF ? 'FT³' : 'M³';
   const unit = isDc ? 'mb' : swtName === 'tgs' ? gasUnit : 'kw';
   const noData = ['---hrs', `---${unit}`];
 
-  const text = 'total hours of usage';
-  const text1 = `total ${
+  const text = t('telemetry.usageHours');
+  const text1 = `${t('telemetry.totalEnergyConsumption')} ${
     swtName === 'tgs' ? 'gas' : isDc ? 'data' : 'energy'
-  } consumption`;
+  }`;
 
   const dataHours = text.split(' ');
   const dataEnergy = text1.split(' ');

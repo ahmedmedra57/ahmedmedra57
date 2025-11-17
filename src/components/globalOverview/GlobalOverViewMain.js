@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
   handleResetMapSelection,
   selectGlobalOverview,
@@ -20,6 +21,7 @@ import OverviewMap from './OverviewMap';
 import SwitchSelect from './SwitchSelect';
 
 const GlobalOverviewMain = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const OverViewState = useSelector(selectGlobalOverview);
   const { selectedSystem } = OverViewState;
@@ -69,13 +71,13 @@ const GlobalOverviewMain = () => {
       <TitlesWrapper>
         <TitleWrapper id={'main'}>
           <TitleContentsWrapper>
-            <Title>global system overview</Title>
+            <Title>{t('globalOverview.title')}</Title>
           </TitleContentsWrapper>
         </TitleWrapper>
 
         <TitleWrapper id={'sub'}>
           <TitleContentsWrapper>
-            <Title>integrated systems</Title>
+            <Title>{t('globalOverview.integratedSystems')}</Title>
           </TitleContentsWrapper>
         </TitleWrapper>
       </TitlesWrapper>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styled, { css } from 'styled-components';
 import {
@@ -16,6 +17,7 @@ import {
 import ExpandButton from '../faults/ExpandButton';
 
 const ATFaultComponent = ({ isReadyToRender, isExpanded, handleExpand }) => {
+  const { t } = useTranslation();
   const number = 0;
   const imgSrc = isExpanded
     ? '/images/at-fault-activated.svg'
@@ -36,12 +38,12 @@ const ATFaultComponent = ({ isReadyToRender, isExpanded, handleExpand }) => {
 
         <DisplaySummation>
           <DetailsNumber>{number ? number : 0}</DetailsNumber>
-          <DetailsTitle>faults history</DetailsTitle>
+          <DetailsTitle>{t('auditTrail.faultsHistory')}</DetailsTitle>
         </DisplaySummation>
 
         <ExpandButton
           handleOnClick={handleOpenDetail}
-          name={isExpanded ? 'close' : 'expand'}
+          name={isExpanded ? t('common.close') : t('common.expand')}
         />
       </InnerWrapper>
       {/* {isExpanded && (

@@ -19,6 +19,16 @@
     "error": "Erreur",
     "success": "Succès",
     "warning": "Avertissement",
+    "clear": "effacer",
+    "all": "tout",
+    "date": "date",
+    "pm": "pm",
+    "am": "am",
+    "name": "nom",
+    "title": "titre",
+    "time": "temps",
+    "comment": "commentaire",
+    "printPdf": "imprimer pdf",
     "thermocoupleOptions": {
       "tc01": "tc-01",
       "tc02": "tc-02",
@@ -191,6 +201,26 @@
     "selectBy": "sélectionner par",
     "selectStartDate": "sélectionner la date de début",
     "selectEndDate": "sélectionner la date de fin",
+    "additionalActions": "actions supplémentaires",
+    "actionsHistory": "historique des actions",
+    "faultsHistory": "historique des défauts",
+    "logInHistory": "historique de connexion",
+    "settingsOptions": "options de paramètres",
+    "faultDetails": "détails du défaut",
+    "logIn": "connexion",
+    "logOut": "déconnexion",
+    "additionalActionHistory": "historique des actions supplémentaires",
+    "actions": "actions",
+    "faults": "défauts",
+    "components": {
+      "electricalSwitchSystems": "systèmes de commutation électrique",
+      "typhoonGasSystems": "systèmes à gaz typhoon",
+      "typhoonElectricSystems": "systèmes électriques typhoon",
+      "heatingPlatforms": "plateformes de chauffage",
+      "additionalTrackEquipment": "équipement de voie supplémentaire",
+      "additionalActionTaken": "action supplémentaire prise",
+      "settings": "paramètres"
+    },
     "options": {
       "userName": "nom d'utilisateur",
       "location": "emplacement"
@@ -218,6 +248,15 @@
     "weekly": "Hebdomadaire",
     "monthly": "Mensuel",
     "yearly": "Annuel",
+    "dataConsumption": "consommation de données",
+    "gasConsumption": "consommation de gaz",
+    "switches": "commutateurs",
+    "selectStartDate": "sélectionner la date de début",
+    "selectEndDate": "sélectionner la date de fin",
+    "selectSystem": "sélectionner le système",
+    "switchSpecification": {
+      "title": "spécification du commutateur"
+    },
     "messages": {
       "selectAllBoxes": "afin de voir votre vue d'ensemble de la télémétrie du système global, veuillez sélectionner toutes les boîtes de sélection."
     }
@@ -236,7 +275,16 @@
     "windFactor": "Facteur de vent",
     "snowSensor": "Paramètres du capteur de neige",
     "interfaceMode": "Mode d'interface",
-    "systemIdentification": "Identification du système"
+    "systemIdentification": "Identification du système",
+    "userProfile": "profil utilisateur",
+    "forceCommands": "force et commandes",
+    "admin": "paramètres d'administration",
+    "settingsOptions": "options de paramètres",
+    "imperial": "Impérial",
+    "metric": "Métrique",
+    "selectUnitsOfMeasurement": "sélectionner les unités de mesure",
+    "darkMode": "mode sombre",
+    "lightMode": "mode clair"
   },
   "contact": {
     "title": "Contactez-nous!",

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
   borderBlue,
   flexBoxCenter,
@@ -33,10 +34,11 @@ const SelectSystem = ({
   isExpanded,
   arrowImg,
 }) => {
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <TitleWrapper>
-        <Title>select system</Title>
+        <Title>{t('telemetry.selectSystem')}</Title>
       </TitleWrapper>
       {openSelections ? (
         <WrapperSelection1>

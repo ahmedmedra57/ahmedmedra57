@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
 import {
@@ -17,6 +18,7 @@ import { selectLocations } from '../store/slices/locationsSlice';
 import moment from 'moment';
 import { postAuditTrailLogService } from '../../services/auditTrail.service';
 const FaultHistoryComponent = ({ data,searchQuery,componentName }) => {
+  const { t } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const title = `${data.faultType} ${
@@ -53,10 +55,10 @@ const faultSsrArray = useMemo(() => {
       <InvisibleWrapper>
         <SectionDisplay>
           <Title>{title}</Title>
-          <Date>date : {date}</Date>
+          <Date>{t('common.date')} : {date}</Date>
         </SectionDisplay>
         <ButtonComponent
-          title={isExpanded ? 'close' : 'expand'}
+          title={isExpanded ? t('common.close') : t('common.expand')}
           buttonHandler={() => setIsExpanded(!isExpanded)}
         />
       </InvisibleWrapper>
@@ -79,7 +81,7 @@ const faultSsrArray = useMemo(() => {
                 <PrintButton onClick={handlePrintPDF}>
                   <PrintButtonWrapper>
                     <PrintButtonHole>
-                      <PrintButtonTop>print pdf</PrintButtonTop>
+                      <PrintButtonTop>{t('common.printPdf')}</PrintButtonTop>
                     </PrintButtonHole>
                   </PrintButtonWrapper>
                 </PrintButton>
@@ -106,7 +108,7 @@ const faultSsrArray = useMemo(() => {
             <SectionDetailPartB>
               <PartBHeader>
                 <HeaderBTitleWrapper>
-                  <HeaderTitle>fault details</HeaderTitle>
+                  <HeaderTitle>{t('auditTrail.faultDetails')}</HeaderTitle>
                 </HeaderBTitleWrapper>
               </PartBHeader>
 
@@ -115,18 +117,18 @@ const faultSsrArray = useMemo(() => {
                   <DetailPartBTop>
                     <PartBBody>
                       <PartBBodyHeader>
-                        <PartBBodySpan>name : {/* {data.attends[0]?.user_name} */}</PartBBodySpan>
-                        <PartBBodySpan>date : {moment(data.date, 'h:mma - DD/MM/YYYY').format("DD/MM/YYYY")}</PartBBodySpan>
+                        <PartBBodySpan>{t('common.name')} : {/* {data.attends[0]?.user_name} */}</PartBBodySpan>
+                        <PartBBodySpan>{t('common.date')} : {moment(data.date, 'h:mma - DD/MM/YYYY').format("DD/MM/YYYY")}</PartBBodySpan>
                       </PartBBodyHeader>
 
                       <PartBBodyHeader>
-                        <PartBBodySpan>title :</PartBBodySpan>
-                        <PartBBodySpan>time : {moment(data.date, 'h:mma - DD/MM/YYYY').format("HH : mm : ss A")}</PartBBodySpan>
+                        <PartBBodySpan>{t('common.title')} :</PartBBodySpan>
+                        <PartBBodySpan>{t('common.time')} : {moment(data.date, 'h:mma - DD/MM/YYYY').format("HH : mm : ss A")}</PartBBodySpan>
                       </PartBBodyHeader>
 
                       <SectionPartBBody>
                         <PartBBodySpan>{data.faultType} {faultSsrArray} </PartBBodySpan>
-                        <PartBBodySpan>comment :</PartBBodySpan>
+                        <PartBBodySpan>{t('common.comment')} :</PartBBodySpan>
                         {data.attends?.map((attend)=>(
                           <PartBBodySpan>
                             {/* {data.attends[0]?.action_taken} */}

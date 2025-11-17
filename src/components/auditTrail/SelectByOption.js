@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import {
   flexBoxCenter,
   flexDirectionColumn,
@@ -11,6 +12,7 @@ const SelectByOption = ({
   isSelected,
   setIsSelected,
 }) => {
+  const { t } = useTranslation();
   const handleSelect = (index) => {
     if (index === 0) {
       setIsSelected([true, false]);
@@ -38,7 +40,7 @@ const SelectByOption = ({
         <ButtonWrapper onClick={handle1stSelect}>
           <ButtonHole>
             <ButtonInner>
-              <ButtonTop>select</ButtonTop>
+              <ButtonTop>{t('common.select')}</ButtonTop>
             </ButtonInner>
           </ButtonHole>
         </ButtonWrapper>

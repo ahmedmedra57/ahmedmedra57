@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import SettingAppliedMessage from '../../masterControl/userMessages/SettingAppliedMessage';
 import { selectEditCancelApplyButtons } from '../../store/slices/settings/editCancelApplyButtonsSlice';
 import { selectWindFactor } from '../../store/slices/settings/windFactorSlice';
@@ -34,6 +35,7 @@ function WindFactorMain({
 }) {
   // media query
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
+  const { t } = useTranslation();
 
   const content = [
     {
@@ -122,7 +124,7 @@ function WindFactorMain({
                 </EditBoxWrapper>
               )}
 
-            <TitleOfSelectedOption title={'wind factor trigger'} />
+            <TitleOfSelectedOption title={t('settings.windFactor')} />
 
             {content.map((value, index) => {
               return (
@@ -176,7 +178,7 @@ function WindFactorMain({
                 </EditBoxWrapper>
               )}
 
-            <TitleOfSelectedOption title={'wind factor trigger'} />
+            <TitleOfSelectedOption title={t('settings.windFactor')} />
             <FlexWrapper>
               {content.map((value, index) => {
                 return (

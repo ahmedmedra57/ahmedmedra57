@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import {
   handleUnSelectIndividualMachine,
@@ -42,6 +43,7 @@ import moment from 'moment';
 import SelectSystemMessage from './userMessages/SelectSystemMessage';
 
 const MasterControlMain = () => {
+  const { t } = useTranslation();
   // redux
   const dispatch = useDispatch();
 
@@ -190,17 +192,17 @@ const MasterControlMain = () => {
   };
 
   const selectSystemMessage = [
-    'you must first select the desired system',
-    'ess-electric switch system',
-    'tgs-typhoon gas system',
-    'tes-typhoon electric system',
-    'hp-heated platform',
+    t('masterControl.messages.selectSystemFirst'),
+    t('masterControl.systems.ess'),
+    t('masterControl.systems.tgs'),
+    t('masterControl.systems.tes'),
+    t('masterControl.systems.hp'),
   ];
 
   return (
     <Wrapper>
       <MasterControlProvider>
-        <TitleContainer title='master control' />
+        <TitleContainer title={t('masterControl.title')} />
         <ContentsWrapper>
           <ContainerSelectSystem
             // handleSelectSystem={handleSelectSystem}
@@ -213,16 +215,16 @@ const MasterControlMain = () => {
 
           {messageBoxOfCreateNewCommand && !isNewCommandCreated && (
             <SelectCreateNewCommandMessage
-              title={'master control commands'}
-              message={'please select "create new command"'}
+              title={t('masterControl.commands.title')}
+              message={t('masterControl.commands.selectCreateNew')}
               onClose={() => setMessageBoxOfCreateNewCommand(false)}
             />
           )}
 
           {isSystemSelectedMessage && isNewCommandCreated && (
             <SelectSystemMessage
-              title={'master control commands'}
-              subtitle={'select system'}
+              title={t('masterControl.commands.title')}
+              subtitle={t('masterControl.commands.selectSystem')}
               messages={selectSystemMessage}
               onClose={() => setIsSystemSelectedMessage(false)}
             />
