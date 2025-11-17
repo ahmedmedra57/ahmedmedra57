@@ -56,7 +56,6 @@ const SwitchSpecification = ({
         ? 'ft³'
         : 'm³'
       : 'mb');
-      console.log(energySign,"energySign")
   const expandSpecificLocationHandler = useCallback(
     (locationIdx, specificLocationIdx) => {
       const copyIsExpand = [...specificLocationsOpeningControl];

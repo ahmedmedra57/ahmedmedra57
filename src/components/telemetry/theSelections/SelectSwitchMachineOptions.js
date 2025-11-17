@@ -91,7 +91,6 @@ const SelectSwitchMachineOptions = ({
   isTelemetry,
 }) => {
   const locations = Object.keys(data);
-  console.log(locations,data, 'SelectSwitchMachineOptions');
   const buttons = ['clear', 'apply'];
   const masterControlSelects = useSelector(selectMasterControls);
   const dispatch = useDispatch();

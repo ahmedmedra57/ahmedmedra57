@@ -42,7 +42,6 @@ export const useGetScheduleQueries = (switchStatus, swtName) => {
             }
           },
           onError: (error) => {
-            console.error('get heating schedule fail:', error.message);
           },
           staleTime: Infinity
         }))

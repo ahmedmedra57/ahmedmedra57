@@ -76,7 +76,6 @@ const AutoCompleteBox = ({
           if (index === 0) {
             return locations.all[el][namesArr[1]]?.locationName;
           } else if (index === 1) {
-            console.log('el:', locations.all[namesArr[0]]);
             return locations.all[namesArr[0]][el]?.specificLocationName;
           } else {
             return locations.all[namesArr[0]][namesArr[1]].devices[el]

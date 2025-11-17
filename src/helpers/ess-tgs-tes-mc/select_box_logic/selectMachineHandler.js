@@ -7,7 +7,6 @@ export const selectMachineHandler = (
 ) => {
   // ======= select machine logic =====
   // 4. select individually
-  console.log(
     { option, machine, extraOption, data, selectedMachines },
     "selectMachineHandler1"
   );
@@ -17,7 +16,6 @@ export const selectMachineHandler = (
   let specLocationIdx;
   let machineIdx;
   if (extraOption) {
-    console.log( Object.values(data[option].subLocations),"selectMachineHandler2");
     specLocationIdx = Object.keys(data[option].subLocations).indexOf(extraOption);
     machineIdx = Object.keys(data[option].subLocations[extraOption].devices).indexOf(machine);
 

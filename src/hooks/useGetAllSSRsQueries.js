@@ -56,7 +56,6 @@ export const useGetAllSSRsQueries = (switchStatus, swtName) => {
               }
             },
             onError: (error) => {
-              console.error('get ssrs fail:', error.message);
             },
           }))
       )

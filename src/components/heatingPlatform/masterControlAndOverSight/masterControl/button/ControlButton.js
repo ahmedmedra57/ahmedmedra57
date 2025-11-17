@@ -28,7 +28,6 @@ const ControlButton = ({ buttonData }) => {
           setButtonAltText(`ready ${id}`);
           break;
         default:
-          console.error(
             'something went wrong with the selected control button'
           );
           break;

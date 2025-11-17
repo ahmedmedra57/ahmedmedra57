@@ -30,7 +30,6 @@ const RSHeaterStatus = ({
   const { flatEssSwitch, flatTesSwitch } = useSelector(
     swtName === 'ess' ? selectEssSwitch : selectTesSwitch
   );
-  console.log({swtName,
     location,
     machine,
     expandBtnName,

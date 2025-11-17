@@ -92,7 +92,6 @@ const ValveSearchBar = ({
     }
   });
   
-  console.log(machines, "getFormattedMachineName");
   
 
   // ************************************************

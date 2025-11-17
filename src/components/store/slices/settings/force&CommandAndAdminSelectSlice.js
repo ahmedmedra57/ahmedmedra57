@@ -206,7 +206,6 @@ const forceCommandAndAdminSelectSlice = createSlice({
     },
     handleSettingsMachineSelectAlt: (state, action) => {
       const { specLocationIdx, locationIdx, machineIdx } = action.payload;
-      console.log(action.payload,"handleSettingsMachineSelectAlt")
       if (specLocationIdx || specLocationIdx === 0) {
         state[action.payload.switch].isMachineSelected[locationIdx][
           specLocationIdx

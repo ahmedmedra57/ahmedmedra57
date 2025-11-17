@@ -21,7 +21,6 @@ const FaultsReport = ({
   const locations = useSelector(selectLocations);
   const faultsState = useSelector(selectFaults);
   const faultsArray = getFaultsList(locationData)?.map((fault) => {
-    console.log({fault},"FaultsReport")
     const { receivedThermocoupleSetting } = faultsState[swt][fault.location][fault.machine];
     const locationName = locations[swt][fault.location].locationName;
     // const specificLocationName =

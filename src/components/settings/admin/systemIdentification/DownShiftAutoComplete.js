@@ -25,7 +25,6 @@ const DownShiftAutoComplete = ({
   return (
     <Downshift
       onClick={(selectedItem) => {
-        console.log('Selected Item (onClick):', selectedItem);
         handleSelectedPartNumber(
           selectedItem,
           selectedSSRIdx,
@@ -35,7 +34,6 @@ const DownShiftAutoComplete = ({
         )
       }}
       onChange={(selectedItem) => {
-        console.log('Selected Item (onChange):', selectedItem);
         if (selectedItem) {
           handleSelectedPartNumber(
             selectedItem,
@@ -77,7 +75,6 @@ const DownShiftAutoComplete = ({
                     );
                   })
                   .map((item, index) => {
-                    console.log(`Item: ${item.partNumber}, Index: ${index}, Highlighted: ${index === highlightedIndex}`);
                     return (
                       <ListWrapper
                         key={`${item.partNumber}-${index}`}

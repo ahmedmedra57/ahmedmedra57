@@ -182,7 +182,6 @@ const forceAndCommandsSlice = createSlice({
     handleSelectAts: (state, action) => {
       const { location, specificLocation, machine, swt, selection } =
         action.payload;
-        console.log(action.payload,"handleSelectAts")
         const swtSpec = swt === "ess" ? "essSpec" : swt === "tgs" ? "tgsSpec" : swt === "tes" ? "tesSpec" : "sysSpec";
       if (specificLocation) {
         state[swtSpec][location].subLocations[specificLocation].devices[machine].selectAts = selection;
@@ -193,7 +192,6 @@ const forceAndCommandsSlice = createSlice({
     handleFCSelectIndividualMachine: (state, action) => {
       const { location, specificLocation, machine, swt, isSelectedSys } =
         action.payload;
-        console.log(action.payload,"handleFCSelectIndividualMachine")
         const swtSpec = swt === "ess" ? "essSpec" : swt === "tgs" ? "tgsSpec" : swt === "tes" ? "tesSpec" : "sysSpec";
       if (specificLocation) {
         if (isSelectedSys) {
@@ -265,7 +263,6 @@ const forceAndCommandsSlice = createSlice({
           tcNum
         ] = true;
       } else {
-        console.log({location, specificLocation, machine, selectedTCSys, tcNum},"handleSelectTC")
         state.sysSpec[location].devices[machine][selectedTCSys] = initialState;
 
         state.sysSpec[location].devices[machine][selectedTCSys][tcNum] = true;

@@ -45,62 +45,6 @@ import mobileMasterControlSlice from './slices/mobileMasterControlSlice';
 import appSlice from './slices/appSlice';
 import locationsSlice from './slices/locationsSlice';
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-//   stateReconciler: autoMergeLevel2,
-// };
-
-// const rootReducer = combineReducers({
-//   essSwitch: essSwitchSlice.reducer,
-//   tesSwitch: tesSwitchSlice.reducer,
-//   tgsSwitch: tgsSwitchSlice.reducer,
-//   masterControlSelect: masterControlSelectSlice.reducer,
-//   mC: mCSlice.reducer,
-//   mCCommand: mCCommandSlice.reducer,
-//   selectedMachines: selectedMachinesSlice.reducer,
-//   messageBoxes: messageBoxesSlice.reducer,
-//   globalOverview: globalOverviewSlice.reducer,
-//   telemetry: telemetrySlice.reducer,
-//   masterControlSelectBySwitch: masterControlSelectBySwitchSlice.reducer,
-//   masterControlSelectByLocation: masterControlSelectByLocationSlice.reducer,
-//   hpElectricSwitch: hpElectricSwitchSlice.reducer,
-//   hpGasSwitch: hpGasSwitchSlice.reducer,
-//   essDataConsumption: essDataConsumptionSlice.reducer,
-//   tgsDataConsumption: tgsDataConsumptionSlice.reducer,
-//   tesDataConsumption: tesDataConsumptionSlice.reducer,
-//   hpDataConsumption: hpDataConsumptionSlice.reducer,
-//   telemetryChartData: telemetryChartDataSlice.reducer,
-//   address: addressSlice.reducer,
-//   ssrDescription: ssrDescriptionSlice.reducer,
-//   reportStatus: reportStatusSlice.reducer,
-//   admin: adminSlice.reducer,
-//   forceAndCommands: forceAndCommandsSlice.reducer,
-//   snowSensor: snowSensorSlice.reducer,
-//   units: unitsSlice.reducer,
-//   windFactor: windFactorSlice.reducer,
-//   interfaceMode: interfaceModeSlice.reducer,
-//   settingsOptions: settingsOptionsSlice.reducer,
-//   editCancelApplyButtons: EditCancelApplyButtonsSlice.reducer,
-//   faultsState: faultsSlice.reducer,
-//   forceCommandAndAdminSelect: forceCommandAndAdminSelectSlice.reducer,
-//   addElementToBankAndSystemIdentification:
-//     addElementToBankAndSystemIdentificationSlice.reducer,
-//   isExpanded: MCIsExpandedSlice.reducer,
-//   userInfo: userSlice.reducer,
-//   sysIdentification: sysIdentificationSlice.reducer,
-//   selectedProgram: mobileSelectProgramSlice.reducer,
-//   mobileMasterControl: mobileMasterControlSlice.reducer,
-//   appInfo: appSlice.reducer,
-//   locations: locationsSlice.reducer,
-// });
-
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// const store = configureStore({
-//   reducer: {
-//     persistedReducer,
-//   },
 const store = configureStore({
   reducer: {
     essSwitch: essSwitchSlice.reducer,

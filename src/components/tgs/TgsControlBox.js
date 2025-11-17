@@ -84,7 +84,6 @@ const TgsControlBox = ({ location, machine, swtName, setTemp, isMobile }) => {
     devicesConflicts,
     currentRun,
   } = flatTgsSwitch[location][machine];
-  console.log(flatTgsSwitch[location][machine],isFanDisabled,"heatingSchedule")
   const unitsStatus = useSelector(selectUnits);
   const { isF } = unitsStatus;
   const permissions = useSelector(selectUserPermissions);
@@ -232,7 +231,6 @@ const TgsControlBox = ({ location, machine, swtName, setTemp, isMobile }) => {
             );
           })
           .catch((err) => {
-            console.log('delete heating schedule fail:', err);
           });
       } else if (heatingScheduleList.length - 1 === index) {
       } else {
@@ -246,7 +244,6 @@ const TgsControlBox = ({ location, machine, swtName, setTemp, isMobile }) => {
             );
           })
           .catch((err) => {
-            console.log('delete heating schedule fail:', err);
           });
       }
     } else {
@@ -299,7 +296,6 @@ const TgsControlBox = ({ location, machine, swtName, setTemp, isMobile }) => {
             );
           })
           .catch((e) => {
-            console.log('update heating schedule fail:', e.message);
           });
       } else {
         createScheduleService(scheduleData)
@@ -318,7 +314,6 @@ const TgsControlBox = ({ location, machine, swtName, setTemp, isMobile }) => {
             );
           })
           .catch((e) => {
-            console.log('create heating schedule fail:', e.message);
           });
       }
     }
@@ -542,13 +537,11 @@ const TgsControlBox = ({ location, machine, swtName, setTemp, isMobile }) => {
         )
           .then((res) => dispatchData(res))
           .catch((e) => {
-            console.log('update heating schedule fail:', e.message);
           });
       } else {
         createScheduleService(scheduleData)
           .then((res) => dispatchData(res))
           .catch((e) => {
-            console.log('create heating schedule fail:', e.message);
           });
       }
     }

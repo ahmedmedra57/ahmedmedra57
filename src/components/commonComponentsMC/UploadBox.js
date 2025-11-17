@@ -88,7 +88,6 @@ const Upload = ({
     } catch (error) {
       setErrorMessage(['Something went wrong. Please try again.']);
       handleMessageBox('send');
-      console.log(error);
     }
   };
 

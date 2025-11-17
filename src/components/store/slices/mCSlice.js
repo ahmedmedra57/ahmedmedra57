@@ -74,7 +74,6 @@ const mCSlice = createSlice({
       //   tes: false,
       //   hpEc: false,
       // };
-      console.log('handleSelectTelemetrySystem', action.payload);
       state.selectSystem = { ...initialState.selectSystem };
       state.selectSystem[action.payload] = true;
     },

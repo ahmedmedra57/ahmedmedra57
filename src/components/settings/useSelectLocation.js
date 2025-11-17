@@ -57,7 +57,6 @@ const useSelectLocationBox = (
       );
     } else {
       const machines = Object.keys(swtData[location].devices);
-      console.log("dispatchUnSelectMachinesHandler",machines);
       machines.forEach((machine) =>
         dispatch(
           handleUnSelectIndividualMachine({
@@ -72,13 +71,6 @@ const useSelectLocationBox = (
   };
 
   const handleUnSelectMachines = (location, swt, swtData, specificLocation) => {
-    //   if (swt === 'ess') {
-    //     dispatchUnSelectMachinesHandler(location, swt, swtData);
-    //   } else if (swt === 'tes') {
-    //     dispatchUnSelectMachinesHandler(location, swt, swtData);
-    //   } else if (swt === 'tgs') {
-    //     dispatchUnSelectMachinesHandler(location, swt, swtData);
-    //   } else
     if (swt === "valveSettings") {
       dispatchUnSelectMachinesHandler(
         location,
@@ -138,105 +130,9 @@ const useSelectLocationBox = (
     }
   };
 
-  // const handleUnSelectMachines = (location, swt) => {
-  //   if (swt === 'ess') {
-  //     const machines = Object.keys(ess[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(handleUnSelectIndividualMachine({ swt, location, machine }))
-  //     );
-  //   } else if (swt === 'tes') {
-  //     const machines = Object.keys(tes[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(handleUnSelectIndividualMachine({ swt, location, machine }))
-  //     );
-  //   } else if (swt === 'tgs') {
-  //     const machines = Object.keys(tgs[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(handleUnSelectIndividualMachine({ swt, location, machine }))
-  //     );
-  //   } else if (swt === 'valveSettings') {
-  //     const machines = Object.keys(sys[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(
-  //         handleUnSelectIndividualMachine({
-  //           swt: 'tgs',
-  //           location,
-  //           machine,
-  //           isSelectedSys: 'isSelectedValveSettings',
-  //         })
-  //       )
-  //     );
-  //   } else if (swt === 'gasType') {
-  //     const machines = Object.keys(tgs[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(
-  //         handleUnSelectIndividualMachine({
-  //           swt: 'tgs',
-  //           location,
-  //           machine,
-  //           isSelectedSys: 'isSelectedGasType',
-  //         })
-  //       )
-  //     );
-  //   }
-  //   else if (swt === 'sysIdentification') {
-  //     const machines = Object.keys(sys[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(
-  //         handleUnSelectIndividualMachine({
-  //           swt: 'sys',
-  //           location,
-  //           machine,
-  //           isSelectedSys: 'isSelectedSysIdentification',
-  //         })
-  //       )
-  //     );
-  //   } else if (swt === 'sysConfiguration') {
-  //     const machines = Object.keys(sys[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(
-  //         handleUnSelectIndividualMachine({
-  //           swt: 'sys',
-  //           location,
-  //           machine,
-  //           isSelectedSys: 'isSelectedSysConfiguration',
-  //         })
-  //       )
-  //     );
-  //   } else if (swt === 'forceGasAndElectricSys') {
-  //     const machines = Object.keys(sys[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(
-  //         handleUnSelectIndividualMachine({
-  //           swt: 'sys',
-  //           location,
-  //           machine,
-  //           isSelectedSys: 'isSelectedForceGasAndElectricSys',
-  //         })
-  //       )
-  //     );
-  //   } else if (swt === 'outsideTemp') {
-  //     const machines = Object.keys(sys[location]);
-  //     machines.forEach((machine) =>
-  //       dispatch(
-  //         handleUnSelectIndividualMachine({
-  //           swt: 'sys',
-  //           location,
-  //           machine,
-  //           isSelectedSys: 'isOutsideTempSelected',
-  //         })
-  //       )
-  //     );
-  //   }
-  // };
-
   const loopHandler = (swt, swtData) => {
     const locations = swtData && Object.keys(swtData);
-    // const filteredSpecLocationsKeys = getAllSpecificLocationNames(swtData);
     locations.forEach((location) => {
-      // const isMachine = Object.keys(swtData[location].devices).some(
-      //   (machine) => swtData[location].devices[machine].deviceMac
-      // );
       if (!swtData[location].isSpecificLocation) {
         handleUnSelectMachines(location, swt, swtData);
       } else {
@@ -248,9 +144,6 @@ const useSelectLocationBox = (
   };
 
   useEffect(() => {
-    // this resets all switches
-    //  when system is changed
-
     dispatch(handleSettingsResetAllSelect());
     if (openHeaders[0]) {
       loopHandler("ess", essSpec);
@@ -293,74 +186,8 @@ const useSelectLocationBox = (
         loopHandler("sys", sysSpec);
       }
     }
-    // if (openHeaders[0]) {
-    //   const locations = ess && Object.keys(ess);
-    //   locations.map((location) => handleUnSelectMachines(location, 'ess'));
-    // } else if (openHeaders[2]) {
-    //   const locations = tes && Object.keys(tes);
-    //   locations.map((location) => handleUnSelectMachines(location, 'tes'));
-    // } else if (openHeaders[1]) {
-    //   const locations = tgs && Object.keys(tgs);
-    //   if (isEnable2) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'gasType')
-    //     );
-    //   }
-    //   if (isEnable1) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'valveSettings')
-    //     );
-    //   } else {
-    //     locations.map((location) => handleUnSelectMachines(location, 'tgs'));
-    //   }
-    // } else if (openHeaders[5]) {
-    //   const locations = sys && Object.keys(sys);
-    //   if (isEnable3) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'forceGasAndElectricSys')
-    //     );
-    //   }
-    //   if (isEnable4) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'sysIdentification')
-    //     );
-    //   }
-    //   if (isEnable5) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'outsideTemp')
-    //     );
-    //   }
-    //   if (isEnable6) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'burningChamber')
-    //     );
-    //   }
-    //   if (isEnable7) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'encloseTemp')
-    //     );
-    //   }
-    //   if (isEnable8) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'currEss')
-    //     );
-    //   }
-    //   if (isEnable9) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'currTgs')
-    //     );
-    //   }
-    //   if (isEnable10) {
-    //     locations.map((location) =>
-    //       handleUnSelectMachines(location, 'currTes')
-    //     );
-    //   } else {
-    //     locations.map((location) => handleUnSelectMachines(location, 'sys'));
-    //   }
-    // }
   }, [openHeaders]);
 
-  // *********** useEffect create array with false inside for selection of selected switches******************************
 
   const dispatchAllHandler = (program) => {
     dispatch(handleSettingsSelectAll({ switch: program, status: false }));
@@ -384,7 +211,6 @@ const useSelectLocationBox = (
           allSpecificLocationsArr.push(specLocation);
         }
       });
-    console.log(allSpecificLocationsArr, "allSpecificLocationsArr");
     dispatch(
       handleSettingsSpecificLocationSelect({
         arr: allSpecificLocationsArr,
@@ -553,334 +379,25 @@ const useSelectLocationBox = (
         }
       }
     }
-    // if (openHeaders[0]) {
-    //   if (!selectedOne) {
-    //     const essLocations = Object.keys(ess);
-    //     dispatch(handleSettingsSelectAll({ switch: 'ess', status: false }));
-    //     const locationArr = essLocations.map((location) => false);
-    //     dispatch(
-    //       handleSettingsLocationSelect({ arr: locationArr, switch: 'ess' })
-    //     );
 
-    //     const machineArr = Object.values(ess).map((location) =>
-    //       Object.keys(location).map((machine) => false)
-    //     );
-    //     dispatch(
-    //       handleSettingsMachineSelect({ arr: machineArr, switch: 'ess' })
-    //     );
-    //   }
-    // } else if (openHeaders[1]) {
-    //   if (!selectedOne) {
-    //     if (isEnable1) {
-    //       const tgsLocations = Object.keys(tgs);
-    //       dispatch(
-    //         handleSettingsSelectAll({ status: false, switch: 'valveSettings' })
-    //       );
-    //       const locationArr = tgsLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'valveSettings',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(tgs).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({
-    //           arr: machineArr,
-    //           switch: 'valveSettings',
-    //         })
-    //       );
-    //     }
 
-    //     if (isEnable2) {
-    //       const tgsLocations = Object.keys(tgs);
-    //       dispatch(
-    //         handleSettingsSelectAll({ status: false, switch: 'gasType' })
-    //       );
-    //       const locationArr = tgsLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'gasType',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(tgs).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({ arr: machineArr, switch: 'gasType' })
-    //       );
-    //     }
-    //     if (tgs) {
-    //       const tgsLocations = Object.keys(tgs);
-    //       dispatch(handleSettingsSelectAll({ status: false, switch: 'tgs' }));
-    //       const locationArr = tgsLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({ arr: locationArr, switch: 'tgs' })
-    //       );
 
-    //       const machineArr = Object.values(tgs).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({ arr: machineArr, switch: 'tgs' })
-    //       );
-    //     }
-    //   }
-    // } else if (openHeaders[2]) {
-    //   if (!selectedOne) {
-    //     const tesLocations = Object.keys(tes);
-    //     dispatch(handleSettingsSelectAll({ status: false, switch: 'tes' }));
-    //     const locationArr = tesLocations.map((location) => false);
-    //     dispatch(
-    //       handleSettingsLocationSelect({ arr: locationArr, switch: 'tes' })
-    //     );
 
-    //     const machineArr = Object.values(tes).map((location) =>
-    //       Object.keys(location).map((machine) => false)
-    //     );
-    //     dispatch(
-    //       handleSettingsMachineSelect({ arr: machineArr, switch: 'tes' })
-    //     );
-    //   }
-    // } else if (openHeaders[5]) {
-    //   if (!selectedOne) {
-    //     if (isEnable3) {
-    //       const sysLocations = Object.keys(sys);
-    //       dispatch(
-    //         handleSettingsSelectAll({
-    //           status: false,
-    //           switch: 'forceGasAndElectricSys',
-    //         })
-    //       );
-    //       const locationArr = sysLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'forceGasAndElectricSys',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(sys).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({
-    //           arr: machineArr,
-    //           switch: 'forceGasAndElectricSys',
-    //         })
-    //       );
-    //     }
-    //     // if (isEnable4) {
-    //     //   const sysLocations = Object.keys(sys);
-    //     //   dispatch(
-    //     //     handleSettingsSelectAll({
-    //     //       status: false,
-    //     //       switch: 'sysIdentification',
-    //     //     })
-    //     //   );
-    //     //   const locationArr = sysLocations.map((location) => false);
-    //     //   dispatch(
-    //     //     handleSettingsLocationSelect({
-    //     //       arr: locationArr,
-    //     //       switch: 'sysIdentification',
-    //     //     })
-    //     //   );
 
-    //     //   const machineArr = Object.values(sys).map((location) =>
-    //     //     Object.keys(location).map((machine) => false)
-    //     //   );
-    //     //   dispatch(
-    //     //     handleSettingsMachineSelect({
-    //     //       arr: machineArr,
-    //     //       switch: 'sysIdentification',
-    //     //     })
-    //     //   );
-    //     // }
-    //     // else {
-    //     //   const sysLocations = Object.keys(sys);
-    //     //   dispatch(handleSettingsSelectAll({ status: false, switch: 'sys' }));
-    //     //   const locationArr = sysLocations.map((location) => false);
-    //     //   dispatch(
-    //     //     handleSettingsLocationSelect({ arr: locationArr, switch: 'sys' })
-    //     //   );
 
-    //     //   const machineArr = Object.values(sys).map((location) =>
-    //     //     Object.keys(location).map((machine) => false)
-    //     //   );
-    //     //   dispatch(
-    //     //     handleSettingsMachineSelect({ arr: machineArr, switch: 'sys' })
-    //     //   );
-    //     // }
 
-    //     if (isEnable5) {
-    //       const sysLocations = Object.keys(sys);
-    //       dispatch(
-    //         handleSettingsSelectAll({
-    //           status: false,
-    //           switch: 'outsideTemp',
-    //         })
-    //       );
-    //       const locationArr = sysLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'outsideTemp',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(sys).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({
-    //           arr: machineArr,
-    //           switch: 'outsideTemp',
-    //         })
-    //       );
-    //     }
-    //     if (isEnable6) {
-    //       const sysLocations = Object.keys(sys);
-    //       dispatch(
-    //         handleSettingsSelectAll({
-    //           status: false,
-    //           switch: 'burningChamber',
-    //         })
-    //       );
-    //       const locationArr = sysLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'burningChamber',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(sys).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({
-    //           arr: machineArr,
-    //           switch: 'burningChamber',
-    //         })
-    //       );
-    //     }
-    //     if (isEnable7) {
-    //       const sysLocations = Object.keys(sys);
-    //       dispatch(
-    //         handleSettingsSelectAll({
-    //           status: false,
-    //           switch: 'encloseTemp',
-    //         })
-    //       );
-    //       const locationArr = sysLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'encloseTemp',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(sys).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({
-    //           arr: machineArr,
-    //           switch: 'encloseTemp',
-    //         })
-    //       );
-    //     }
-    //     if (isEnable8) {
-    //       const sysLocations = Object.keys(sys);
-    //       dispatch(
-    //         handleSettingsSelectAll({
-    //           status: false,
-    //           switch: 'currEss',
-    //         })
-    //       );
-    //       const locationArr = sysLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'currEss',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(sys).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({
-    //           arr: machineArr,
-    //           switch: 'currEss',
-    //         })
-    //       );
-    //     }
-    //     if (isEnable9) {
-    //       const sysLocations = Object.keys(sys);
-    //       dispatch(
-    //         handleSettingsSelectAll({
-    //           status: false,
-    //           switch: 'currTgs',
-    //         })
-    //       );
-    //       const locationArr = sysLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'currTgs',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(sys).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({
-    //           arr: machineArr,
-    //           switch: 'currTgs',
-    //         })
-    //       );
-    //     }
-    //     if (isEnable10) {
-    //       const sysLocations = Object.keys(sys);
-    //       dispatch(
-    //         handleSettingsSelectAll({
-    //           status: false,
-    //           switch: 'currTes',
-    //         })
-    //       );
-    //       const locationArr = sysLocations.map((location) => false);
-    //       dispatch(
-    //         handleSettingsLocationSelect({
-    //           arr: locationArr,
-    //           switch: 'currTes',
-    //         })
-    //       );
 
-    //       const machineArr = Object.values(sys).map((location) =>
-    //         Object.keys(location).map((machine) => false)
-    //       );
-    //       dispatch(
-    //         handleSettingsMachineSelect({
-    //           arr: machineArr,
-    //           switch: 'currTes',
-    //         })
-    //       );
-    //     }
-    //   }
-    // }
   }, [
     openHeaders,
     selectedOne,
-    // ess,
-    // tes,
-    // tgs,
     sys,
     ate,
     hp,

@@ -241,7 +241,6 @@ const tesSwitchSlice = createSlice({
       //   action.payload.machine
       // ].isSelected = false;
       // // !!END
-      console.log("tesHandleUnSelectIndividualMachine", action.payload);
       state.flatTesSwitch[action.payload.location][
         action.payload.specificLocation
       ][action.payload.machine].isSelected = false;

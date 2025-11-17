@@ -216,7 +216,6 @@ const TesMasterControlByMachine = ({
   }, [instantHeat.inputTemp, isF]);
 
   const handleHeaderButton = (btnName) => {
-    console.log(btnName);
   };
 
   const handleButtonClick = (btnName) => {
@@ -227,7 +226,6 @@ const TesMasterControlByMachine = ({
             dispatch(tesHandleShutOff({ location, machine }));
           })
           .catch((err) => {
-            console.log('fail freeze device: ', err.message);
           });
         break;
       }

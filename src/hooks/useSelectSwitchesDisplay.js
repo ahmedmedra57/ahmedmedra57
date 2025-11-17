@@ -64,7 +64,6 @@ export const useSelectSwitchesDisplay = (
         });
       }
     });
-    console.log(individualArr,data,"individualArrTest1")
 
     dispatch(handleMachineSelect({ switch: swt, arr: individualArr }));
   } else if (option !== "all" && machine === undefined) {
@@ -96,7 +95,6 @@ export const useSelectSwitchesDisplay = (
         });
       }
     });
-    console.log(newIsSpecificLocationSelected,"newIsSpecificLocationSelectedTest1")
     dispatch(
       handleSpecificLocationSelect({
         switch: swt,
@@ -122,7 +120,6 @@ export const useSelectSwitchesDisplay = (
     newSelect.push(option);
     dispatch(handleAddLocations({ switch: swt, arr: newSelect }));
   } else if (option !== "all" && machine === "isSpecificLocation") {
-    console.log("selectMachineHandler00");
 
     // 3. select specific location
     // location index
@@ -171,7 +168,6 @@ export const useSelectSwitchesDisplay = (
     dispatch(handleAddSpecificLocations({ switch: swt, arr: newSelect }));
   } else {
     // 4. select individually
-    console.log(
       { option, machine, extraOption, data, selectedMachines },
       "selectMachineHandler1"
     );

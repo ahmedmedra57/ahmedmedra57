@@ -44,7 +44,6 @@ const DropBox = ({
   const [selections, setSelections] = useState(
     selectBoxFor === 'selectedSSR' ? [] : ''
   );
-  console.log(content,"DropBox")
   const [inputValue, setInputValue] = useState(null);
 
   useEffect(() => {

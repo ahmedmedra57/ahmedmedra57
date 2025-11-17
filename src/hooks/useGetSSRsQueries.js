@@ -75,7 +75,6 @@ export const useGetSSRsQueries = (location, machine, swtName) => {
         }
       },
       onError: (error) => {
-        console.error('get ssrs fail:', error.message);
       },
       staleTime: Infinity,
       refetchOnWindowFocus: false, // Prevent refetching on window focus

@@ -27,7 +27,6 @@ const MainChart = ({
   scheduleData,
   isSearch,
 }) => {
-  console.log({selectedSystemTitle,
     controlSelectionDisplay,
     telemetryData,
     telemetryDataKeys,

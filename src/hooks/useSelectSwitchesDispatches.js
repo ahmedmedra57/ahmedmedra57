@@ -74,14 +74,6 @@ export const loopMachinesDispatchHandler = (
   settingsSwtName,
   isSelectedSys
 ) => {
-  console.log(
-    {
-      location,
-      machines,
-      specificLocation,
-    },
-    "loopMachinesDispatchHandler"
-  );
   machines.forEach((machine) =>
     dispatch(
       dispatchHandler({
@@ -757,9 +749,6 @@ const dispatchesHandler = (
 
 const verifyNoSpecificLocations = (location, data) => {
   const locationData = data[location];
-  Object.values(locationData).some((el) =>
-    console.log(el, "verifyNoSpecificLocations")
-  );
   return Object.values(locationData).some((el) => el?.deviceMac);
 };
 
@@ -771,10 +760,6 @@ export const selectLocationsHandler = (
   settingsSwt,
   isSelectedSys
 ) => {
-  console.log(
-    { dispatch, locations, swt, data, dispatch, settingsSwt, isSelectedSys },
-    "forceAndCommand"
-  );
   locations.forEach((location) => {
     if (!data[location].isSpecificLocation) {
       dispatchesHandler(
@@ -821,8 +806,6 @@ export const selectSpecificLocationsHandler = (
           (el) => el === specificLocation
         );
       }
-      console.log("commandInfoInside4");
-      // return Object.keys(value)[0] === specificLocation;
     })[0][0];
     dispatchesHandler(
       dispatch,
@@ -996,7 +979,6 @@ export const useSelectSwitchDropBoxDispatches = (
       // #2.4. switches/machines count
       // switchCountHandler(isMachineSelected);
     } else if (isSpecificLocationSelected.indexOf(true) !== -1) {
-      console.log("isLocationSelectedXXX");
       // #3. selected specific locations
       selectSpecificLocationsHandler(
         selectedSpecificLocations,

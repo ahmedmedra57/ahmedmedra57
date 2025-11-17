@@ -254,7 +254,6 @@ const MasterControlContents = ({
           break;
       }
     } else {
-      console.log('instantHeatXXXX');
     }
     // snow sensor
     if (snowSensor) {
@@ -1140,7 +1139,6 @@ const MasterControlContents = ({
       content: messageDescription,
     });
   };
-console.log(viewCommand);
   return (
     <Wrapper onClick={handleCreateNewCommandMessageBox}>
       <TitleContainer>

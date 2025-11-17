@@ -36,7 +36,6 @@ const ConfirmedUOSInfo = ({
   return (
     <>
       {data?.map((groupedData, groupedIdx) => {
-        console.log(UOSName[groupedIdx],"UOSNameXD")
         return (
           <div key={groupedData[0]?.sysId + groupedIdx}>
             <SortedUOSGroupWrapper>

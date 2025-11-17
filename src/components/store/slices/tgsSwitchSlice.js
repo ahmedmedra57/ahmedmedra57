@@ -407,7 +407,6 @@ const tgsSwitchSlice = createSlice({
           resetHeatingSchedule;
     },
     tgsHandleReadyHeatingSchedule: (state, action) => {
-      console.log('tgsHandleReadyHeatingSchedule', action.payload);
       const { location, machine } = action.payload;
         state.flatTgsSwitch[location][machine].heatingSchedule.isReady = action.payload.state;
     },

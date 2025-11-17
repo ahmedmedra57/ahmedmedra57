@@ -5,27 +5,36 @@ import GlobalStyle from "./components/styles/GlobalStyles";
 import MainPage from "./Mainpage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import "./axiosConfig";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
 import { AutoLogoutProvider } from "./providers";
+import { ErrorBoundary } from "./components/errorBoundary";
 
-const queryClient = new QueryClient({});
-// let persistor = persistStore(store);
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      cacheTime: 10 * 60 * 1000,
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Wrapper>
-        <GlobalStyle />
-        <Provider store={store}>
-          {/* <PersistGate persistor={persistor}> */}
-          <AutoLogoutProvider>
-            <MainPage />
-          </AutoLogoutProvider>
-          {/* </PersistGate> */}
-        </Provider>
-      </Wrapper>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <Wrapper>
+          <GlobalStyle />
+          <Provider store={store}>
+            <ErrorBoundary>
+              <AutoLogoutProvider>
+                <MainPage />
+              </AutoLogoutProvider>
+            </ErrorBoundary>
+          </Provider>
+        </Wrapper>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 
@@ -37,5 +46,4 @@ const Wrapper = styled.div`
   background: transparent linear-gradient(90deg, #233a54 0%, #060d19 100%);
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 `;

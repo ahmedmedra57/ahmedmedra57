@@ -187,7 +187,6 @@ const mCCommandSlice = createSlice({
   reducers: {
     handleCreateCommand: (state, action) => {
       // increment command number every time a new command has been created
-      console.log(state,action,"state.commandsInfo")
       let totalCommands = 0;
       Object.values(state.commandsInfo).forEach((eachUserCommands) => {
         eachUserCommands.forEach((command) => {

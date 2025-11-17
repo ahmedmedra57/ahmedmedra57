@@ -86,15 +86,12 @@ const headerGroupButtonsHandler = (
       break;
     }
     case "weather": {
-      console.log(name, id);
       break;
     }
     case "upload": {
-      console.log(name, id);
       break;
     }
     case "view": {
-      console.log(name, id);
       break;
     }
     default:

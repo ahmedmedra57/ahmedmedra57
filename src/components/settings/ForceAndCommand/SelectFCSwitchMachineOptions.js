@@ -54,7 +54,6 @@ const SelectFCSwitchMachineOptions = ({
       : sysIndex === 2
       ? FCAndAdminSelectState.tes
       : '';
-  console.log(isSpecificLocationSelected, 'SelectFCSwitchMachineOptions');
   const [isSelected, setIsSelected] = useState(false);
   // const [specificLocationsNameList, setSpecificLocationsNameList] = useState(
   //   []

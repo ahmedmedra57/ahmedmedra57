@@ -59,7 +59,6 @@ import MasterControlMain from './components/masterControl/MasterControlMain';
 import MobileMain from './components/mobileMain/MobileMain';
 import MainLoadingPage from './components/loading/MainLoadingPage';
 import MobileMasterControl from './components/masterControl/MobileMasterControl';
-// import LoginBox from './components/landingPage/LoginBox';
 import { useQuery } from 'react-query';
 import {
   getAllUsers,
@@ -116,10 +115,8 @@ const MainPage = () => {
        try{
          const users= await getUserProfileDataService();
          users.forEach(user =>{
-          console.log(user);
          })
        }catch(error){
-        console.error("error: does not exist");
        }
     }
   },[])
@@ -205,25 +202,6 @@ const MainPage = () => {
       handleMessagesFaults({ flatEssSwitch, flatTgsSwitch, flatTesSwitch })
     );
   }, [flatEssSwitch, flatTgsSwitch, flatTesSwitch]);
-
-  // const searchSpecificLocationHandler = (switchType) => {
-  //   return Object.values(switchType).map((el) => {
-  //     if (
-  //       Object.keys(el).length === 0 ||
-  //       Object.values(el).some((checkEl) => checkEl.machineType)
-  //     ) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   });
-  // };
-
-  // !!TEST
-  // useSetZoneOpeningsState(testEssSwitch, isEssSwitch, null, 'ess', true);
-  // useSetZoneOpeningsState(testTgsSwitch, isTgsSwitch, null, 'tgs', true);
-  // useSetZoneOpeningsState(testTesSwitch, isTesSwitch, null, 'tes', true);
-  // !!END
 
   useSetZoneOpeningsState(essSwitches, isEssSwitch, null, 'ess', true);
   useSetZoneOpeningsState(tgsSwitches, isTgsSwitch, null, 'tgs', true);
@@ -541,10 +519,8 @@ const MainPage = () => {
       ) : (
         <Wrapper>
           <Routes>
-            // <Route path='/login' element={<LandingPage />} />
-            // <Route path='/login/fr' element={<LandingPage />} />
             <Route path='/login' element={<HomePage />} />
-            <Route path='/login/fr' element={<HomePage />} /> 
+            <Route path='/login/fr' element={<HomePage />} />
             <Route path='*' element={<Navigate to='/login' />} />
           </Routes>
         </Wrapper>
@@ -575,7 +551,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* justify-content: space-around; */
 
   padding: 10rem 20rem;
   padding-top: 0;
@@ -606,7 +581,6 @@ const MainContentsWrapper = styled.div`
 
 const MobileWrapper = styled.div`
   width: 332px;
-  /* ${flexDirectionColumn} */
   ${justifyContentFlexStart}
   flex-direction: column;
 `;

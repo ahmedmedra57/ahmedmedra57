@@ -240,7 +240,6 @@ const EssMasterControlByMachine = ({
   }, [instantHeat.inputTemp, isF]);
 
   const handleHeaderButton = (btnName) => {
-    console.log(btnName);
   };
 
   const handleButtonClick = (btnName) => {
@@ -251,7 +250,6 @@ const EssMasterControlByMachine = ({
             dispatch(handleShutOff({ location, machine }));
           })
           .catch((err) => {
-            console.log('fail freeze device: ', err.message);
           });
         break;
       }

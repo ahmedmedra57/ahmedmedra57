@@ -277,7 +277,6 @@ const MainSelections = ({
 
   const handleUnSelectMachines = (location, swt, switchData) => {
     if (!location || !switchData) return;
-    console.log({ location, swt, switchData }, "handleUnSelectMachines");
     const el = Object.keys(switchData[location]);
     const elValue = Object.values(switchData[location]);
     if (elValue[0]?.machineType) {
@@ -332,7 +331,6 @@ const MainSelections = ({
 
   const loopAllMachinesHandler = (selectedSwitches, selectedSys) => {
     const locations = selectedSwitches && Object.keys(selectedSwitches);
-    console.log(essDataConsumptionSwitch, "handleUnSelectMachinesX");
     locations.map((location) =>
       handleUnSelectMachines(location, selectedSys, selectedSwitches)
     );
@@ -635,7 +633,6 @@ const MainSelections = ({
       swtSwitchE,
       swtName
     );
-    console.log({ deviceIds }, "getTelemetryData");
     if (ess || tes || tgs) {
       getTelemetryService({ deviceIds, startDate, endDate, category }).then(
         ({ data, unit }) => {
@@ -697,9 +694,8 @@ const MainSelections = ({
           dispatch(handleAuditLogData(auditLogData));
         }
       ).catch((error) => {
-        console.error("Error fetching telemetry data:", error);
       });
-    
+
     }
 
     if (essDc || tgsTesDc) {
@@ -828,7 +824,6 @@ const MainSelections = ({
       (ess || tgs || tes || essDc || tgsTesDc || hpDc || hpGc || hpEc) &&
       selectedSwitches
     ) {
-      console.log(selectedSwitches, "selectedSwitches");
       dispatch(handleSearchTelemetrySystem(true));
       setControlSelectionDisplay(true);
       if (ess) {

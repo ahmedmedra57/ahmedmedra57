@@ -353,7 +353,6 @@ function SelectTc({
               {/* burning chamber, enclose temperature, ess, tgs and tes heater temperature */}
               {IndividualComponentInfo.map(
                 ({ id, title, systemAbbr, position }) => {
-                  console.log("IndividualComponentInfo",{id, title, systemAbbr, position})
                   return (
                     <IndividualWrapper key={id}>
                       <ShareComponentForSelectTC

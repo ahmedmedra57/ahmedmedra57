@@ -63,7 +63,6 @@ const ShutOff = ({
         specificLocation
       );
     } else {
-      console.log("handleOnClickXX","shutOff","on",scope)
       handleOnClick('shutOff', 'on', scope);
       if (isMobile && scope !== 'switch') {
         handleClose();

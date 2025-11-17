@@ -20,7 +20,6 @@ export const selectMachineDispatchHandler = (
   newSelectedMachine
 ) => {
   // ======dispatches below======
-  console.log("selectMachineHandlerTst", {
     extraOption,
     locationIdx,
     specLocationIdx,
