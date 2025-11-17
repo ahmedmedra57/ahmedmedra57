@@ -1,5 +1,5 @@
+import { memo } from 'react';
 import { useMediaQuery } from 'react-responsive';
-
 import styled, { css } from 'styled-components';
 import {
   flexBoxCenter,
@@ -22,7 +22,7 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default memo(Footer);
 
 const Wrapper = styled.footer`
   width: 1328px;

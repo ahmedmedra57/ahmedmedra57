@@ -1,4 +1,6 @@
-import { groupBy, isEmpty, sum } from 'lodash';
+import groupBy from 'lodash/groupBy';
+import isEmpty from 'lodash/isEmpty';
+import sum from 'lodash/sum';
 import moment from 'moment';
 import { ROLE_PERMISSIONS } from '../constants';
 import { useEffect } from 'react';

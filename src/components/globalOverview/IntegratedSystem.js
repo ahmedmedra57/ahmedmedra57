@@ -34,7 +34,8 @@ import {
 import DisplayMachineSuggestion from './DisplayMachineSuggestion';
 import SwitchLocation from './SwitchLocation';
 import IndividualMachine from './IndividualMachine';
-import { reduce, set } from 'lodash';
+import reduce from 'lodash/reduce';
+import set from 'lodash/set';
 import { selectLocations } from '../store/slices/locationsSlice';
 import {
   filteredSuggestionsHandler,

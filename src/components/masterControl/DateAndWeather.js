@@ -1,6 +1,7 @@
 // import { useSelector } from 'react-redux';
 // import { selectUserState } from '../store/slices/userSlice';
 import moment from 'moment/moment';
+import { memo } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import styled, { css } from 'styled-components';
@@ -45,7 +46,7 @@ const DateAndWeather = () => {
   );
 };
 
-export default DateAndWeather;
+export default memo(DateAndWeather);
 
 const Wrapper = styled.div`
   width: 550px;

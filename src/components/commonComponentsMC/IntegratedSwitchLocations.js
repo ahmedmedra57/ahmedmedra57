@@ -90,7 +90,7 @@ import headerGroupButtonsHandler from '../../helpers/ess-tgs-tes-mc/headerGroupB
 import InputTempMessage from '../userMessages/inputTempMessage';
 import { EssTgsTesContext } from '../context/contextOfEssTgsTes';
 import { useLocation } from 'react-router-dom';
-import { keys } from 'lodash';
+import keys from 'lodash/keys';
 import MasterControlBySwitchTitle from './MasterControlBySwitchTitle';
 
 const IntegratedSwitchLocations = ({ swtName, buttonHandler }) => {

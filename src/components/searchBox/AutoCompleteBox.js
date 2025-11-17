@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, memo } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { selectLocations } from '../store/slices/locationsSlice';
@@ -127,7 +127,7 @@ const AutoCompleteBox = ({
   );
 };
 
-export default AutoCompleteBox;
+export default memo(AutoCompleteBox);
 
 const Wrapper = styled.div`
   width: 491px;

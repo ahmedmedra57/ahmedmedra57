@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { reduce } from 'lodash';
+import reduce from 'lodash/reduce';
 const initialState = {
   ess: {
     isSelected: false,

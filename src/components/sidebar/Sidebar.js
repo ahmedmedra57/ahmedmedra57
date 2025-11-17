@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, memo } from 'react';
 import { useSelector } from 'react-redux';
 
 import styled, { css } from 'styled-components';
@@ -130,7 +130,7 @@ const Sidebar = () => {
     </StylingWrapper>
   );
 };
-export default Sidebar;
+export default memo(Sidebar);
 
 const StylingWrapper = styled.div`
   height: 100%;

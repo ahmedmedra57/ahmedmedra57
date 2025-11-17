@@ -22,7 +22,7 @@ import styled, { css } from 'styled-components';
 import SelectLocations from './SelectLocations';
 import InputTempMessage from '../userMessages/inputTempMessage';
 import { selectUnits } from '../store/slices/settings/unitsSlice';
-import { set } from 'lodash';
+import set from 'lodash/set';
 
 const InstantHeat = ({
   swtName,

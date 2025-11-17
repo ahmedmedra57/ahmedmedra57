@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import styled, { css } from 'styled-components';
@@ -650,7 +650,7 @@ const MainController = ({
   );
 };
 
-export default MainController;
+export default memo(MainController);
 
 // const MobileWrapper = styled.div`
 //   width: 311px;

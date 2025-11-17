@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import DateAndWeather from './masterControl/DateAndWeather';
@@ -899,7 +899,7 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);
 
 const OutsideWrapper = styled.header`
   ${flexBoxCenter}

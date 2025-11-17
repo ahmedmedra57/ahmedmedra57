@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useState, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import {
@@ -428,7 +428,7 @@ const SearchBox = ({ handleClose, isMobile }) => {
     </Wrapper>
   );
 };
-export default SearchBox;
+export default memo(SearchBox);
 
 const Wrapper = styled.div`
   width: 100%;

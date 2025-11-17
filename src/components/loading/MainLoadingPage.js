@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { memo } from 'react';
 import LoadingIcon from './LoadingIcon';
 import { flexBoxCenter, justifyContentFlexEnd } from '../styles/commonStyles';
 
@@ -19,7 +20,7 @@ const MainLoadingPage = () => {
   );
 };
 
-export default MainLoadingPage;
+export default memo(MainLoadingPage);
 
 const Wrapper = styled.div`
   height: 100vh;

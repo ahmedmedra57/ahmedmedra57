@@ -75,7 +75,9 @@ import AllSettingsSelectOptions from './settingsOptions/AllSettingsSelectOptions
 import InvisibleDivForEditButton from './messageBoxes/InvisibleDivForEditButton';
 import Interface from './interfaceMode/Interface';
 import { addAdminHeatersService } from '../../services/ssrs.service';
-import { groupBy, mapValues, reduce } from 'lodash';
+import groupBy from 'lodash/groupBy';
+import mapValues from 'lodash/mapValues';
+import reduce from 'lodash/reduce';
 import {
   getUserProfileDataService,
   updateUserProfileService,

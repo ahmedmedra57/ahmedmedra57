@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { reduce, result } from 'lodash';
+import reduce from 'lodash/reduce';
+import result from 'lodash/result';
 import moment from 'moment/moment';
 
 const locationSlice = createSlice({

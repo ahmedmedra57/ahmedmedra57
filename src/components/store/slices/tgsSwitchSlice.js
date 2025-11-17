@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { clone, isNumber, reduce } from 'lodash';
+import clone from 'lodash/clone';
+import isNumber from 'lodash/isNumber';
+import reduce from 'lodash/reduce';
 import { convertCelsiusToFahrenheit } from '../../../helpers/helpers';
 
 const initialState = {
