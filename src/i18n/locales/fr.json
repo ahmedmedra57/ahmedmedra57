@@ -8,20 +8,40 @@
     "confirm": "confirmer",
     "ok": "ok",
     "close": "fermer",
+    "expand": "développer",
     "submit": "soumettre",
+    "send": "envoyer",
     "back": "retour",
     "next": "suivant",
+    "search": "rechercher",
+    "select": "sélectionner",
     "loading": "Chargement...",
     "error": "Erreur",
     "success": "Succès",
-    "warning": "Avertissement"
+    "warning": "Avertissement",
+    "thermocoupleOptions": {
+      "tc01": "tc-01",
+      "tc02": "tc-02",
+      "tc03": "tc-03",
+      "tc04": "tc-04",
+      "tc05": "tc-05",
+      "tc06": "tc-06",
+      "tc07": "tc-07",
+      "tc08": "tc-08",
+      "tc09": "tc-09",
+      "tc10": "tc-10",
+      "tc11": "tc-11"
+    }
   },
   "auth": {
     "login": "connexion",
     "logout": "déconnexion",
     "accountName": "nom du compte",
+    "accountNamePlaceholder": "nom de compte",
     "password": "mot de passe",
+    "passwordPlaceholder": "mot de passe",
     "rememberMe": "Mémoriser mon nom de compte",
+    "rememberAccount": "Mémoriser mon nom de compte",
     "forgotPassword": "Mot de passe oublié?",
     "enter": "entrer",
     "send": "envoyer",
@@ -31,12 +51,19 @@
     "fillAllFields": "Veuillez remplir tous les champs",
     "enterAccountName": "entrez votre nom de compte",
     "enterAccountNameReset": "Entrez votre nom de compte pour réinitialiser le mot de passe",
+    "resetPasswordPrompt": "Entrez votre nom de compte pour réinitialiser le mot de passe",
     "resetEmailSent": "E-mail de réinitialisation du mot de passe envoyé avec succès!",
     "resetError": "Erreur lors de l'envoi de l'e-mail de réinitialisation. Veuillez réessayer.",
     "notAllowed": "Vous n'êtes pas autorisé à vous connecter"
   },
   "navigation": {
     "home": "Accueil",
+    "features": "Caractéristiques",
+    "about": "À propos",
+    "tempora": "Tempora",
+    "contact": "Contact",
+    "english": "Anglais",
+    "french": "Français",
     "globalOverview": "Vue d'ensemble globale",
     "masterControl": "Contrôle principal",
     "telemetry": "Télémétrie",
@@ -50,15 +77,154 @@
     "reportStatus": "État du rapport"
   },
   "masterControl": {
-    "title": "Contrôle principal",
-    "instantHeat": "chauffage instantané",
-    "snowSensor": "capteur de neige",
-    "programs": "programmes",
-    "schedule": "calendrier",
-    "status": "Statut",
-    "control": "Contrôle",
-    "activate": "Activer",
-    "deactivate": "Désactiver"
+    "title": "contrôle principal",
+    "selectLocations": "sélectionner les emplacements",
+    "selectSwitches": "sélectionner les commutateurs",
+    "selectSpecificLocation": "sélectionner un emplacement spécifique",
+    "commands": {
+      "title": "commandes de contrôle principal",
+      "selectCreateNew": "veuillez sélectionner \"créer une nouvelle commande\"",
+      "selectSystem": "sélectionner le système"
+    },
+    "messages": {
+      "selectSystemFirst": "vous devez d'abord sélectionner le système souhaité"
+    },
+    "systems": {
+      "ess": "ess-système de commutation électrique",
+      "tgs": "tgs-système à gaz typhoon",
+      "tes": "tes-système électrique typhoon",
+      "hp": "hp-plateforme chauffée"
+    },
+    "programs": {
+      "heatingSchedule": "programme de calendrier de chauffage",
+      "fanOnly": "programme ventilateur uniquement",
+      "windFactor": "programme facteur de vent",
+      "optionalConstant": "programme temp. const. opt.",
+      "optionalConstantShort": "température constante optionnelle",
+      "optionalConstantFull": "programme constant optionnel"
+    },
+    "heatingSchedule": {
+      "startEndDate": "date de début et de fin",
+      "inputTemp": "température d'entrée",
+      "selectLocationsAndSchedule": "sélectionner les emplacements et un calendrier",
+      "selectDateRange": "veuillez sélectionner l'emplacement et une date de début et de fin",
+      "wrongTemperature": "mauvaise température",
+      "finalizePrompt": "afin de finaliser le programme de chauffage instantané,",
+      "inputTempFirst": "veuillez d'abord entrer votre température",
+      "minTemp": "( la température minimale est de 121°C - 250°F )",
+      "maxTemp": "( la température maximale est de 999°C - 1830°F )"
+    },
+    "fanOnly": {
+      "selectLocations": "sélectionner les emplacements",
+      "selectLocationPrompt": "veuillez sélectionner un emplacement pour continuer"
+    },
+    "windFactor": {
+      "selectLocations": "sélectionner les emplacements",
+      "selectLocationPrompt": "veuillez sélectionner un emplacement pour continuer"
+    },
+    "ats": {
+      "title": "sélectionner ats",
+      "shortTitle": "ATS",
+      "selectLocations": "sélectionner les emplacements",
+      "selectLocationPrompt": "veuillez sélectionner un emplacement pour continuer",
+      "selectAts": "sélectionner ats",
+      "selectAtsPrompt": "veuillez sélectionner une option ats pour continuer",
+      "selected": "sélectionné",
+      "options": {
+        "ess": {
+          "block": "BLOQUER ET NE PAS PERMETTRE AU ESS DE FONCTIONNER SUR EBP (ALIMENTATION DE SECOURS D'URGENCE)",
+          "reactivate": "RÉACTIVE LE ESS LORSQU'IL EST ALIMENTÉ PAR EBP (ALIMENTATION DE SECOURS D'URGENCE)"
+        },
+        "tgs": {
+          "reactivate": "RÉACTIVER TGS (SYSTÈME DE CHAUFFAGE À GAZ TYPHOON) SUR EBP (ALIMENTATION DE SECOURS D'URGENCE)",
+          "block": "BLOQUER ET NE PAS PERMETTRE AU TGS DE FONCTIONNER SUR EBP (ALIMENTATION DE SECOURS D'URGENCE)"
+        },
+        "tes": {
+          "switchToTgs": "PASSER AU tgs (SYSTÈME DE CHAUFFAGE À GAZ TYPHOON) SUR EBP (ALIMENTATION DE SECOURS D'URGENCE)",
+          "reactivate": "réactiver TES LORSQU'IL EST ALIMENTÉ PAR EBP (ALIMENTATION DE SECOURS D'URGENCE)",
+          "remainOff": "TES RESTE ÉTEINT LORSQU'IL EST ALIMENTÉ PAR EBP (ALIMENTATION DE SECOURS D'URGENCE)"
+        }
+      }
+    },
+    "optionalConstant": {
+      "inputTemperature": "température d'entrée",
+      "selectLocations": "sélectionner les emplacements",
+      "selectLocationPrompt": "veuillez sélectionner un emplacement pour continuer",
+      "wrongTemperature": "mauvaise température",
+      "finalizePrompt": "afin de finaliser le programme de chauffage instantané,",
+      "inputTempFirst": "veuillez d'abord entrer votre température",
+      "minTemp": "( la température minimale est de 24°C - 77°F )",
+      "maxTemp": "( la température maximale est de 120°C - 248°F )",
+      "fillAllInputs": "veuillez remplir le nom d'utilisateur et l'action effectuée",
+      "fillUserName": "veuillez remplir le nom d'utilisateur",
+      "fillActionTaken": "veuillez remplir l'action effectuée"
+    }
+  },
+  "faults": {
+    "title": "défauts",
+    "systems": {
+      "ess": "systèmes de commutation électrique",
+      "tgs": "systèmes à gaz typhoon",
+      "tes": "systèmes électriques typhoon",
+      "hp": "plateformes de chauffage",
+      "ate": "équipement de voie supplémentaire"
+    },
+    "attend": {
+      "title": "assister",
+      "userName": "nom d'utilisateur uos :",
+      "inputNamePlaceholder": "veuillez entrer votre nom",
+      "fault": "défaut",
+      "previousComments": "commentaires précédents",
+      "addComment": "ajouter un commentaire",
+      "actionPlaceholder": "veuillez laisser vos actions ici..",
+      "messageTitle": "défaut - assister",
+      "inputUserNameFirst": "veuillez d'abord entrer le nom d'utilisateur",
+      "fillAllInputs": "veuillez remplir le nom d'utilisateur et l'action effectuée",
+      "fillUserName": "veuillez remplir le nom d'utilisateur",
+      "fillActionTaken": "veuillez remplir l'action effectuée",
+      "timeAndDate": "heure et date :"
+    }
+  },
+  "auditTrail": {
+    "title": "piste d'audit",
+    "selectionBox": "boîte de sélection",
+    "selectBy": "sélectionner par",
+    "selectStartDate": "sélectionner la date de début",
+    "selectEndDate": "sélectionner la date de fin",
+    "options": {
+      "userName": "nom d'utilisateur",
+      "location": "emplacement"
+    },
+    "messages": {
+      "finalizePrompt": "afin de finaliser votre piste d'audit",
+      "chooseAllSelections": "veuillez choisir toutes les sélections"
+    }
+  },
+  "reportStatus": {
+    "title": "état du rapport",
+    "heaterStatus": "État du chauffage",
+    "switchStatus": "État de l'interrupteur",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "ready": "Prêt"
+  },
+  "telemetry": {
+    "title": "vue d'ensemble de la télémétrie du système global",
+    "selectionBox": "boîte de sélection",
+    "energyConsumption": "Consommation d'énergie",
+    "totalEnergyConsumption": "Consommation d'énergie totale",
+    "usageHours": "Heures d'utilisation",
+    "daily": "Quotidien",
+    "weekly": "Hebdomadaire",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "messages": {
+      "selectAllBoxes": "afin de voir votre vue d'ensemble de la télémétrie du système global, veuillez sélectionner toutes les boîtes de sélection."
+    }
+  },
+  "globalOverview": {
+    "title": "vue d'ensemble du système global",
+    "integratedSystems": "systèmes intégrés"
   },
   "settings": {
     "title": "Paramètres",
@@ -73,53 +239,124 @@
     "systemIdentification": "Identification du système"
   },
   "contact": {
+    "title": "Contactez-nous!",
+    "thankYou": "Merci de votre intérêt pour notre entreprise",
+    "introText": "Nous aimerions avoir de vos nouvelles et discuter de la façon dont nous pouvons aider à donner vie à vos idées. Voici les différentes façons de nous contacter.",
+    "address1": {
+      "street": "2501 Avenue Dollard",
+      "city": "Lasalle, Québec",
+      "postal": "H8N 1S2"
+    },
+    "address2": {
+      "street": "795 Avenue George V.",
+      "city": "Lachine, Québec",
+      "postal": "H8S 1L2"
+    },
+    "phone": "Tél: 514 933 - 1649",
+    "tollFree": "Sans frais: 877 933 - 1649",
+    "fax": "Fax: 514 933 - 2245",
+    "email": "Email: sales@temporaheaters.com"
+  },
+  "contactForm": {
     "title": "Contactez-Nous!",
     "fullName": "Nom",
     "phone": "Téléphone",
     "email": "Email",
     "message": "Votre Message",
-    "submit": "Envoyer Le Message"
+    "submit": "Envoyer Le Message",
+    "placeholder": "Tapez ici",
+    "errors": {
+      "nameRequired": "Le nom est requis",
+      "phoneRequired": "le numéro de téléphone est requis",
+      "emailRequired": "L'adresse e-mail est requise",
+      "messageMinLength": "Un minimum de 10 mots est requis"
+    }
   },
-  "landing": {
-    "features": "Fonctionnalités",
-    "about": "À propos",
-    "contact": "Contact",
-    "getStarted": "Commencer",
-    "learnMore": "En savoir plus"
+  "features": {
+    "platform": {
+      "title": "plateau",
+      "description": "La première plateforme centralisée de surveillance et de contrôle de TEMPORA pour les réseaux ferroviaires distribués."
+    },
+    "smartControls": {
+      "title": "e-controls intelligents",
+      "description": "Boîtier de contrôle de puissance à gestion d'énergie intelligente I-Management. Capteurs de détection météorologique et centre de réponse. Intégration thermique des rails."
+    },
+    "monitoring": {
+      "title": "surveillance du site",
+      "description": "Surveillance sur site 24/7 utilisant une vision sphérique robotique intelligente à grande vitesse. Diffusion en direct. Enregistrement de données et de vidéos."
+    },
+    "dataLogging": {
+      "title": "enregistrement des données",
+      "description": "Évolution et reporting des données. Communication directe et présence virtuelle."
+    }
+  },
+  "about": {
+    "paragraph1": "La capacité des opérateurs ferroviaires à répondre aux conditions météorologiques de neige et de glace est devenue un problème pour les intervenants de l'industrie au cours des dernières années.",
+    "paragraph2": "L'intégration d'UMBRELLA OS constitue un système de gestion de l'énergie ferroviaire sophistiqué et intelligent qui complète le réseau existant de nos clients.",
+    "features": {
+      "auditTrail": {
+        "title": "Piste d'audit complète et traçabilité",
+        "description": "Fournit un rapport de connexion ainsi que la capacité de suivre et de vérifier tous les paramètres et actions."
+      },
+      "vantagePoint": {
+        "title": "Point d'observation",
+        "description": "Accès distant en direct pour surveiller et contrôler toutes les fonctions de la plateforme depuis n'importe quel endroit."
+      },
+      "firewall": {
+        "title": "Compatible avec le pare-feu",
+        "description": "utilise une connexion sortante qui ne nécessite pas de modification de votre pare-feu réseau ou routeur."
+      },
+      "security": {
+        "title": "Sécurité et contrôle",
+        "description": "Une connexion SSL entièrement sécurisée qui est à la fois fiable et sûre. Vous contrôlez qui a accès."
+      },
+      "communication": {
+        "title": "Communication facilitée",
+        "description": "L'administrateur se connecte à distance pour surveiller les systèmes et gérer."
+      },
+      "connectivity": {
+        "title": "Connectivité WiFi et cellulaire intégrée",
+        "description": "Capable de WiFi et de connexion cellulaire pour établir une connexion hautement fiable pour la surveillance et le contrôle."
+      }
+    }
+  },
+  "heatingPlatform": {
+    "company": {
+      "mbta": "mbta"
+    },
+    "stations": {
+      "sharon": {
+        "address": "sharon massachusetts",
+        "title": "sharon"
+      },
+      "blueHill": {
+        "address": "boston massachusetts",
+        "title": "blue hill"
+      }
+    },
+    "segments": {
+      "outboundPlatform": "plateforme sortante",
+      "inboundPlatform": "plateforme entrante",
+      "cummingsWalkway": "passerelle cummings highway",
+      "blueHillWalkway": "passerelle blue hill avenue"
+    }
   },
   "messages": {
     "confirmDelete": "Êtes-vous sûr de vouloir supprimer ceci?",
     "changesSaved": "Modifications enregistrées avec succès",
     "changesDiscarded": "Modifications annulées",
-    "systemOff": "Le système est actuellement éteint",
+    "systemOff": {
+      "title": "système éteint",
+      "message": "SYSTÈME ÉTEINT JUSQU'À CE QUE LE DÉFAUT SOIT LIBÉRÉ OU EN FORÇANT LE SYSTÈME."
+    },
     "noData": "Aucune donnée disponible",
     "errorOccurred": "Une erreur s'est produite. Veuillez réessayer."
   },
-  "telemetry": {
-    "title": "Télémétrie",
-    "energyConsumption": "Consommation d'énergie",
-    "totalEnergyConsumption": "Consommation d'énergie totale",
-    "usageHours": "Heures d'utilisation",
-    "daily": "Quotidien",
-    "weekly": "Hebdomadaire",
-    "monthly": "Mensuel",
-    "yearly": "Annuel"
-  },
-  "faults": {
-    "title": "Défauts",
-    "ssrFault": "Défaut SSR",
-    "groundFault": "Défaut de mise à la terre",
-    "thermocoupleFault": "Défaut de thermocouple",
-    "overCurrent": "Sur-courant",
-    "noFaults": "Aucun défaut détecté",
-    "acknowledged": "Accusé de réception"
-  },
-  "reportStatus": {
-    "title": "État du rapport",
-    "heaterStatus": "État du chauffage",
-    "switchStatus": "État de l'interrupteur",
-    "active": "Actif",
-    "inactive": "Inactif",
-    "ready": "Prêt"
+  "landing": {
+    "features": "Caractéristiques",
+    "about": "À propos",
+    "contact": "Contact",
+    "getStarted": "Commencer",
+    "learnMore": "En savoir plus"
   }
 }
