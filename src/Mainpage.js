@@ -60,7 +60,7 @@ const ReportStatusMain = lazy(() => import('./components/reportStatus/ReportStat
 const MasterControlMain = lazy(() => import('./components/masterControl/MasterControlMain'));
 const MobileMain = lazy(() => import('./components/mobileMain/MobileMain'));
 const MobileMasterControl = lazy(() => import('./components/masterControl/MobileMasterControl'));
-const HomePage = lazy(() => import('./components/landingPage/HomePage'));
+const HomePage = lazy(() => import('./components/newLandingPage/LandingPage'));
 
 import { useQuery } from 'react-query';
 import {

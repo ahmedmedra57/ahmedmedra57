@@ -1,0 +1,125 @@
+{
+  "common": {
+    "apply": "apply",
+    "save": "save",
+    "cancel": "cancel",
+    "edit": "edit",
+    "delete": "delete",
+    "confirm": "confirm",
+    "ok": "ok",
+    "close": "close",
+    "submit": "submit",
+    "back": "back",
+    "next": "next",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning"
+  },
+  "auth": {
+    "login": "login",
+    "logout": "logout",
+    "accountName": "account name",
+    "password": "password",
+    "rememberMe": "remember my account name",
+    "forgotPassword": "forgot your password?",
+    "enter": "enter",
+    "send": "send",
+    "changeAccount": "change account",
+    "sessionExpired": "Session expired. Please login again.",
+    "invalidCredentials": "invalid username or password",
+    "fillAllFields": "Please fill in all fields",
+    "enterAccountName": "enter your account name",
+    "enterAccountNameReset": "enter your account name to reset password",
+    "resetEmailSent": "Password reset email sent successfully!",
+    "resetError": "Error sending reset email. Please try again.",
+    "notAllowed": "You are not allowed to login"
+  },
+  "navigation": {
+    "home": "Home",
+    "globalOverview": "Global Overview",
+    "masterControl": "Master Control",
+    "telemetry": "Telemetry",
+    "ess": "ESS",
+    "tgs": "TGS",
+    "tes": "TES",
+    "heatingPlatform": "Heating Platform",
+    "settings": "Settings",
+    "auditTrail": "Audit Trail",
+    "faults": "Faults",
+    "reportStatus": "Report Status"
+  },
+  "masterControl": {
+    "title": "Master Control",
+    "instantHeat": "instant heat",
+    "snowSensor": "snow sensor",
+    "programs": "programs",
+    "schedule": "schedule",
+    "status": "Status",
+    "control": "Control",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
+  },
+  "settings": {
+    "title": "Settings",
+    "general": "General Settings",
+    "units": "Units",
+    "temperature": "Temperature",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit",
+    "windFactor": "Wind Factor",
+    "snowSensor": "Snow Sensor Settings",
+    "interfaceMode": "Interface Mode",
+    "systemIdentification": "System Identification"
+  },
+  "contact": {
+    "title": "Send Us a Message!",
+    "fullName": "Full Name",
+    "phone": "Phone",
+    "email": "Email",
+    "message": "Your Message",
+    "submit": "Submit"
+  },
+  "landing": {
+    "features": "Features",
+    "about": "About",
+    "contact": "Contact",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "messages": {
+    "confirmDelete": "Are you sure you want to delete this?",
+    "changesSaved": "Changes saved successfully",
+    "changesDiscarded": "Changes discarded",
+    "systemOff": "System is currently off",
+    "noData": "No data available",
+    "errorOccurred": "An error occurred. Please try again."
+  },
+  "telemetry": {
+    "title": "Telemetry",
+    "energyConsumption": "Energy Consumption",
+    "totalEnergyConsumption": "Total Energy Consumption",
+    "usageHours": "Usage Hours",
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly"
+  },
+  "faults": {
+    "title": "Faults",
+    "ssrFault": "SSR Fault",
+    "groundFault": "Ground Fault",
+    "thermocoupleFault": "Thermocouple Fault",
+    "overCurrent": "Over Current",
+    "noFaults": "No faults detected",
+    "acknowledged": "Acknowledged"
+  },
+  "reportStatus": {
+    "title": "Report Status",
+    "heaterStatus": "Heater Status",
+    "switchStatus": "Switch Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "ready": "Ready"
+  }
+}
