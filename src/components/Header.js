@@ -76,16 +76,6 @@ const Header = () => {
  
   const locations = useSelector(selectLocations);
 
-
-  // !!TEST DATA
-  // const selectExpand = useSelector(selectMCIsExpanded);
-  
-  // const { testEssSwitch, testTgsSwitch, testTesSwitch, testAllLocations } =
-  //   testData(flatEssSwitch, flatTgsSwitch, locations, flatTesSwitch);
- 
-
-  // !! END OF TEST DATA
-
   // local states
   const [searchInput, setSearchInput] = useState('');
   const [openSearchBox, setOpenSearchBox] = useState(false);
@@ -170,7 +160,6 @@ const Header = () => {
           sessionStorage.setItem('locationId', device.zone_id);
         }
         dispatch(
-          // setOpenLocationInitialStateHandler({ swtSystem, locations: locationArr })
           handleOpenLocation({
             swtName: swtSystem,
             openSpecificLocationIdx: index,
@@ -180,7 +169,6 @@ const Header = () => {
         );
       } else {
         dispatch(
-          // setOpenLocationInitialStateHandler({ swtSystem, locations: locationArr })
           handleOpenLocation({
             swtName: swtSystem,
             openSpecificLocationIdx: index,
@@ -193,7 +181,6 @@ const Header = () => {
     specificLocationArr.forEach((el, index) => {
       if (index === searchedParentLocationIndex) {
         dispatch(
-          // setOpenLocationInitialStateHandler({ swtSystem, locations: locationArr })
           handleOpenLocation({
             swtName: swtSystem,
             openSpecificLocationIdx: index,
@@ -214,29 +201,6 @@ const Header = () => {
             })
           );
         }
-        //  else {
-        //   const specificLocationArr = Object.keys(swtData).map((location) =>
-        //     Object.keys(swtData[location]).flatMap((_, specLocationIdx) =>
-        //       specLocationIdx === searchedSpecificLocationIndex ? true : false
-        //     )
-        //   );
-        //   dispatch(
-        //     setOpenSpecificLocationInitialStateHandler({
-        //       swtSystem,
-        //       specificLocations: specificLocationArr,
-        //     })
-        //   );
-        //   Object.keys(swtData[location][el]).forEach((machine) =>
-        //     dispatch(
-        //       machineControlFC({
-        //         location,
-        //         specificLocation: el,
-        //         machine,
-        //         status: false,
-        //       })
-        //     )
-        //   );
-        // }
       })
     );
 
@@ -293,71 +257,17 @@ const Header = () => {
         
       }
     }
-
-    // setSearchedLocation(null);
-    // setSearchedLocationIndex(null);
-    // setSearchedSwitch(null);
-    // setInputSwitchSearch('');
   };
 
-  // const getMachinesHandler = (swtData) => {
-  //   const locations = Object.keys(swtData).map((location) =>
-  //     Object.entries(swtData[location]).flatMap(([key, el]) => {
-  //       if (el.deviceMac) {
-  //         return `${location} - ${key}`;
-  //       } else {
-  //         return Object.keys(swtData[location][key]).flatMap(
-  //           (machine) => `${location} - ${key} - ${machine}`
-  //         );
-  //       }
-  //     })
-  //   );
-
-  //   return locations.reduce((acc, cur) => acc.concat(cur), []);
-  // };
-
   const essMachines = getFormattedMachineName(flatEssSwitch);
-  // !!TEST
-  // const essMachines = getFormattedMachineName(testEssSwitch);
-  // !!END
-  // (location - Machine) name list as an array
-  // const essLocations = Object.keys(flatEssSwitch).map((location) =>
-  //   Object.keys(flatEssSwitch[location]).map(
-  //     (machine) => `${location} - ${machine}`
-  //   )
-  // );
-  // const essMachines = essLocations.reduce((acc, cur) => acc.concat(cur), []);
-
   const tgsMachines = getFormattedMachineName(flatTgsSwitch);
-  // !!TEST
-  // const tgsMachines = getFormattedMachineName(testTgsSwitch);
-  // !!END
-  // const tgsLocations = Object.keys(flatTgsSwitch).map((location, idx) =>
-  //   Object.keys(flatTgsSwitch[location]).map(
-  //     (machine) => `${location} - ${machine}`
-  //   )
-  // );
-  // const tgsMachines = tgsLocations.reduce((acc, cur) => acc.concat(cur), []);
-
   const tesMachines = getFormattedMachineName(flatTesSwitch);
-  
-  // !!TEST
-  // const tesMachines = getFormattedMachineName(testTesSwitch);
-  // !!END
-  // const tesLocations = Object.keys(flatTesSwitch).map((location, idx) =>
-  //   Object.keys(flatTesSwitch[location]).map(
-  //     (machine) => `${location} - ${machine}`
-  //   )
-  // );
-  // const tesMachines = tesLocations.reduce((acc, cur) => acc.concat(cur), []);
 
   const switchList = [
     ...new Set([...essMachines, ...tgsMachines, ...tesMachines]),
   ];
-  // const switchList = [...essMachines, ...tgsMachines, ...tesMachines];
 
   const [selectedSuggestionIdx, setSelectedSuggestionIdx] = useState(0);
-  // const [displaySuggestions, setDisplaySuggestions] = useState(false);
   const [inputSwitchSearch, setInputSwitchSearch] = useState('');
 
   const filteredSuggestions = filteredSuggestionsHandler(
@@ -365,31 +275,6 @@ const Header = () => {
     locations,
     searchInput
   );
-
-  // !! TEST
-  // const allTestLocations = { all: { ...testAllLocations } };
-  // const filteredSuggestions = filteredSuggestionsHandler(
-  //   switchList,
-  //   testAllLocations,
-  //   searchInput
-  // );
-  // !! END
-
-  // let filteredSuggestions = switchList.filter((suggestion) => {
-  //   return suggestion
-  //     .split(' - ')
-  //     .map((el, index) => {
-  //       if (index === 0) {
-  //         return locations.all[el]?.locationName?.toUpperCase();
-  //       } else {
-  //         return locations.all[suggestion.split(' - ')[0]].devices[
-  //           el
-  //         ]?.machineName?.toUpperCase();
-  //       }
-  //     })
-  //     .join(' - ')
-  //     .includes(searchInput.toUpperCase());
-  // });
 
   const listOfSystems = filteredSuggestions.map((item, index) => {
   
@@ -417,30 +302,10 @@ const Header = () => {
             result.push(system);
           }
         }
-        // !!TEST
-        // if (testAllLocations[system][splitName[0]]?.devices) {
-        //   if (testAllLocations[system][splitName[0]]?.devices[splitName[1]]) {
-        //     result.push(system);
-        //   }
-        // } else if (testAllLocations[system][splitName[0]]) {
-        //   if (
-        //     testAllLocations[system][splitName[0]][splitName[1]]?.devices[
-        //       splitName[2]
-        //     ]
-        //   ) {
-        //     result.push(system);
-        //   }
-        // }
-        //  !! END
       });
     }
     return result;
   });
-  // useEffect(() => {
-  //   filteredSuggestions.length >= 1 && searchInput.length >= 2
-  //     ? setDisplaySuggestions(true)
-  //     : setDisplaySuggestions(false);
-  // }, [filteredSuggestions, searchInput]);
 
   const setIndexesAndSystemHandler = (
     swt,
@@ -450,20 +315,13 @@ const Header = () => {
   ) => {
     setSearchedSwitch(swt);
     setSearchedLocationIndex(locationIdx);
-    
-    // setSearchedParentLocationIndex(essParentLocationIdx);
+
     if (specificLocationIdx) {
       setSearchedSpecificLocationIndex(specificLocationIdx);
     }
   };
 
   const handleSearchedSwitch = (suggestion, system) => {
-    // const isEss = Object.keys(flatEssSwitch).filter((location, index) => {
-    //   if (location === suggestion.split(' - ')[0]) {
-    //     return index;
-    //   }
-    // });
-   
     const names = suggestion.split(' - ');
     const essLocationIdx = Object.keys(flatEssSwitch).indexOf(names[0]);
     const tgsLocationIdx = Object.keys(flatTgsSwitch).indexOf(names[0]);
@@ -493,88 +351,41 @@ const Header = () => {
           essSpecificLocationIdx,
           essParentLocationIdx
         );
-        // setSearchedSwitch(system);
-        // setSearchedLocationIndex(essLocationIdx);
-        // setSearchedSpecificLocationIndex(essSpecificLocationIdx);
       } else if (tgsLocationIdx >= 0 && system === 'tgs') {
         setIndexesAndSystemHandler(
           system,
           tgsLocationIdx,
           tgsSpecificLocationIdx
         );
-
-        // setSearchedSwitch(system);
-        // setSearchedLocationIndex(tgsLocationIdx);
-        // setSearchedSpecificLocationIndex(tgsSpecificLocationIdx);
       } else if (tesLocationIdx >= 0 && system === 'tes') {
         setIndexesAndSystemHandler(
           system,
           tesLocationIdx,
           tesSpecificLocationIdx
         );
-
-        // setSearchedSwitch(system);
-        // setSearchedLocationIndex(tesLocationIdx);
-        // setSearchedSpecificLocationIndex(tesSpecificLocationIdx);
       }
       setSearchedLocation(names[0]);
       setSearchedSpecificLocation(names[1]);
       setSearchedMachine(names[2]);
     } else {
-      // const isEss = Object.keys(flatEssSwitch).indexOf(names[0]);
-      // const isTgs = Object.keys(flatTgsSwitch).indexOf(names[0]);
-      // const isTes = Object.keys(flatTesSwitch).indexOf(names[0]);
-
       if (essLocationIdx >= 0 && system === 'ess') {
         setIndexesAndSystemHandler(system, essLocationIdx);
-
-        // setSearchedSwitch(system);
-        // setSearchedLocationIndex(isEss);
       } else if (tgsLocationIdx >= 0 && system === 'tgs') {
         setIndexesAndSystemHandler(system, tgsLocationIdx);
-
-        // setSearchedSwitch(system);
-        // setSearchedLocationIndex(isTgs);
       } else if (tesLocationIdx >= 0 && system === 'tes') {
         setIndexesAndSystemHandler(system, tesLocationIdx);
-
-        // setSearchedSwitch(system);
-        // setSearchedLocationIndex(isTes);
       }
       setSearchedLocation(names[0]);
       setSearchedMachine(names[1]);
     }
-
-    // const isEssMachine = Object.keys(
-    //   flatEssSwitch[suggestion.split(' - ')[0]] || {}
-    // ).indexOf(suggestion.split(' - ')[1]);
-    // const isTgsMachine = Object.keys(
-    //   flatTgsSwitch[suggestion.split(' - ')[0]] || {}
-    // ).indexOf(suggestion.split(' - ')[1]);
-    // const isTesMachine = Object.keys(
-    //   flatTesSwitch[suggestion.split(' - ')[0]] || {}
-    // ).indexOf(suggestion.split(' - ')[1]);
-
-    // if (isEss >= 0 && isEssMachine >= 0 && system === 'ess') {
-    //   setSearchedSwitch('ess');
-    //   setSearchedLocationIndex(isEss);
-    // } else if (isTgs >= 0 && isTgsMachine >= 0 && system === 'tgs') {
-    //   setSearchedSwitch('tgs');
-    //   setSearchedLocationIndex(isTgs);
-    // } else if (isTes >= 0 && isTesMachine >= 0 && system === 'tes') {
-    //   setSearchedSwitch('tes');
-    //   setSearchedLocationIndex(isTes);
-    // }
   };
 
   const handleSelect = (suggestion, title, system) => {
-    
     setInputSwitchSearch(title);
     handleSearchedSwitch(suggestion, system);
 
     setSearchInput('');
     setSelectedSuggestionIdx(-1);
-    // setDisplaySuggestions(false);
   };
 
   const handleKeyDown = (event) => {
@@ -604,8 +415,6 @@ const Header = () => {
 
         const titleAndSystem = title + ' - ' + system;
 
-
-       
         handleSelect(selectedSuggestion, titleAndSystem, system);
      
       }
@@ -687,11 +496,6 @@ const Header = () => {
                       type='text'
                       value={inputSwitchSearch?.toUpperCase()}
                       onClick={() => setOpenSearchBox(true)}
-                      // onChange={(e) => {
-                      //   setSearchInput(e.target.value.toLowerCase());
-                      //   setInputSwitchSearch(e.target.value);
-                      //   setSelectedSuggestionIdx(-1);
-                      // }}
                       onChange={inputHandler}
                       onKeyDown={(e) => handleKeyDown(e)}
                     />
@@ -756,10 +560,7 @@ const Header = () => {
                             handleNavigate={() =>
                               handleSearchbarButton('search')
                             }
-                            handleClose={() => {
-                              // setDisplaySuggestions(false);
-                              setSearchInput('');
-                            }}
+                            handleClose={() => setSearchInput('')}
                           />
                         );
                       })}
@@ -819,11 +620,6 @@ const Header = () => {
                         type='text'
                         value={inputSwitchSearch?.toUpperCase()}
                         onClick={() => setOpenSearchBox(true)}
-                        // onChange={(e) => {
-                        //   setSearchInput(e.target.value.toUpperCase());
-                        //   setInputSwitchSearch(e.target.value);
-                        //   setSelectedSuggestionIdx(-1);
-                        // }}
                         onChange={inputHandler}
                         onKeyDown={(e) => handleKeyDown(e)}
                       />
@@ -876,10 +672,7 @@ const Header = () => {
                                   handleNavigate={() =>
                                     handleSearchbarButton('search')
                                   }
-                                  handleClose={() => {
-                                    // setDisplaySuggestions(false);
-                                    setSearchInput('');
-                                  }}
+                                  handleClose={() => setSearchInput('')}
                                   system={system}
                                 />
                               );

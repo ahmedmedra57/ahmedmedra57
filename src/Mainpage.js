@@ -187,17 +187,6 @@ const MainPage = () => {
     }
   }, [dispatch, storedAccessToken]);
 
-  // !!TEST DATA
-  // const { testEssSwitch, testTgsSwitch, testTesSwitch } = testData(
-  //   essSwitches,
-  //   tgsSwitches,
-  //   null,
-  //   tesSwitches
-  // );
-
-
-  // !! END OF TEST DATA
-
   useEffect(() => {
     let choosenUnit = user?.temperature_unit === 'f' ? 0 : 1;
     dispatch(handleUnitSelection(choosenUnit));
@@ -226,90 +215,6 @@ const MainPage = () => {
       }
     }
   }, []);
-
-  // const dispatchFCHandler = (swtData, swtSystem) => {
-  //   //  set initial state for isLocationOpen: []
-  //   const locations = Object.keys(swtData).map((_) => false);
-  //   dispatch(setOpenLocationInitialStateHandler({ locations, swtSystem }));
-
-  //   //  set initial state for isSpecificLocationOpen: []
-  //   const specLocationArr = getSpecLocationHandler(swtData).map((_) => false);
-  //   dispatch(
-  //     setOpenSpecificLocationInitialStateHandler({
-  //       specificLocations: specLocationArr,
-  //       swtSystem,
-  //     })
-  //   );
-
-  //   isMobile &&
-  //     dispatch(handleOpenMasterControl({ swtName: swtSystem, status: false }));
-  // };
-
-  // useEffect(() => {
-  //   if (isEssSwitch) {
-  //     // dispatchFCHandler(essSwitches, 'ess');
-  //     // !!TEST
-  //     dispatchFCHandler(testEssSwitch, 'ess');
-  //     // !!END
-  //   } else {
-  //     dispatch(handleOpenMasterControl({ swtName: 'ess', status: false }));
-  //   }
-  //   if (isTgsSwitch) {
-  //     // dispatchFCHandler(tgsSwitches, 'tgs');
-  //     // !!TEST
-  //     dispatchFCHandler(testTgsSwitch, 'tgs');
-  //     // !!END
-  //   } else {
-  //     dispatch(handleOpenMasterControl({ swtName: 'tgs', status: false }));
-  //   }
-  //   if (isTesSwitch) {
-  //     // dispatchFCHandler(tesSwitches, 'tes');
-  //     // !!TEST
-  //     dispatchFCHandler(testTesSwitch, 'tes');
-  //     // !!END
-  //   } else {
-  //     dispatch(handleOpenMasterControl({ swtName: 'tes', status: false }));
-  //   }
-  // }, [
-  //   isEssSwitch,
-  //   isTgsSwitch,
-  //   isTesSwitch,
-  //   isMobile,
-  //   testTesSwitch,
-  //   testTgsSwitch,
-  //   testEssSwitch,
-  //   dispatch,
-  // ]);
-
-  // useEffect(() => {
-  //   if (isEssSwitch) {
-
-  //     const locationEss = Object.keys(essSwitches).map((location) => false);
-  //     dispatch(handleEssInitialState(locationEss));
-  //     isMobile &&
-  //       dispatch(handleOpenMasterControl({ swtName: 'ess', status: false }));
-  //   } else {
-  //     dispatch(handleOpenMasterControl({ swtName: 'ess', status: false }));
-  //   }
-
-  //   if (isTgsSwitch) {
-  //     const locationTgs = Object.keys(tgsSwitches).map((location) => false);
-  //     dispatch(handleTgsInitialState(locationTgs));
-  //     isMobile &&
-  //       dispatch(handleOpenMasterControl({ swtName: 'tgs', status: false }));
-  //   } else {
-  //     dispatch(handleOpenMasterControl({ swtName: 'tgs', status: false }));
-  //   }
-
-  //   if (isTesSwitch) {
-  //     const locationTes = Object.keys(tesSwitches).map((location) => false);
-  //     dispatch(handleTesInitialState(locationTes));
-  //     isMobile &&
-  //       dispatch(handleOpenMasterControl({ swtName: 'tes', status: false }));
-  //   } else {
-  //     dispatch(handleOpenMasterControl({ swtName: 'tes', status: false }));
-  //   }
-  // }, [isEssSwitch, isTgsSwitch, isTesSwitch, isMobile, dispatch]);
 
   // fetch zones from backend use react query
   const {

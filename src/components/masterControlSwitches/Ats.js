@@ -38,7 +38,6 @@ const Ats = ({
   disabled,
 }) => {
   const { t } = useTranslation();
-  // const disabled = false;
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
   // Global
@@ -54,13 +53,9 @@ const Ats = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [isExpandedForMobile, setIsExpandedForMobile] = useState(false);
   const [isSelected, setIsSelected] = useState([false, false, false]);
-  // const [isSelectedForMobile, setIsSelectedForMobile] = useState(false);
 
   const [openMessageBox, setOpenMessageBox] = useState(false);
   const [messages, setMessages] = useState([]);
-  // const imgSrc = disabled
-  //   ? 'images/logo-ats.svg'
-  //   : 'images/logo-ats-active.svg';
 
   const imgSrc = 'images/logo-ats-active.svg';
 

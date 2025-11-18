@@ -29,7 +29,6 @@ const OptionalConstant = ({
   handleOnClick,
   disabled,
   handleClose,
-  // isSpecificLocation,
   specificLocation,
 }) => {
   const { t } = useTranslation();
@@ -51,10 +50,6 @@ const OptionalConstant = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [openMessageBox, setOpenMessageBox] = useState(false);
   const [messages, setMessages] = useState([]);
-
-  // ** temporary values until connect with BE (need API) **
-  // const isF = false;
-  // ** temporary values until connect with BE (need API) **
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -132,7 +127,6 @@ const OptionalConstant = ({
             <MobileWrapper isExpanded={isExpanded} disabled={disabled}>
               <SectionController
                 isMobile={isMobile}
-                // onSubmit={handleSubmit}
                 isMargin={isMobile && isExpanded}
               >
                 <MobileHole>
@@ -202,7 +196,6 @@ const OptionalConstant = ({
                   swtName={swtName}
                   disabled={disabled}
                   specificLocation={specificLocation}
-                  // // isSpecificLocation={isSpecificLocation}
                 />
               )}
               {openMessageBox && (
@@ -230,7 +223,6 @@ const OptionalConstant = ({
                   swtName={swtName}
                   disabled={disabled}
                   specificLocation={specificLocation}
-                  // // isSpecificLocation={isSpecificLocation}
                 />
               </SectionSelect>
 
@@ -314,7 +306,6 @@ const OptionalConstant = ({
               swtName={swtName}
               disabled={disabled}
               specificLocation={specificLocation}
-              // // isSpecificLocation={isSpecificLocation}
             />
           </SectionTop>
           <SectionController onSubmit={handleSubmit} disabled={disabled}>

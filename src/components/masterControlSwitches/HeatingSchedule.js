@@ -61,9 +61,6 @@ const HeatingSchedule = ({
   const [openMessageBox, setOpenMessageBox] = useState(false);
   const [messages, setMessages] = useState([]);
 
-  // ** temporary variables
-  // const isF = false;
-
   // Schedule calendar handlers
   const handleClear = () => {};
 
@@ -210,7 +207,6 @@ const HeatingSchedule = ({
             <MobileWrapper isExpanded={isExpanded}>
               <SectionController
                 isMobile={isMobile}
-                // onSubmit={handleSubmit}
                 isMargin={isMobile && isExpanded}
               >
                 <MobileHole>

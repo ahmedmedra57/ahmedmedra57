@@ -19,7 +19,6 @@ import styled, { css } from 'styled-components';
 
 import SelectLocations from './SelectLocations';
 import InputTempMessage from '../userMessages/inputTempMessage';
-// import { selectUnits } from '../store/slices/settings/unitsSlice';
 
 const FanOnly = ({ scope, handleOnClick, swtName, handleClose }) => {
   const { t } = useTranslation();
@@ -32,36 +31,11 @@ const FanOnly = ({ scope, handleOnClick, swtName, handleClose }) => {
     scope === 'switch' ? selectMCBySwitch : selectMCByLocation
   );
   const { selectedOne } = switchStatus.snowSensor;
-  // const unitsStatus = useSelector(selectUnits);
-  // const { isF } = unitsStatus;
 
   // Local
   const [isExpanded, setIsExpanded] = useState(false);
   const [openMessageBox, setOpenMessageBox] = useState(false);
   const [messages, setMessages] = useState([]);
-
-  // ********* temporary variables *********
-  // const defaultTemp = 350;
-  // ********* temporary variables *********
-
-  // useEffect(() => {
-  //   // Logic for access selected machine
-  //   Object.keys(essSwitch).forEach((location) =>
-  //     Object.keys(essSwitch[location]).forEach((machine) => {
-  //       dispatch(handleUnSelectIndividualMachine({ location, machine }));
-  //     })
-  //   );
-  // }, []);
-
-  // Logic for access selected machine --- checker
-  // Object.keys(essSwitch).forEach((location) =>
-  //   Object.keys(essSwitch[location]).forEach((machine) => {
-  //     if (essSwitch[location][machine].isSelected) {
-  //       // dispatch hear
-
-  //     }
-  //   })
-  // );
 
   const handleApply = () => {
     if (!selectedOne) {

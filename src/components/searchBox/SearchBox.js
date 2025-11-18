@@ -65,28 +65,6 @@ const SearchBox = ({ handleClose, isMobile }) => {
       ? flatTgsSwitch
       : flatTesSwitch;
 
-  // !!TEST DATA
-
-  // const { flatEssSwitch } = useSelector(selectEssSwitch);
-  // const { flatTgsSwitch } = useSelector(selectTgsSwitch);
-  // const { flatTesSwitch } = useSelector(selectTesSwitch);
-  // const { testEssSwitch, testTgsSwitch, testTesSwitch, testAllLocations } =
-  //   testData(flatEssSwitch, flatTgsSwitch, locations, flatTesSwitch);
-
-  // const switches =
-  //   selectedSwitch && selectedSwitch === 'ess'
-  //     ? testEssSwitch
-  //     : selectedSwitch === 'tgs'
-  //     ? testTgsSwitch
-  //     : testTesSwitch;
-
-  // console.log('testAllLocations:', testAllLocations);
-  // console.log('testTesSwitch:', testTesSwitch);
-  // console.log('testTgsSwitch', testTgsSwitch);
-  // console.log('testEssSwitch', testEssSwitch);
-
-  // !! END OF TEST DATA
-
   const dispatch = useDispatch();
 
   // useContext
@@ -192,29 +170,6 @@ const SearchBox = ({ handleClose, isMobile }) => {
         elIdx,
         machine
       );
-
-      // const locationArr = Object.keys(switches).map((location) => false);
-      // dispatch(handleEssInitialState(locationArr));
-
-      // Object.keys(switches).map((location) =>
-      //   Object.keys(switches[location]).map((machine) =>
-      //     dispatch(
-      //       handleOpenMachineController({ location, machine, status: false })
-      //     )
-      //   )
-      // );
-
-      // dispatch(
-      //   handleOpenLocation({
-      //     swtName: 'ess',
-      //     index: locationIndex,
-      //     status: true,
-      //   })
-      // );
-
-      // dispatch(
-      //   handleOpenMachineController({ location, machine: el, status: true })
-      // );
     } else if (selectedSwitch === 'tgs') {
       machineControlHandler(
         handleTgsInitialState,
@@ -226,31 +181,6 @@ const SearchBox = ({ handleClose, isMobile }) => {
         elIdx,
         machine
       );
-      // const tgsLocationArr = Object.keys(switches).map((location) => false);
-      // dispatch(handleTgsInitialState(tgsLocationArr));
-
-      // Object.keys(switches).map((location) =>
-      //   Object.keys(switches[location]).map((machine) =>
-      //     dispatch(
-      //       tgsHandleOpenMachineController({ location, machine, status: false })
-      //     )
-      //   )
-      // );
-
-      // dispatch(
-      //   handleOpenLocation({
-      //     swtName: 'tgs',
-      //     index: locationIndex,
-      //     status: true,
-      //   })
-      // );
-      // dispatch(
-      //   tgsHandleOpenMachineController({
-      //     location,
-      //     machine: el,
-      //     status: true,
-      //   })
-      // );
     } else if (selectedSwitch === 'tes') {
       machineControlHandler(
         handleTesInitialState,
@@ -262,31 +192,6 @@ const SearchBox = ({ handleClose, isMobile }) => {
         elIdx,
         machine
       );
-      // const locationArr = Object.keys(switches).map((location) => false);
-      // dispatch(handleTesInitialState(locationArr));
-
-      // Object.keys(switches).map((location) =>
-      //   Object.keys(switches[location]).map((machine) =>
-      //     dispatch(
-      //       tesHandleOpenMachineController({ location, machine, status: false })
-      //     )
-      //   )
-      // );
-
-      // dispatch(
-      //   handleOpenLocation({
-      //     swtName: 'tes',
-      //     index: locationIndex,
-      //     status: true,
-      //   })
-      // );
-      // dispatch(
-      //   tesHandleOpenMachineController({
-      //     location,
-      //     machine: el,
-      //     status: true,
-      //   })
-      // );
     }
     handleClose();
   };
@@ -307,10 +212,6 @@ const SearchBox = ({ handleClose, isMobile }) => {
               <DotAndTitleWrapper isMobile={isMobile}>
                 <GreenDot />
                 <SwitchName isMobile={isMobile}>
-                  {/* {testAllLocations.all[location].locationName} -{' '}
-                  {testAllLocations.all[location].devices[el]?.machineName}
-                  {switches[location][el].heatingSystem &&
-                    ` - ${switches[location][el].heatingSystem}`} */}
                   {formattedName}
                 </SwitchName>
               </DotAndTitleWrapper>
@@ -337,13 +238,6 @@ const SearchBox = ({ handleClose, isMobile }) => {
                   <DotAndTitleWrapper isMobile={isMobile}>
                     <GreenDot />
                     <SwitchName isMobile={isMobile}>
-                      {/* {testAllLocations.all[location][el]?.locationName} -{' '}
-                      {
-                        testAllLocations.all[location][el]?.devices[machine]
-                          ?.machineName
-                      }
-                      {switches[location][el][machine]?.heatingSystem &&
-                        ` - ${switches[location][el][machine]?.heatingSystem}`} */}
                       {formattedName}
                     </SwitchName>
                   </DotAndTitleWrapper>
@@ -393,34 +287,6 @@ const SearchBox = ({ handleClose, isMobile }) => {
       {selectedSwitch && (
         <ScrollWrapper isMobile={isMobile}>
           <SectionSwitches isMobile={isMobile}>
-            {/* {Object.keys(switches).map((location, locationIndex) =>
-              Object.keys(switches[location]).map((machine, index) => {
-                return (
-                  <SwitchSelectWrapper
-                    key={Math.random() * 100000}
-                    isMobile={isMobile}
-                  >
-                    <DotAndTitleWrapper isMobile={isMobile}>
-                      <GreenDot />
-                      <SwitchName isMobile={isMobile}>
-                        {locations.all[location].locationName} -{' '}
-                        {locations.all[location].devices[machine].machineName}
-                        {switches[location][machine].heatingSystem &&
-                          ` - ${switches[location][machine].heatingSystem}`}
-                      </SwitchName>
-                    </DotAndTitleWrapper>
-                    <GoToButton
-                      isMobile={isMobile}
-                      onClick={() =>
-                        handleGoTo(location, locationIndex, machine)
-                      }
-                    >
-                      go to
-                    </GoToButton>
-                  </SwitchSelectWrapper>
-                );
-              })
-            )} */}
             {selectListDisplay}
           </SectionSwitches>
         </ScrollWrapper>

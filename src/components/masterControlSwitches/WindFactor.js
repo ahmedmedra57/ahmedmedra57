@@ -48,15 +48,6 @@ const WindFactor = ({
   const [openMessageBox, setOpenMessageBox] = useState(false);
   const [messages, setMessages] = useState([]);
 
-  // useEffect(() => {
-  //   // Logic for access selected machine
-  //   Object.keys(essSwitch).forEach((location) =>
-  //     Object.keys(essSwitch[location]).forEach((machine) => {
-  //       dispatch(handleUnSelectIndividualMachine({ location, machine }));
-  //     })
-  //   );
-  // }, []);
-
   const handleApply = () => {
     if (!selectedOne) {
       // Message box

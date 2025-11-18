@@ -25,48 +25,6 @@ const AutoCompleteBox = ({
 }) => {
   const locations = useSelector(selectLocations);
 
-  // !! TEST
-  // const { essSwitch } = useSelector(selectEssSwitch);
-  // const { tgsSwitch } = useSelector(selectTgsSwitch);
-  // const { tesSwitch } = useSelector(selectTesSwitch);
-  // const { testAllLocations } = testData(
-  //   essSwitch,
-  //   tgsSwitch,
-  //   locations,
-  //   tesSwitch
-  // );
-  // const title = useMemo(() => {
-  //   const namesArr = swtName.split(' - ');
-
-  //   if (namesArr.length === 3) {
-  //     return namesArr
-  //       .map((el, index) => {
-  //         if (index === 0) {
-  //           return testAllLocations.all[el][namesArr[1]].locationName;
-  //         } else if (index === 1) {
-  //           return testAllLocations.all[namesArr[0]][el].specificLocationName;
-  //         } else {
-  //           return testAllLocations.all[namesArr[0]][namesArr[1]].devices[el]
-  //             .machineName;
-  //         }
-  //       })
-  //       .join(' - ');
-  //   } else {
-  //     return namesArr
-  //       .map((el, index) => {
-  //         if (index === 0) {
-  //           return testAllLocations.all[el].locationName;
-  //         } else {
-  //           return testAllLocations.all[namesArr[0]].devices[el].machineName;
-  //         }
-  //       })
-  //       .join(' - ');
-  //   }
-  // }, [swtName]);
-
-  // console.log('swtName:', swtName);
-  // !! END
-
   const title = useMemo(() => {
     const namesArr = swtName.split(' - ');
 
@@ -103,11 +61,6 @@ const AutoCompleteBox = ({
     handleClose();
   };
 
-  // const handleNavigate = () => {
-  //   handleSelect(swtName);
-  //   handleClose();
-  // };
-
   return (
     <Wrapper isSelected={isSelected} isMobile={isMobile}>
       <DotAndTitleWrapperButton onClick={handleOnClick} isMobile={isMobile}>
@@ -116,9 +69,6 @@ const AutoCompleteBox = ({
       </DotAndTitleWrapperButton>
       <GoToButton
         isMobile={isMobile}
-        // onClick={(e) => {
-        //   handleNavigate();
-        // }}
         onClick={handleOnClick}
       >
         select

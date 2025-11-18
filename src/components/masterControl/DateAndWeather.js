@@ -1,5 +1,3 @@
-// import { useSelector } from 'react-redux';
-// import { selectUserState } from '../store/slices/userSlice';
 import moment from 'moment/moment';
 import { memo } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -14,30 +12,19 @@ const DateAndWeather = () => {
   // responsive design
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
-  // redux
-  // const state = useSelector(selectSettingsOfEss);
-  // const userState = useSelector(selectUserState);
-  // const mode = state.interfaceMode;
-  // const { date, weather, iconSrc } = userState.dateAndWeather;
-
-  // const imageDash = mode ? 'images/greyLongDash.svg' : '/images/long-dash.svg';
-
   const date = moment().format('MMMM dddd DD, YYYY');
   const imageDash = '/images/long-dash.svg';
   return (
     <Wrapper isMobile={isMobile}>
       <Dash isMobile={isMobile} />
       <DateAndWeatherWrapper>
-        {/* <Date interfaceMode={mode}> */}
         <Date>{date ? date : 'september wednesday 21, 2022'}</Date>
         <WeatherIcon
           isMobile={isMobile}
           alt='weather icon'
           src={'/images/weather-sunny.svg'}
         />
-        {/* <Weather interfaceMode={mode}> */}
         <Weather>
-          {/* {weather ? weather : `27 °F Montreal`} */}
           27 °F Montreal
         </Weather>
       </DateAndWeatherWrapper>

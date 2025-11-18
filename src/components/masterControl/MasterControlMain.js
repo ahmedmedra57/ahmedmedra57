@@ -205,10 +205,8 @@ const MasterControlMain = () => {
         <TitleContainer title={t('masterControl.title')} />
         <ContentsWrapper>
           <ContainerSelectSystem
-            // handleSelectSystem={handleSelectSystem}
             toggleButtonColor={toggleButtonColor}
             handleCreateNewCommand={handleCreateNewCommand}
-            // handleCreateNewCommand={createNewCommand}
             handleCreateNewCommandMessageBox={handleCreateNewCommandMessageBox}
             setIsSystemSelectedMessage={setIsSystemSelectedMessage}
           />
@@ -233,8 +231,6 @@ const MasterControlMain = () => {
           <MasterControlContents
             controllersStatus={controllersStatus}
             setControllersStatus={setControllersStatus}
-            // data={selectedSwitch}
-            // selectStatus={selectStatus}
             setCommandConfirmed={setCommandConfirmed}
             handleCreateNewCommand={handleCreateNewCommand}
             handleCreateNewCommandMessageBox={handleCreateNewCommandMessageBox}
