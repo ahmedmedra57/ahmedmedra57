@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { useTranslation } from 'react-i18next';
+import { useMessageBox } from '../../hooks/useMessageBox';
+import { validateTemperatureInput } from '../../utils/temperatureValidation';
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
 
@@ -58,8 +60,7 @@ const HeatingSchedule = ({
     inputTemp: tempInput,
     isF: null,
   });
-  const [openMessageBox, setOpenMessageBox] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const { openMessageBox, messages, showMessage, closeMessage } = useMessageBox();
 
   // Schedule calendar handlers
   const handleClear = () => {};
@@ -78,119 +79,47 @@ const HeatingSchedule = ({
   // ***************input temp logic *****************
   const handleSubmit = (e) => {
     e.preventDefault();
-    // check selected locations and selected schedule
-    const isReady = selectedOne && scheduleData.start.date ? true : false;
 
-    if (!isReady) {
-      // MessageBox
-      setOpenMessageBox(true);
-      setMessages([
+    // Validate selection first
+    if (!selectedOne || !scheduleData.start.date) {
+      showMessage([
         t('masterControl.heatingSchedule.selectLocationsAndSchedule'),
         t('masterControl.heatingSchedule.selectDateRange'),
       ]);
-
-      // Please select location or schedule first
-      handleOnClick(
-        'heatingSchedule',
-        'selectB',
-        scope,
-        '_',
-        '_',
-        type,
-        specificLocation
-      );
-    } else {
-      if (tempInput) {
-        const temp = Number(tempInput);
-        const data = {
-          start: scheduleData.start,
-          end: scheduleData.end,
-          inputTemp: temp,
-          isF: isF,
-        };
-        // check for the validation (minimum and maximum)
-
-        if (isF) {
-          // fahrenheit(520°F/1830°F )
-          if (temp >= 250 && temp <= 1830) {
-            handleOnClick('heatingSchedule', 'on', scope, 0, data);
-
-            if (isMobile && scope !== 'switch') {
-              handleCloseSelect();
-            }
-          } else {
-            // message - minimum and maximum temperature!!!
-
-            handleOnClick(
-              'heatingSchedule',
-              'tempA',
-              scope,
-              null,
-              null,
-              null,
-              specificLocation
-            );
-          }
-          setOpenMessageBox(true);
-          setMessages([
-            t('masterControl.heatingSchedule.wrongTemperature'),
-            t('masterControl.heatingSchedule.finalizePrompt'),
-            t('masterControl.heatingSchedule.inputTempFirst'),
-            t('masterControl.heatingSchedule.minTemp'),
-            t('masterControl.heatingSchedule.maxTemp'),
-          ]);
-        } else {
-          // check celsius(121°C/999°C)
-          if (temp >= 121 && temp <= 999) {
-            handleOnClick('heatingSchedule', 'on', scope, 0, data);
-            setScheduleData({start: { date: null, time: null },
-              end: { date: null, time: null },
-              inputTemp: tempInput,
-              isF: null,})
-            if (isMobile && scope !== 'switch') {
-              handleCloseSelect();
-            }
-          } else {
-            // message - minimum and maximum temperature!!!
-            setOpenMessageBox(true);
-            setMessages([
-              t('masterControl.heatingSchedule.wrongTemperature'),
-              t('masterControl.heatingSchedule.finalizePrompt'),
-              t('masterControl.heatingSchedule.inputTempFirst'),
-              t('masterControl.heatingSchedule.minTemp'),
-              t('masterControl.heatingSchedule.maxTemp'),
-            ]);
-            handleOnClick(
-              'heatingSchedule',
-              'tempA',
-              scope,
-              null,
-              null,
-              null,
-              specificLocation
-            );
-          }
-        }
-      } else {
-        handleOnClick(
-          'heatingSchedule',
-          'tempA',
-          scope,
-          null,
-          null,
-          null,
-          specificLocation
-        );
-        setOpenMessageBox(true);
-        setMessages([
-          t('masterControl.heatingSchedule.wrongTemperature'),
-          t('masterControl.heatingSchedule.finalizePrompt'),
-          t('masterControl.heatingSchedule.inputTempFirst'),
-          t('masterControl.heatingSchedule.minTemp'),
-          t('masterControl.heatingSchedule.maxTemp'),
-        ]);
-      }
+      handleOnClick('heatingSchedule', 'selectB', scope, '_', '_', type, specificLocation);
+      return;
     }
+
+    // Validate temperature input
+    const validation = validateTemperatureInput(tempInput, isF, 'HEATING_SCHEDULE');
+
+    if (!validation.isValid) {
+      showMessage(validation.errorKeys.map(key => t(key)));
+      handleOnClick('heatingSchedule', 'tempA', scope, null, null, null, specificLocation);
+      setTempInput('');
+      return;
+    }
+
+    // Submit if valid
+    const data = {
+      start: scheduleData.start,
+      end: scheduleData.end,
+      inputTemp: validation.temp,
+      isF: isF,
+    };
+
+    handleOnClick('heatingSchedule', 'on', scope, 0, data);
+    setScheduleData({
+      start: { date: null, time: null },
+      end: { date: null, time: null },
+      inputTemp: tempInput,
+      isF: null,
+    });
+
+    if (isMobile && scope !== 'switch') {
+      handleCloseSelect();
+    }
+
     setTempInput('');
   };
 
@@ -289,7 +218,7 @@ const HeatingSchedule = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
+                    onClose={closeMessage}
                     title={t('masterControl.title')}
                     subtitle={t('masterControl.programs.heatingSchedule')}
                     messages={messages}
@@ -369,7 +298,7 @@ const HeatingSchedule = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
+                    onClose={closeMessage}
                     title={t('masterControl.title')}
                     subtitle={t('masterControl.programs.heatingSchedule')}
                     messages={messages}
@@ -442,7 +371,7 @@ const HeatingSchedule = ({
           {openMessageBox && (
                 <MessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
+                    onClose={closeMessage}
                     title={t('masterControl.title')}
                     subtitle={t('masterControl.programs.heatingSchedule')}
                     messages={messages}

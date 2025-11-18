@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useMessageBox } from '../../hooks/useMessageBox';
+import { validateTemperatureInput } from '../../utils/temperatureValidation';
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
 
@@ -48,69 +50,45 @@ const OptionalConstant = ({
   // Local states
   const [tempInput, setTempInput] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
-  const [openMessageBox, setOpenMessageBox] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const { openMessageBox, messages, showMessage, closeMessage } = useMessageBox();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Early return if disabled
     if (disabled) {
-    } else {
-      if (!selectedOne) {
-        // Message box
-        // please select locations first
-        handleOnClick('constantTemp', 'selectA', scope, '_', '_', type);
-        setOpenMessageBox(true);
-        setMessages([t('masterControl.optionalConstant.selectLocations'), t('masterControl.optionalConstant.selectLocationPrompt')]);
-      } else {
-        const temp = Number(tempInput);
-        // check for the validation (minimum and maximum)
-        if (isF) {
-          // fahrenheit(77°F/249°F )
-          if (temp > 76 && temp < 249) {
-            // call FN
-            handleOnClick('constantTemp', 'on', scope, temp);
-
-            if (isMobile && scope !== 'switch') {
-              handleClose();
-            }
-          } else {
-            // message - minimum and maximum temperature!!!
-
-            handleOnClick('constantTemp', 'tempB', scope);
-            setOpenMessageBox(true);
-            setMessages([
-              t('masterControl.optionalConstant.wrongTemperature'),
-              t('masterControl.optionalConstant.finalizePrompt'),
-              t('masterControl.optionalConstant.inputTempFirst'),
-              t('masterControl.optionalConstant.minTemp'),
-              t('masterControl.optionalConstant.maxTemp'),
-            ]);
-          }
-        } else {
-          // check celsius(25°C/120°C)
-          if (temp > 24 && temp < 121) {
-            // call FN
-            handleOnClick('constantTemp', 'on', scope, temp);
-
-            if (isMobile && scope !== 'switch') {
-              handleClose();
-            }
-          } else {
-            // message - minimum and maximum temperature!!!
-
-            handleOnClick('constantTemp', 'tempB', scope);
-            setOpenMessageBox(true);
-            setMessages([
-              t('masterControl.optionalConstant.wrongTemperature'),
-              t('masterControl.optionalConstant.finalizePrompt'),
-              t('masterControl.optionalConstant.inputTempFirst'),
-              t('masterControl.optionalConstant.minTemp'),
-              t('masterControl.optionalConstant.maxTemp'),
-            ]);
-          }
-        }
-      }
+      setTempInput('');
+      return;
     }
+
+    // Validate selection
+    if (!selectedOne) {
+      showMessage([
+        t('masterControl.optionalConstant.selectLocations'),
+        t('masterControl.optionalConstant.selectLocationPrompt')
+      ]);
+      handleOnClick('constantTemp', 'selectA', scope, '_', '_', type);
+      setTempInput('');
+      return;
+    }
+
+    // Validate temperature input
+    const validation = validateTemperatureInput(tempInput, isF, 'OPTIONAL_CONSTANT');
+
+    if (!validation.isValid) {
+      showMessage(validation.errorKeys.map(key => t(key)));
+      handleOnClick('constantTemp', 'tempB', scope);
+      setTempInput('');
+      return;
+    }
+
+    // Submit if valid
+    handleOnClick('constantTemp', 'on', scope, validation.temp);
+
+    if (isMobile && scope !== 'switch') {
+      handleClose();
+    }
+
     setTempInput('');
   };
 
@@ -201,7 +179,7 @@ const OptionalConstant = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
+                    onClose={closeMessage}
                     title={t('masterControl.title')}
                     subtitle={t('masterControl.programs.optionalConstant')}
                     messages={messages}
@@ -275,7 +253,7 @@ const OptionalConstant = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
+                    onClose={closeMessage}
                     title={t('masterControl.title')}
                     subtitle={t('masterControl.programs.optionalConstant')}
                     messages={messages}
@@ -329,7 +307,7 @@ const OptionalConstant = ({
             {openMessageBox && (
             <MessageBoxWrapper>
               <InputTempMessage
-                onClose={() => setOpenMessageBox(false)}
+                onClose={closeMessage}
                 title={t('masterControl.title')}
                 messages={messages}
               />

@@ -183,12 +183,11 @@ const MasterControlMain = () => {
   };
 
   const handleMessageBoxOfSelectSystem = () => {
-    !essSelectSystem &&
-      !tesSelectSystem &&
-      !tgsSelectSystem &&
-      !hpSelectSystem &&
-      isNewCommandCreated &&
+    const noSystemSelected = !essSelectSystem && !tesSelectSystem && !tgsSelectSystem && !hpSelectSystem;
+
+    if (noSystemSelected && isNewCommandCreated) {
       setIsSystemSelectedMessage(true);
+    }
   };
 
   const selectSystemMessage = [
