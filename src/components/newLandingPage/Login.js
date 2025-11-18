@@ -3,6 +3,7 @@ import { memo, useEffect } from 'react';
 import { useState } from 'react';
 // libraries
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 // common styles
 
@@ -17,33 +18,9 @@ import {
 import LoginBox from './LoginBox';
 import { useMediaQuery } from 'react-responsive';
 
-const Login = ({ isEnglish, handleClickScroll }) => {
+const Login = ({ handleClickScroll }) => {
+  const { t } = useTranslation();
   const imagesArr = ['./images/header.jpg', './images/slider.jpg'];
-
-  const englishContents = [
-    {
-      paragraph_1:
-        'UMBRELLA OS centralized monitoring & control rail operating platform and power management system allows operational asset accessibility in real-time to oversee, control and analyze all vital temperature parameters of integrated track heating systems, providing status and condition reporting further benefiting safety and situational awareness relevant to the safeguard of the rail network and commuters during the harshest of winter conditions.',
-      paragraph_2:
-        'Advanced UMB-360 dashboard analytics, video Monitoring for rapid validation of track conditions and operating practices, generated alerts reporting site-specific asset performance parameters andoperational safety failure modes greatly reduces the crew teams and man-power needed to validate the working order of switch locations and platforms during the harshest of winter conditions.',
-      paragraph_3:
-        'The operational performance history and telemetry generated from UOS is categorized, stored and accessible at any time and available in a PDF printable format. This unprecedented generated data can now be viewed, analyzed and derived from considerable asset management awareness, identifying patterns of consumptions trends leading to the elaboration of energy preservation guidelines & protocols of efficient operation practices.',
-      learnMore: 'learn more',
-    },
-  ];
-  const frenchContents = [
-    {
-      paragraph_1:
-        "La plateforme d'exploitation ferroviaire et le système de gestion de l'énergie UMBRELLA OS permettent de surveiller et de contrôler en temps réel les actifs opérationnels. Permet l'accès aux actifs opérationnels en temps réel pour superviser, contrôler et analyser tous les paramètres de température vitaux des systèmes intégrés de chauffage des voies, des systèmes intégrés de chauffage des voies en fournissant des rapports d'état et de condition qui améliorent la sécurité et la de la sécurité et de la connaissance de la situation pour la sauvegarde du réseau ferroviaire et des usagers dans les conditions hivernales les plus difficiles.",
-      paragraph_2:
-        "Son tableau de bord analytique avancé UMB-360, lasurveillance vidéo pour une validation rapide de l'état des voies et des pratiques d'exploitation, les alertes générées signalant les paramètres de performance des actifs spécifiques au site et les modes de défaillance de la sécurité opérationnelle réduisent considérablement les équipes et la main-d'œuvre nécessaires pour valider l'état de fonctionnement des emplacements d'aiguillage et des plateformes dans les conditions hivernales les plus difficiles.",
-      paragraph_3:
-        "L'historique des performances opérationnelles et la télémétrie générée par l'UOS sont catégorisés, stockés et accessibles à tout moment et disponibles dans un format PDF imprimable. Ces données sans précédent peuvent maintenant être visualisées, analysées et déduites d'une sensibilisation considérable à la gestion des actifs, en identifiant des modèles de tendances de consommation menant à l'élaboration de directives et de protocoles de conservation de l'énergie pour des pratiques d'exploitation efficaces.",
-      learnMore: 'apprendre plus',
-    },
-  ];
-
-  const logContent = isEnglish ? englishContents : frenchContents;
 
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
@@ -63,68 +40,64 @@ const Login = ({ isEnglish, handleClickScroll }) => {
 
   return (
     <Wrapper imagesArr={imagesArr} currentImgIndex={currentImgIndex}>
-      {logContent.map(
-        ({ paragraph_1, paragraph_2, paragraph_3, learnMore }) => (
-          <ShadedBackground key={learnMore}>
-            <Flex>
-              <LoginBoxWrapper>
-                <LoginBoxInnerWrapper>
-                  <LoginBox isEnglish={isEnglish} />
-                </LoginBoxInnerWrapper>
-              </LoginBoxWrapper>
-              <FlexRow>
-                <LearnMore
-                  tempora={true}
-                  href='#tempora'
-                  onClick={() => handleClickScroll('#tempora')}
-                >
-                  {learnMore}
-                </LearnMore>
-                <VerticalLine></VerticalLine>
-                <Sign
-                  src='/images/tempora-slogan-and-logo.webp'
-                  alt='tempora sign'
-                />
-              </FlexRow>
-              <LogoWrapper>
-                <LogoImg
-                  src='/images/logo-umbrella-01.webp'
-                  alt='logo umbrella os'
-                />
-              </LogoWrapper>
-              <TextWrapper parag_1={true}>
-                <Text>{paragraph_1}</Text>
-              </TextWrapper>
-              <TextWrapper parag_2={true}>
-                <Text> {paragraph_2}</Text>
-              </TextWrapper>
-              <FlexCenter>
-                <Img
-                  src='/images/umbrella-metal-logo.png'
-                  alt='square-metal-logo'
-                />
-                <Text parag_3={true}>{paragraph_3}</Text>
-              </FlexCenter>
-              <Img
-                src='/images/umbrella-metal-logo.png'
-                alt='square-metal-logo'
-                secondImg={true}
-              />
-              <TextWrapper secondText={true}>
-                <Text parag_3={true}>{paragraph_3}</Text>
-              </TextWrapper>
-              <FlexEnd>
-                <LearnMore
-                  href='#about'
-                  onClick={() => handleClickScroll('#about')}
-                >
-                  {learnMore}
-                </LearnMore>
-              </FlexEnd>
-            </Flex>
-          </ShadedBackground>
-        )
-      )}
+      <ShadedBackground>
+        <Flex>
+          <LoginBoxWrapper>
+            <LoginBoxInnerWrapper>
+              <LoginBox />
+            </LoginBoxInnerWrapper>
+          </LoginBoxWrapper>
+          <FlexRow>
+            <LearnMore
+              tempora={true}
+              href='#tempora'
+              onClick={() => handleClickScroll('#tempora')}
+            >
+              {t('landing.learnMore')}
+            </LearnMore>
+            <VerticalLine></VerticalLine>
+            <Sign
+              src='/images/tempora-slogan-and-logo.webp'
+              alt='tempora sign'
+            />
+          </FlexRow>
+          <LogoWrapper>
+            <LogoImg
+              src='/images/logo-umbrella-01.webp'
+              alt='logo umbrella os'
+            />
+          </LogoWrapper>
+          <TextWrapper parag_1={true}>
+            <Text>{t('landing.login.paragraph1')}</Text>
+          </TextWrapper>
+          <TextWrapper parag_2={true}>
+            <Text>{t('landing.login.paragraph2')}</Text>
+          </TextWrapper>
+          <FlexCenter>
+            <Img
+              src='/images/umbrella-metal-logo.png'
+              alt='square-metal-logo'
+            />
+            <Text parag_3={true}>{t('landing.login.paragraph3')}</Text>
+          </FlexCenter>
+          <Img
+            src='/images/umbrella-metal-logo.png'
+            alt='square-metal-logo'
+            secondImg={true}
+          />
+          <TextWrapper secondText={true}>
+            <Text parag_3={true}>{t('landing.login.paragraph3')}</Text>
+          </TextWrapper>
+          <FlexEnd>
+            <LearnMore
+              href='#about'
+              onClick={() => handleClickScroll('#about')}
+            >
+              {t('landing.learnMore')}
+            </LearnMore>
+          </FlexEnd>
+        </Flex>
+      </ShadedBackground>
     </Wrapper>
   );
 };

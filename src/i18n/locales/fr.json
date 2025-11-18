@@ -371,35 +371,35 @@
   },
   "about": {
     "title": "À propos de nous",
-    "paragraph1": "La capacité des opérateurs ferroviaires à répondre aux conditions météorologiques de neige et de glace est devenue un problème pour les intervenants de l'industrie au cours des dernières années.",
-    "paragraph2": "L'intégration d'UMBRELLA OS constitue un système de gestion de l'énergie ferroviaire sophistiqué et intelligent qui complète le réseau existant de nos clients.",
+    "paragraph1": "La capacité des opérateurs ferroviaires et des ingénieurs de maintenance à prévenir les défaillances coûteuses des systèmes dépend de l'état des actifs en temps réel. UMBRELLA OS permet à l'utilisateur autorisé - assigné à un territoire - de disposer d'un point d'entrée unique pour superviser et gérer toutes les fonctionnalités opérationnelles des actifs critiques intégrés répartis sur une infrastructure mondiale.",
+    "paragraph2": "L'intégration d'UMBRELLA OS constitue un investissement dans la sécurité, l'efficacité et la résilience grâce à la modernisation de l'infrastructure, améliorant ainsi la fluidité du réseau pour répondre à la demande croissante, grâce à sa capacité à définir les futures normes de sécurité ferroviaire en tant qu'outil opérationnel quotidien essentiel, améliorant ainsi la connaissance de la situation et la sécurité des voyageurs.",
     "vision": "Notre vision",
     "mission": "Notre mission",
     "values": "Nos valeurs",
     "features": {
-      "auditTrail": {
-        "title": "Piste d'audit complète et traçabilité",
-        "description": "Fournit un rapport de connexion ainsi que la capacité de suivre et de vérifier tous les paramètres et actions."
+      "01": {
+        "title": "Piste D'audit et Traçabilité Complètes",
+        "description": "Fournit un rapport de connexion pour assurer la traçabilité de qui, quand, et combien de temps chaque utilisateur s'est connecté."
       },
-      "vantagePoint": {
-        "title": "Point d'observation",
-        "description": "Accès distant en direct pour surveiller et contrôler toutes les fonctions de la plateforme depuis n'importe quel endroit."
+      "02": {
+        "title": "Compatible Avec les Pare-feu",
+        "description": "utilise une connexion sortante à travers le réseau local de l'usine (port HTTPS 443 ou UDP 1194). Aucune modification de l'informatique ou du pare-feu n'est nécessaire pour établir la communication. Un atout informatique essentiel !"
       },
-      "firewall": {
-        "title": "Compatible avec le pare-feu",
-        "description": "utilise une connexion sortante qui ne nécessite pas de modification de votre pare-feu réseau ou routeur."
+      "03": {
+        "title": "Sécurité et Contrôle",
+        "description": "Un tunnel VPN entièrement sécurisé basé sur le protocole SSL est utilisé pour tout le trafic. Les informations échangées pendant la communication sont cryptées via SSL (clé de 2048 bits), ce qui permet aux seuls utilisateurs authentifiés de se conznecter. L'accès au VPN peut être contrôlé par un interrupteur à clé ou un bouton HMI pour activer ou désactiver manuellement la connexion VPN sur site, ce qui permet à l'utilisateur final de contrôler quand l'accès est disponible."
       },
-      "security": {
-        "title": "Sécurité et contrôle",
-        "description": "Une connexion SSL entièrement sécurisée qui est à la fois fiable et sûre. Vous contrôlez qui a accès."
+      "04": {
+        "title": "Vantage Point",
+        "description": "Accès et contrôle à distance en direct de tous les sites grâce à l'intégration de Smart Track. Les intégrateurs de systèmes dépannent à distance sans se rendre sur place, ce qui réduit considérablement les coûts d'assistance."
       },
-      "communication": {
-        "title": "Communication facilitée",
-        "description": "L'administrateur se connecte à distance pour surveiller les systèmes et gérer."
+      "05": {
+        "title": "La Communication Facilitée",
+        "description": "L'administrateur se connecte à distance à son compte UMBRELLA et sélectionne le site auquel il souhaite se connecter via un tunnel VPN entièrement sécurisé. un tunnel VPN entièrement sécurisé."
       },
-      "connectivity": {
-        "title": "Connectivité WiFi et cellulaire intégrée",
-        "description": "Capable de WiFi et de connexion cellulaire pour établir une connexion hautement fiable pour la surveillance et le contrôle."
+      "06": {
+        "title": "Connectivité WiFi et Cellulaire Intégrée",
+        "description": "La capacité WiFi et cellulaire permet une connectivité Internet tout en évitant une connexion sur le réseau LAN de l'usine/de l'entreprise avec une bande passante élevée, un déploiement facile (pas de câblage) et facilite la gestion sécurisée du réseau."
       }
     }
   },
@@ -441,6 +441,11 @@
     "about": "À propos",
     "contact": "Contact",
     "getStarted": "Commencer",
-    "learnMore": "En savoir plus"
+    "learnMore": "apprendre plus",
+    "login": {
+      "paragraph1": "La plateforme d'exploitation ferroviaire et le système de gestion de l'énergie UMBRELLA OS permettent de surveiller et de contrôler en temps réel les actifs opérationnels. Permet l'accès aux actifs opérationnels en temps réel pour superviser, contrôler et analyser tous les paramètres de température vitaux des systèmes intégrés de chauffage des voies, des systèmes intégrés de chauffage des voies en fournissant des rapports d'état et de condition qui améliorent la sécurité et la de la sécurité et de la connaissance de la situation pour la sauvegarde du réseau ferroviaire et des usagers dans les conditions hivernales les plus difficiles.",
+      "paragraph2": "Son tableau de bord analytique avancé UMB-360, lasurveillance vidéo pour une validation rapide de l'état des voies et des pratiques d'exploitation, les alertes générées signalant les paramètres de performance des actifs spécifiques au site et les modes de défaillance de la sécurité opérationnelle réduisent considérablement les équipes et la main-d'œuvre nécessaires pour valider l'état de fonctionnement des emplacements d'aiguillage et des plateformes dans les conditions hivernales les plus difficiles.",
+      "paragraph3": "L'historique des performances opérationnelles et la télémétrie générée par l'UOS sont catégorisés, stockés et accessibles à tout moment et disponibles dans un format PDF imprimable. Ces données sans précédent peuvent maintenant être visualisées, analysées et déduites d'une sensibilisation considérable à la gestion des actifs, en identifiant des modèles de tendances de consommation menant à l'élaboration de directives et de protocoles de conservation de l'énergie pour des pratiques d'exploitation efficaces."
+    }
   }
 }

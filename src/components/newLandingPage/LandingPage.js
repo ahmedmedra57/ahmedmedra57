@@ -1,7 +1,7 @@
 // local
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 // library dependencies
 import styled from 'styled-components';
 // components
@@ -17,16 +17,15 @@ import Tempora from './tempora/Tempora';
 
 const LandingPage = () => {
   const URL = useLocation();
-
-  const [isEnglish, setIsEnglish] = useState(true);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     if (URL.pathname === '/' || URL.pathname === '/login') {
-      setIsEnglish(true);
+      i18n.changeLanguage('en');
     } else if (URL.pathname === '/login/fr') {
-      setIsEnglish(false);
+      i18n.changeLanguage('fr');
     }
-  }, [URL.pathname]);
+  }, [URL.pathname, i18n]);
 
   const handleClickScroll = (id) => {
     const element = document.getElementById(id);
@@ -39,25 +38,25 @@ const LandingPage = () => {
   return (
     <Wrapper>
       <div id='navbar'>
-        <NavBar isEnglish={isEnglish} handleClickScroll={handleClickScroll} />
+        <NavBar handleClickScroll={handleClickScroll} />
       </div>
       <div id='login'>
-        <Login isEnglish={isEnglish} handleClickScroll={handleClickScroll} />
+        <Login handleClickScroll={handleClickScroll} />
       </div>
       <div id='#features'>
-        <Features isEnglish={isEnglish} />
+        <Features />
       </div>
       <div id='#about'>
-        <About isEnglish={isEnglish} />
+        <About />
       </div>
       <div id='#tempora'>
-        <Tempora isEnglish={isEnglish} />
+        <Tempora isEnglish={i18n.language === 'en'} />
       </div>
       <div id='#about-us'>
-        <AboutUs isEnglish={isEnglish} />
+        <AboutUs isEnglish={i18n.language === 'en'} />
       </div>
       <div id='#contact'>
-        <ContactForm isEnglish={isEnglish} />
+        <ContactForm />
       </div>
       <div id='#footer'>
         <LPFooter />

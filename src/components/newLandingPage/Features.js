@@ -1,53 +1,43 @@
 import styled, { css } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { devices, breakpoints } from './landing-page-breakpoints/breakpoints';
 
-const Features = ({ isEnglish }) => {
-  const logoImages = [
-    '/images/umbrella-metal-logo.png',
-    '/images/brain.png',
-    '/images/monitoring.png',
-    '/images/data-logging.png',
+const Features = () => {
+  const { t } = useTranslation();
+
+  const features = [
+    {
+      img: '/images/umbrella-metal-logo.png',
+      titleKey: 'features.platform.title',
+      textKey: 'features.platform.description',
+    },
+    {
+      img: '/images/brain.png',
+      titleKey: 'features.smartControls.title',
+      textKey: 'features.smartControls.description',
+    },
+    {
+      img: '/images/monitoring.png',
+      titleKey: 'features.monitoring.title',
+      textKey: 'features.monitoring.description',
+    },
+    {
+      img: '/images/data-logging.png',
+      titleKey: 'features.dataLogging.title',
+      textKey: 'features.dataLogging.description',
+    },
   ];
-
-  const englishContents = {
-    img: logoImages,
-    title: ['platform', 'smart e-controls', 'site monitoring', 'data logging'],
-    text: [
-      'TEMPORA’S world first centralized monitoring &  control platform  for distributed  rail network.',
-      'Smart I-Management Energy efficient power Control enclosure.Meteorological detection Sensors & response center. Thermal rail integration.',
-      ' 24/7 On-site monitoring utilizing smart robotic speed-sphere vision. Live streaming. Data & video logging.',
-      'Data evolution & reporting. Direct communication & virtual presence.',
-    ],
-  };
-
-  const frenchContents = {
-    img: logoImages,
-    title: [
-      'plateau',
-      'e-controls',
-      'Surveillance du site',
-      'Enregistrement des données',
-    ],
-    text: [
-      'TEMPORA est la première plateforme centralisée de surveillance et de contrôle  pour un réseau  ferroviaire distribué.',
-      "Smart I-Management Enceinte de contrôle de l'énergie à haut rendement énergétique.   Détection météorologique Capteurs et centre de réponse.  Intégration desrails thermiques. Smart I-Management",
-      "20-24/7 Surveillance du site à l'aide d'un système robotique intelligent vision de la sphère de vitesse.  Diffusion en direct.  Enregistrement de données et de vidéos.",
-      'Évolution des données et rapports. Communication directe et présence virtuelle.',
-    ],
-  };
-
-  const selectedContents = isEnglish ? englishContents : frenchContents;
 
   return (
     <Wrapper>
       <IndentWrapper>
         <SmallWrapper>
-          {selectedContents['title'].map((title, titleIdx) => (
-            <IndivWrapper key={title}>
+          {features.map(({ img, titleKey, textKey }) => (
+            <IndivWrapper key={titleKey}>
               <Div>
-                <Img src={selectedContents['img'][titleIdx]} />
-                <Title>{title}</Title>
-                <Text>{selectedContents['text'][titleIdx]}</Text>
+                <Img src={img} alt={t(titleKey)} />
+                <Title>{t(titleKey)}</Title>
+                <Text>{t(textKey)}</Text>
               </Div>
             </IndivWrapper>
           ))}
@@ -58,114 +48,6 @@ const Features = ({ isEnglish }) => {
 };
 
 export default Features;
-
-{
-  /* <IndentWrapper>
-        {isEnglish ? (
-          <SmallWrapper>
-            <IndivWrapper>
-              <Div>
-                <Img src='/images/umbrella-metal-logo.png' />
-                <Title>PLATFORM</Title>
-                <Text>
-                  TEMPORA’S world first centralized monitoring & <br /> control
-                  platform <br />
-                  for distributed <br /> rail network.
-                </Text>
-              </Div>
-            </IndivWrapper>
-            <IndivWrapper>
-              <Div>
-                <Img src='/images/brain.png' />
-                <Title>Smart e-Controls</Title>
-                <Text>
-                  Smart I-Management Energy efficient power Control enclosure.
-                  <br />
-                  <br />
-                  Meteorological detection Sensors & response center. <br />
-                  <br />
-                  Thermal rail integration.
-                </Text>
-              </Div>
-            </IndivWrapper>
-            <IndivWrapper>
-              <Div>
-                <Img src='/images/monitoring.png' />
-                <Title>site monitoring</Title>
-                <Text>
-                  24/7 On-site monitoring utilizing smart robotic speed-sphere
-                  vision. Live streaming. Data & video logging.
-                </Text>
-              </Div>
-            </IndivWrapper>
-            <IndivWrapper>
-              <Div>
-                <Img src='/images/data-logging.png' />
-                <Title>data logging</Title>
-                <Text>
-                  Data evolution & reporting. Direct communication & virtual
-                  presence.
-                </Text>
-              </Div>
-            </IndivWrapper>
-          </SmallWrapper>
-        ) : (
-          <SmallWrapper>
-            <IndivWrapper>
-              <Div>
-                <Img src='/images/umbrella-metal-logo.png' />
-                <Title>Plateau</Title>
-                <Text>
-                  TEMPORA est la première plateforme centralisée de surveillance
-                  et de contrôle
-                  <br /> pour un réseau <br />
-                  ferroviaire distribué.
-                </Text>
-              </Div>
-            </IndivWrapper>
-            <IndivWrapper>
-              <Div>
-                <Img src='/images/brain.png' />
-                <Title>e-Controls</Title>
-                <Text>
-                  Smart <span>I-Management</span> Enceinte de contrôle de
-                  l'énergie à haut rendement énergétique. <br />
-                  <br />
-                  Détection météorologique Capteurs et centre de réponse.
-                  <br />
-                  <br /> Intégration desrails thermiques. Smart I-Management
-                </Text>
-              </Div>
-            </IndivWrapper>
-            <IndivWrapper>
-              <Div>
-                <Img src='/images/monitoring.png' />
-                <Title>Surveillance du site</Title>
-                <Text>
-                  20-24/7 Surveillance du site à l'aide d'un système robotique
-                  intelligent vision de la sphère de vitesse. <br />
-                  <br /> Diffusion en direct. <br />
-                  <br />
-                  Enregistrement de données et de vidéos.
-                </Text>
-              </Div>
-            </IndivWrapper>
-            <IndivWrapper>
-              <Div>
-                <Img src='/images/data-logging.png' />
-                <Title>Enregistrement des données</Title>
-                <Text>
-                  Évolution des données et rapports.
-                  <br />
-                  <br />
-                  Communication directe et présence virtuelle.
-                </Text>
-              </Div>
-            </IndivWrapper>
-          </SmallWrapper>
-        )}
-      </IndentWrapper> */
-}
 
 const Wrapper = styled.div`
   /* height: 494px; */

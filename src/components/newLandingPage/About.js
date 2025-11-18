@@ -1,197 +1,38 @@
 // libraries
 import styled, { css } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { alignItemsFlexStart, flexBoxCenter } from '../styles/commonStyles';
 import { breakpoints } from './landing-page-breakpoints/breakpoints';
 
-const About = ({ isEnglish }) => {
-  const englishAboutContent = {
-    paragraph_1:
-      'The ability of railway operators and maintenance engineers to prevent costly system failures depends on real-time asset condition. UMBRELLA OS empowers the authorized user-assigned territory a single point of entry to oversee and manage all operational functionality of integrated critical assets spread across a globally distributed infrastructure.',
-    paragraph_2:
-      'UMBRELLA OS integration constitutes an investment in safety, efficiency & resiliency through infrastructure modernization improving network fluidity to meet growing demand by its ability to set future rail safety standards as an essential day to day operational tool further benefiting situational awareness and commuter safety.',
-  };
+const About = () => {
+  const { t } = useTranslation();
 
-  const frenchAboutContent = {
-    paragraph_1:
-      "La capacité des opérateurs ferroviaires et des ingénieurs de maintenance à prévenir les défaillances coûteuses des systèmes dépend de l'état des actifs en temps réel. UMBRELLA OS permet à l'utilisateur autorisé - assigné à un territoire - de disposer d'un point d'entrée unique pour superviser et gérer toutes les fonctionnalités opérationnelles des actifs critiques intégrés répartis sur une infrastructure mondiale.",
-    paragraph_2:
-      "L'intégration d'UMBRELLA OS constitue un investissement dans la sécurité, l'efficacité et la résilience grâce à la modernisation de l'infrastructure, améliorant ainsi la fluidité du réseau pour répondre à la demande croissante, grâce à sa capacité à définir les futures normes de sécurité ferroviaire en tant qu'outil opérationnel quotidien essentiel, améliorant ainsi la connaissance de la situation et la sécurité des voyageurs.",
-  };
-
-  const selectedAboutContent = isEnglish
-    ? englishAboutContent
-    : frenchAboutContent;
-
-  // french translation
-  const frenchFourSquare = [
-    {
-      key: '01',
-      title: "Piste D'audit et Traçabilité Complètes",
-      text: "Fournit un rapport de connexion pour assurer la traçabilité de qui, quand, et combien de temps chaque utilisateur s'est connecté.",
-    },
-    {
-      key: '04',
-      title: 'Vantage Point',
-      text: "Accès et contrôle à distance en direct de tous les sites grâce à l'intégration de Smart Track. Les intégrateurs de systèmes dépannent à distance sans se rendre sur place, ce qui réduit considérablement les coûts d'assistance.",
-    },
-    {
-      key: '02',
-      title: 'Compatible Avec les Pare-feu',
-      text: "utilise une connexion sortante à travers le réseau local de l'usine (port HTTPS 443 ou UDP 1194). Aucune modification de l'informatique ou du pare-feu n'est nécessaire pour établir la communication. Un atout informatique essentiel !",
-    },
+  // Unified feature data using translation keys
+  const fourSquare = [
+    { key: '01' },
+    { key: '04' },
+    { key: '02' },
     { key: 'img', img: '/images/umbrella-metal-logo.png' },
   ];
 
-  const frenchDoubleSquare = [
-    {
-      key: '03',
-      title: 'Sécurité et Contrôle',
-      text: "Un tunnel VPN entièrement sécurisé basé sur le protocole SSL est utilisé pour tout le trafic. Les informations échangées pendant la communication sont cryptées via SSL (clé de 2048 bits), ce qui permet aux seuls utilisateurs authentifiés de se conznecter. L'accès au VPN peut être contrôlé par un interrupteur à clé ou un bouton HMI pour activer ou désactiver manuellement la connexion VPN sur site, ce qui permet à l'utilisateur final de contrôler quand l'accès est disponible.",
-    },
-    {
-      key: '05',
-      title: 'La Communication Facilitée',
-      text: "L'administrateur se connecte à distance à son compte UMBRELLA et sélectionne le site auquel il souhaite se connecter via un tunnel VPN entièrement sécurisé. un tunnel VPN entièrement sécurisé.",
-    },
+  const doubleSquare = [
+    { key: '03' },
+    { key: '05' },
   ];
 
-  const frenchSingleSquare = [
-    {
-      key: '06',
-      title: 'Connectivité WiFi et Cellulaire Intégrée',
-      text: "La capacité WiFi et cellulaire permet une connectivité Internet tout en évitant une connexion sur le réseau LAN de l'usine/de l'entreprise avec une bande passante élevée, un déploiement facile (pas de câblage) et facilite la gestion sécurisée du réseau.",
-    },
+  const singleSquare = [
+    { key: '06' },
   ];
 
-  // english translation
-  const englishFourSquare = [
-    {
-      key: '01',
-      title: 'Full Audit Trail & Traceability',
-      text: 'Provides a connection report to keep traceability about whom, when, and how long each user has connected.',
-    },
-    {
-      key: '04',
-      title: 'Vantage Point',
-      text: 'Direct live remote access & control of all locations through Smart Track Integration. System Integrators Troubleshoot remotely without going on site, drastically reducing support costs.',
-    },
-    {
-      key: '02',
-      title: 'Firewall Friendly',
-      text: 'uses an outbound connection across the factory LAN (HTTPS port 443 or UDP 1194). No IT/firewall changes are needed to establish communication. A key IT asset!',
-    },
-    { key: 'img', img: '/images/umbrella-metal-logo.png' },
+  const cellphoneFeatures = [
+    { key: '01' },
+    { key: '02' },
+    { key: '03' },
+    { key: '04' },
+    { key: '05' },
+    { key: '06' },
   ];
-
-  const englishDoubleSquare = [
-    {
-      key: '03',
-      title: 'Security & Control',
-      text: 'A fully secure SSL-based VPN tunnel is used for all traffic. The information exchanged during the communication is encrypted via SSL (2048-bit key) allowing only authenticated users to connect. The VPN access can be controlled by a key switch or HMI button to manually enable or disable the VPN connection on-site letting the end user control when access is available.',
-    },
-    {
-      key: '05',
-      title: 'Communication Made Easy',
-      text: 'The administrator remotely to log into his UMBRELLA account, and selects the location he wants to connect through a fully secure VPN tunnel.',
-    },
-  ];
-
-  const englishSingleSquare = [
-    {
-      key: '06',
-      title: 'Integrated WiFi & Cellular Connectivity',
-      text: 'WiFi and cellular capable allows Internet connectivity while avoiding a connection on the factory/corporate LAN network with high bandwidth, easy deployment (no cabling) and facilitates secure network management.',
-    },
-  ];
-
-  const englishJoinedSquares = {
-    fourSquare: englishFourSquare,
-    singleSquare: englishSingleSquare,
-    doubleSquare: englishDoubleSquare,
-  };
-
-  const frenchJoinedSquares = {
-    fourSquare: frenchFourSquare,
-    singleSquare: frenchSingleSquare,
-    doubleSquare: frenchDoubleSquare,
-  };
-
-  const sevenContentBox = isEnglish
-    ? englishJoinedSquares
-    : frenchJoinedSquares;
-
-  // english translation
-  const englishCellphoneSquare = [
-    {
-      key: '01',
-      title: 'Full Audit Trail & Traceability',
-      text: 'Provides a connection report to keep traceability about whom, when, and how long each user has connected.',
-    },
-
-    {
-      key: '02',
-      title: 'Firewall Friendly',
-      text: 'uses an outbound connection across the factory LAN (HTTPS port 443 or UDP 1194). No IT/firewall changes are needed to establish communication. A key IT asset!',
-    },
-    {
-      key: '03',
-      title: 'Security & Control',
-      text: 'A fully secure SSL-based VPN tunnel is used for all traffic. The information exchanged during the communication is encrypted via SSL (2048-bit key) allowing only authenticated users to connect. The VPN access can be controlled by a key switch or HMI button to manually enable or disable the VPN connection on-site letting the end user control when access is available.',
-    },
-    {
-      key: '04',
-      title: 'Vantage Point',
-      text: 'Direct live remote access & control of all locations through Smart Track Integration. System Integrators Troubleshoot remotely without going on site, drastically reducing support costs.',
-    },
-    {
-      key: '05',
-      title: 'Communication Made Easy',
-      text: 'The administrator remotely to log into his UMBRELLA account, and selects the location he wants to connect through a fully secure VPN tunnel.',
-    },
-    {
-      key: '06',
-      title: 'Integrated WiFi & Cellular Connectivity',
-      text: 'WiFi and cellular capable allows Internet connectivity while avoiding a connection on the factory/corporate LAN network with high bandwidth, easy deployment (no cabling) and facilitates secure network management.',
-    },
-  ];
-
-  const frenchCellphoneSquare = [
-    {
-      key: '01',
-      title: "Piste D'audit et Traçabilité Complètes",
-      text: "Fournit un rapport de connexion pour assurer la traçabilité de qui, quand, et combien de temps chaque utilisateur s'est connecté.",
-    },
-    {
-      key: '02',
-      title: 'Compatible Avec les Pare-feu',
-      text: "utilise une connexion sortante à travers le réseau local de l'usine (port HTTPS 443 ou UDP 1194). Aucune modification de l'informatique ou du pare-feu n'est nécessaire pour établir la communication. Un atout informatique essentiel !",
-    },
-    {
-      key: '03',
-      title: 'Sécurité et Contrôle',
-      text: "Un tunnel VPN entièrement sécurisé basé sur le protocole SSL est utilisé pour tout le trafic. Les informations échangées pendant la communication sont cryptées via SSL (clé de 2048 bits), ce qui permet aux seuls utilisateurs authentifiés de se conznecter. L'accès au VPN peut être contrôlé par un interrupteur à clé ou un bouton HMI pour activer ou désactiver manuellement la connexion VPN sur site, ce qui permet à l'utilisateur final de contrôler quand l'accès est disponible.",
-    },
-    {
-      key: '04',
-      title: 'Vantage Point',
-      text: "Accès et contrôle à distance en direct de tous les sites grâce à l'intégration de Smart Track. Les intégrateurs de systèmes dépannent à distance sans se rendre sur place, ce qui réduit considérablement les coûts d'assistance.",
-    },
-    {
-      key: '05',
-      title: 'La Communication Facilitée',
-      text: "L'administrateur se connecte à distance à son compte UMBRELLA et sélectionne le site auquel il souhaite se connecter via un tunnel VPN entièrement sécurisé. un tunnel VPN entièrement sécurisé.",
-    },
-    {
-      key: '06',
-      title: 'Connectivité WiFi et Cellulaire Intégrée',
-      text: "La capacité WiFi et cellulaire permet une connectivité Internet tout en évitant une connexion sur le réseau LAN de l'usine/de l'entreprise avec une bande passante élevée, un déploiement facile (pas de câblage) et facilite la gestion sécurisée du réseau.",
-    },
-  ];
-
-  const cellphoneSquareContent = isEnglish
-    ? englishCellphoneSquare
-    : frenchCellphoneSquare;
 
   const cellphoneSize = useMediaQuery({ query: '(max-width:975px)' });
 
@@ -207,10 +48,10 @@ const About = ({ isEnglish }) => {
             />
           )}
           <>
-            <Text>{selectedAboutContent.paragraph_1}</Text>
+            <Text>{t('about.paragraph1')}</Text>
             <br/>
             <br/>
-            <Text>{selectedAboutContent.paragraph_2}</Text>
+            <Text>{t('about.paragraph2')}</Text>
           </>
         </ContentWrapper>
         <ContentWrapper secondItem={true}>
@@ -219,11 +60,11 @@ const About = ({ isEnglish }) => {
         <ContentWrapper>
           {cellphoneSize ? (
             <>
-              {cellphoneSquareContent.map(({ key, title, text }) => (
+              {cellphoneFeatures.map(({ key }) => (
                 <Item key={key}>
                   <NumberTitle>{key}</NumberTitle>
-                  <Title>{title}</Title>
-                  <P>{text}</P>
+                  <Title>{t(`about.features.${key}.title`)}</Title>
+                  <P>{t(`about.features.${key}.description`)}</P>
                 </Item>
               ))}
             </>
@@ -231,39 +72,37 @@ const About = ({ isEnglish }) => {
             <>
               <FlexBox>
                 <FourContainer>
-                  {sevenContentBox.fourSquare.map(
-                    ({ key, title, text, img }, idx) => (
-                      <Item key={key} idx={key}>
-                        {key === 'img' ? (
-                          <LogoImg src={img} alt='square metal logo' />
-                        ) : (
-                          <>
-                            <NumberTitle badge={idx === 0}>{key}</NumberTitle>
-                            <Title>{title}</Title>
-                            <P>{text}</P>
-                          </>
-                        )}
-                      </Item>
-                    )
-                  )}
+                  {fourSquare.map(({ key, img }, idx) => (
+                    <Item key={key} idx={key}>
+                      {key === 'img' ? (
+                        <LogoImg src={img} alt='square metal logo' />
+                      ) : (
+                        <>
+                          <NumberTitle badge={idx === 0}>{key}</NumberTitle>
+                          <Title>{t(`about.features.${key}.title`)}</Title>
+                          <P>{t(`about.features.${key}.description`)}</P>
+                        </>
+                      )}
+                    </Item>
+                  ))}
                 </FourContainer>
                 <SingleContainer>
-                  {sevenContentBox.singleSquare.map(({ key, title, text }) => (
+                  {singleSquare.map(({ key }) => (
                     <Item key={key} idx={key}>
                       <NumberTitle>{key}</NumberTitle>
-                      <Title>{title}</Title>
-                      <P>{text}</P>
+                      <Title>{t(`about.features.${key}.title`)}</Title>
+                      <P>{t(`about.features.${key}.description`)}</P>
                     </Item>
                   ))}
                 </SingleContainer>
               </FlexBox>
               <FlexBox>
                 <DoubleContainer>
-                  {sevenContentBox.doubleSquare.map(({ key, title, text }) => (
+                  {doubleSquare.map(({ key }) => (
                     <Item key={key} idx={key}>
                       <NumberTitle>{key}</NumberTitle>
-                      <Title>{title}</Title>
-                      <P>{text}</P>
+                      <Title>{t(`about.features.${key}.title`)}</Title>
+                      <P>{t(`about.features.${key}.description`)}</P>
                     </Item>
                   ))}
                 </DoubleContainer>

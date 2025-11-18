@@ -1,34 +1,14 @@
 import styled, { css } from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { breakpoints, devices } from './landing-page-breakpoints/breakpoints';
 import { flexBoxCenter } from '../styles/commonStyles';
 import { contactUsService } from '../../services';
 
-const ContactForm = ({ isEnglish }) => {
+const ContactForm = () => {
+  const { t } = useTranslation();
   const isXl = useMediaQuery({ query: '(min-width:975px)' });
-
-  const englishContent = {
-    title: 'Send Us a Message!',
-    name: 'Full Name',
-    phone: 'Phone',
-    email: 'Email',
-    message: 'Your Message',
-    buttonName: 'Submit',
-    placeHolder: 'Type here',
-  };
-
-  const frenchContent = {
-    title: 'Contactez-Nous!',
-    name: 'Nom',
-    phone: 'Téléphone',
-    email: 'Email',
-    message: 'Votre Message',
-    buttonName: 'Envoyer Le Message',
-    placeHolder: 'Tapez ici',
-  };
-
-  const displayContent = isEnglish ? englishContent : frenchContent;
 
   const {
     register,
@@ -43,45 +23,45 @@ const ContactForm = ({ isEnglish }) => {
   return (
     <Wrapper>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Title>{displayContent['title']}</Title>
+        <Title>{t('contactForm.title')}</Title>
         <FlexRow>
           <FlexColumn firstRow={true}>
             {/* name */}
-            <Label>{displayContent['name']}</Label>
+            <Label>{t('contactForm.fullName')}</Label>
             <Input
               type='text'
-              placeholder={displayContent['placeHolder']}
+              placeholder={t('contactForm.placeholder')}
               {...register('name', { required: true, minLength: 3 })}
               aria-invalid={errors.name ? 'true' : 'false'}
               firstRow={true}
             />
             {errors.name?.type === 'required' && (
-              <ErrorTag role='alert'>Name is required</ErrorTag>
+              <ErrorTag role='alert'>{t('contactForm.errors.nameRequired')}</ErrorTag>
             )}
           </FlexColumn>
           <FlexColumn firstRow={true}>
             {/* phone */}
-            <Label>{displayContent['phone']}</Label>
+            <Label>{t('contactForm.phone')}</Label>
             <Input
               type='number'
-              placeholder={displayContent['placeHolder']}
+              placeholder={t('contactForm.placeholder')}
               {...register('phone', { required: true, minLength: 9 })}
               aria-invalid={errors.phone ? 'true' : 'false'}
               firstRow={true}
             />
             {errors.phone?.type === 'required' && (
-              <ErrorTag role='alert'>phone number is required</ErrorTag>
+              <ErrorTag role='alert'>{t('contactForm.errors.phoneRequired')}</ErrorTag>
             )}
           </FlexColumn>
         </FlexRow>
         <FlexColumn secondRow={true}>
           {/* email */}
-          <Label>{displayContent['email']}</Label>
+          <Label>{t('contactForm.email')}</Label>
           <Input
             type='email'
-            placeholder={displayContent['placeHolder']}
+            placeholder={t('contactForm.placeholder')}
             {...register('mail', {
-              required: 'Email Address is required',
+              required: t('contactForm.errors.emailRequired'),
             })}
             aria-invalid={errors.mail ? 'true' : 'false'}
           />
@@ -91,22 +71,22 @@ const ContactForm = ({ isEnglish }) => {
         </FlexColumn>
         <FlexColumn>
           {/* your message */}
-          <Label>{displayContent['message']}</Label>
+          <Label>{t('contactForm.message')}</Label>
           <Textarea
             type='text'
-            placeholder={displayContent['placeHolder']}
+            placeholder={t('contactForm.placeholder')}
             {...register('message', { required: true, minLength: 10 })}
             aria-invalid={errors.message ? 'true' : 'false'}
           />
           {errors.message?.type === 'required' && (
-            <ErrorTag role='alert'>Minimum 10 words is required</ErrorTag>
+            <ErrorTag role='alert'>{t('contactForm.errors.messageMinLength')}</ErrorTag>
           )}
         </FlexColumn>
         <Button type='submit'>
           <InnerButton>
             <IndentLayer>
               <TopLayer>
-                <ButtonTitle>{displayContent['buttonName']}</ButtonTitle>
+                <ButtonTitle>{t('contactForm.submit')}</ButtonTitle>
               </TopLayer>
             </IndentLayer>
           </InnerButton>
