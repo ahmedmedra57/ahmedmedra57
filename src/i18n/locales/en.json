@@ -72,6 +72,7 @@
     "about": "About",
     "tempora": "Tempora",
     "contact": "Contact",
+    "login": "Login",
     "english": "English",
     "french": "French",
     "globalOverview": "Global Overview",
@@ -306,13 +307,26 @@
     "email": "Email: sales@temporaheaters.com"
   },
   "contactForm": {
-    "title": "Send Us a Message!",
+    "title": "contact us",
+    "name": "name",
     "fullName": "Full Name",
-    "phone": "Phone",
-    "email": "Email",
-    "message": "Your Message",
+    "phone": "phone",
+    "email": "email",
+    "message": "message",
+    "send": "send",
     "submit": "Submit",
+    "namePlaceholder": "your name",
+    "phonePlaceholder": "your phone number",
+    "emailPlaceholder": "your email",
+    "messagePlaceholder": "your message",
     "placeholder": "Type here",
+    "nameRequired": "name is required",
+    "phoneRequired": "phone number is required",
+    "emailRequired": "email is required",
+    "messageRequired": "message is required",
+    "invalidEmail": "please enter a valid email address",
+    "submitSuccess": "message sent successfully",
+    "submitError": "error sending message",
     "errors": {
       "nameRequired": "Name is required",
       "phoneRequired": "phone number is required",
@@ -321,6 +335,7 @@
     }
   },
   "features": {
+    "title": "Features",
     "platform": {
       "title": "platform",
       "description": "TEMPORA'S world first centralized monitoring & control platform for distributed rail network."
@@ -336,11 +351,31 @@
     "dataLogging": {
       "title": "data logging",
       "description": "Data evolution & reporting. Direct communication & virtual presence."
+    },
+    "feature1": {
+      "title": "Real-time Monitoring",
+      "text": "Monitor your systems in real-time with advanced telemetry"
+    },
+    "feature2": {
+      "title": "Master Control",
+      "text": "Full control over all heating systems from one interface"
+    },
+    "feature3": {
+      "title": "Audit Trail",
+      "text": "Complete history of all actions and system changes"
+    },
+    "feature4": {
+      "title": "Multi-language Support",
+      "text": "Available in English and French with easy language switching"
     }
   },
   "about": {
+    "title": "About Us",
     "paragraph1": "The ability of railway operators to respond to snow and ice weather conditions has become an issue with industry stakeholders over the past few years.",
     "paragraph2": "UMBRELLA OS integration constitutes a sophisticated and intelligent rail energy management system that complements our customer's existing network.",
+    "vision": "Our Vision",
+    "mission": "Our Mission",
+    "values": "Our Values",
     "features": {
       "auditTrail": {
         "title": "Full Audit Trail & Traceability",
@@ -398,7 +433,8 @@
       "message": "SYSTEM OFF UNTIL RELEASE FAULT OR BY forcing the SYSTEM."
     },
     "noData": "No data available",
-    "errorOccurred": "An error occurred. Please try again."
+    "errorOccurred": "An error occurred. Please try again.",
+    "notAllowed": "you are not allowed to login"
   },
   "landing": {
     "features": "Features",

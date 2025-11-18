@@ -72,6 +72,7 @@
     "about": "À propos",
     "tempora": "Tempora",
     "contact": "Contact",
+    "login": "Connexion",
     "english": "Anglais",
     "french": "Français",
     "globalOverview": "Vue d'ensemble globale",
@@ -306,13 +307,26 @@
     "email": "Email: sales@temporaheaters.com"
   },
   "contactForm": {
-    "title": "Contactez-Nous!",
+    "title": "contactez-nous",
+    "name": "nom",
     "fullName": "Nom",
-    "phone": "Téléphone",
-    "email": "Email",
-    "message": "Votre Message",
+    "phone": "téléphone",
+    "email": "email",
+    "message": "message",
+    "send": "envoyer",
     "submit": "Envoyer Le Message",
+    "namePlaceholder": "votre nom",
+    "phonePlaceholder": "votre numéro de téléphone",
+    "emailPlaceholder": "votre email",
+    "messagePlaceholder": "votre message",
     "placeholder": "Tapez ici",
+    "nameRequired": "le nom est requis",
+    "phoneRequired": "le numéro de téléphone est requis",
+    "emailRequired": "l'email est requis",
+    "messageRequired": "le message est requis",
+    "invalidEmail": "veuillez entrer une adresse email valide",
+    "submitSuccess": "message envoyé avec succès",
+    "submitError": "erreur lors de l'envoi du message",
     "errors": {
       "nameRequired": "Le nom est requis",
       "phoneRequired": "le numéro de téléphone est requis",
@@ -321,6 +335,7 @@
     }
   },
   "features": {
+    "title": "Caractéristiques",
     "platform": {
       "title": "plateau",
       "description": "La première plateforme centralisée de surveillance et de contrôle de TEMPORA pour les réseaux ferroviaires distribués."
@@ -336,11 +351,31 @@
     "dataLogging": {
       "title": "enregistrement des données",
       "description": "Évolution et reporting des données. Communication directe et présence virtuelle."
+    },
+    "feature1": {
+      "title": "Surveillance en temps réel",
+      "text": "Surveillez vos systèmes en temps réel avec une télémétrie avancée"
+    },
+    "feature2": {
+      "title": "Contrôle principal",
+      "text": "Contrôle total de tous les systèmes de chauffage depuis une seule interface"
+    },
+    "feature3": {
+      "title": "Piste d'audit",
+      "text": "Historique complet de toutes les actions et modifications du système"
+    },
+    "feature4": {
+      "title": "Support multilingue",
+      "text": "Disponible en anglais et en français avec changement de langue facile"
     }
   },
   "about": {
+    "title": "À propos de nous",
     "paragraph1": "La capacité des opérateurs ferroviaires à répondre aux conditions météorologiques de neige et de glace est devenue un problème pour les intervenants de l'industrie au cours des dernières années.",
     "paragraph2": "L'intégration d'UMBRELLA OS constitue un système de gestion de l'énergie ferroviaire sophistiqué et intelligent qui complète le réseau existant de nos clients.",
+    "vision": "Notre vision",
+    "mission": "Notre mission",
+    "values": "Nos valeurs",
     "features": {
       "auditTrail": {
         "title": "Piste d'audit complète et traçabilité",
@@ -398,7 +433,8 @@
       "message": "SYSTÈME ÉTEINT JUSQU'À CE QUE LE DÉFAUT SOIT LIBÉRÉ OU EN FORÇANT LE SYSTÈME."
     },
     "noData": "Aucune donnée disponible",
-    "errorOccurred": "Une erreur s'est produite. Veuillez réessayer."
+    "errorOccurred": "Une erreur s'est produite. Veuillez réessayer.",
+    "notAllowed": "vous n'êtes pas autorisé à vous connecter"
   },
   "landing": {
     "features": "Caractéristiques",

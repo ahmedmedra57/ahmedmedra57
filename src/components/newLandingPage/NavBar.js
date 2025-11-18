@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-
+import { useTranslation } from 'react-i18next';
 import { devices, breakpoints } from './landing-page-breakpoints/breakpoints';
 import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
@@ -10,7 +10,8 @@ import {
   justifyContentSpaceEvenly,
 } from '../styles/commonStyles';
 
-const NavBar = ({ isEnglish, handleClickScroll }) => {
+const NavBar = ({ handleClickScroll }) => {
+  const { t, i18n } = useTranslation();
   const isXl = useMediaQuery({ query: '(min-width:975px)' });
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
@@ -20,133 +21,69 @@ const NavBar = ({ isEnglish, handleClickScroll }) => {
     setDropdown((prevState) => !prevState);
   };
 
+  const isEnglish = i18n.language === 'en';
+  const languageSwitchLink = isEnglish ? '/login/fr' : '/login';
+  const languageSwitchText = isEnglish ? t('navigation.french') : t('navigation.english');
+
   return (
     <Wrapper dropdown={dropdown}>
       <Flex>
-        {isEnglish ? (
-          <>
-            {/* English */}
-            <A href='/login'>
-              <Logo src='./images/logo.webp' alt='umbrella os' />
-            </A>
-            {dropdown && !isXl && (
-              <LinksWrapper>
-                <Li onClick={() => handleClickScroll('#features')}>
-                  <A href='#features'>Features</A>
-                </Li>
+        <A href='/login'>
+          <Logo src='./images/logo.webp' alt='umbrella os' />
+        </A>
 
-                <Li onClick={() => handleClickScroll('#about')}>
-                  <A href='#about'>About</A>
-                </Li>
+        {dropdown && !isXl && (
+          <LinksWrapper>
+            <Li onClick={() => handleClickScroll('#features')}>
+              <A href='#features'>{t('navigation.features')}</A>
+            </Li>
 
-                <Li onClick={() => handleClickScroll('#tempora')}>
-                  <A href='#tempora'>Tempora</A>
-                </Li>
+            <Li onClick={() => handleClickScroll('#about')}>
+              <A href='#about'>{t('navigation.about')}</A>
+            </Li>
 
-                <Li onClick={() => handleClickScroll('#contact')}>
-                  <A href='#contact'>Contact</A>
-                </Li>
+            <Li onClick={() => handleClickScroll('#tempora')}>
+              <A href='#tempora'>{t('navigation.tempora')}</A>
+            </Li>
 
-                <Li>
-                  <A href='/login/fr'>French</A>
-                </Li>
-              </LinksWrapper>
-            )}
+            <Li onClick={() => handleClickScroll('#contact')}>
+              <A href='#contact'>{t('navigation.contact')}</A>
+            </Li>
 
-            {isXl ? (
-              <LinksWrapper>
-                {/* english */}
-                <Li onClick={() => handleClickScroll('#features')}>
-                  <A href='#features'>Features</A>
-                </Li>
+            <Li>
+              <A href={languageSwitchLink}>{languageSwitchText}</A>
+            </Li>
+          </LinksWrapper>
+        )}
 
-                <Li onClick={() => handleClickScroll('#about')}>
-                  <A href='#about'>About</A>
-                </Li>
+        {isXl ? (
+          <LinksWrapper>
+            <Li onClick={() => handleClickScroll('#features')}>
+              <A href='#features'>{t('navigation.features')}</A>
+            </Li>
 
-                <Li onClick={() => handleClickScroll('#tempora')}>
-                  <A href='#tempora'>Tempora</A>
-                </Li>
+            <Li onClick={() => handleClickScroll('#about')}>
+              <A href='#about'>{t('navigation.about')}</A>
+            </Li>
 
-                <Li onClick={() => handleClickScroll('#contact')}>
-                  <A href='#contact'>Contact</A>
-                </Li>
+            <Li onClick={() => handleClickScroll('#tempora')}>
+              <A href='#tempora'>{t('navigation.tempora')}</A>
+            </Li>
 
-                <Li>
-                  <A href='/login/fr'>French</A>
-                </Li>
-              </LinksWrapper>
-            ) : (
-              <>
-                <Button onClick={handleDropdown} dropdown={dropdown}>
-                  <ButtonDecor>
-                    <MiddleLine isMobile={isMobile}></MiddleLine>
-                  </ButtonDecor>
-                </Button>
-              </>
-            )}
-          </>
+            <Li onClick={() => handleClickScroll('#contact')}>
+              <A href='#contact'>{t('navigation.contact')}</A>
+            </Li>
+
+            <Li>
+              <A href={languageSwitchLink}>{languageSwitchText}</A>
+            </Li>
+          </LinksWrapper>
         ) : (
-          <>
-            {/* French */}
-            <A href='/login/fr'>
-              <Logo src='/images/logo.webp' alt='umbrella os' />
-            </A>
-            {dropdown && !isXl && (
-              <LinksWrapper>
-                <Li onClick={() => handleClickScroll('#features')}>
-                  <A href='#caractéristiques'>Caractéristiques</A>
-                </Li>
-
-                <Li onClick={() => handleClickScroll('#about')}>
-                  <A href='#apropos'>À propos</A>
-                </Li>
-
-                <Li onClick={() => handleClickScroll('#tempora')}>
-                  <A href='#tempora'>Tempora</A>
-                </Li>
-
-                <Li onClick={() => handleClickScroll('#contact')}>
-                  <A href='#contact'>Contact</A>
-                </Li>
-
-                <Li>
-                  <A href='/login'>Anglais</A>
-                </Li>
-              </LinksWrapper>
-            )}
-            {isXl ? (
-              <LinksWrapper>
-                <Li onClick={() => handleClickScroll('#features')}>
-                  <A href='#caractéristiques'>Caractéristiques</A>
-                </Li>
-
-                <Li onClick={() => handleClickScroll('#about')}>
-                  <A href='#apropos'>À propos</A>
-                </Li>
-
-                <Li onClick={() => handleClickScroll('#tempora')}>
-                  <A href='#tempora'>Tempora</A>
-                </Li>
-
-                <Li onClick={() => handleClickScroll('#contact')}>
-                  <A href='#contact'>Contact</A>
-                </Li>
-
-                <Li>
-                  <A href='/login'>Anglais</A>
-                </Li>
-              </LinksWrapper>
-            ) : (
-              <>
-                <Button onClick={handleDropdown} dropdown={dropdown}>
-                  <ButtonDecor>
-                    <MiddleLine isMobile={isMobile}></MiddleLine>
-                  </ButtonDecor>
-                </Button>
-              </>
-            )}
-          </>
+          <Button onClick={handleDropdown} dropdown={dropdown}>
+            <ButtonDecor>
+              <MiddleLine isMobile={isMobile}></MiddleLine>
+            </ButtonDecor>
+          </Button>
         )}
       </Flex>
     </Wrapper>
