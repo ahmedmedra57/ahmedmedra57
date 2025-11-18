@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
@@ -23,6 +24,7 @@ import styled, { css } from 'styled-components';
 import SelectLocations from './SelectLocations';
 import { selectUnits } from '../store/slices/settings/unitsSlice';
 import InputTempMessage from '../userMessages/inputTempMessage';
+import { useMessageBox } from '../hooks/useMessageBox';
 
 const SnowSensor = ({
   scope,
@@ -33,6 +35,7 @@ const SnowSensor = ({
   specificLocation,
   disabled
 }) => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
   // Global
@@ -48,8 +51,7 @@ const SnowSensor = ({
 
   // Local
   const [isExpanded, setIsExpanded] = useState(false);
-  const [openMessageBox, setOpenMessageBox] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const { openMessageBox, messages, showMessage, closeMessage } = useMessageBox();
   // ********* temporary variables *********
   const defaultTemp = 350;
   // const isF = false;
@@ -87,8 +89,10 @@ const SnowSensor = ({
         type,
         specificLocation
       );
-      setOpenMessageBox(true);
-      setMessages(['select locations', 'please select location to continue']);
+      showMessage([
+        t('masterControl.fanOnly.selectLocations'),
+        t('masterControl.fanOnly.selectLocationPrompt')
+      ]);
     } else {
       handleOnClick('snowSensor', 'on', scope);
       // if mobile and location scope, close the expanded state
@@ -162,8 +166,8 @@ const SnowSensor = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
+                    onClose={closeMessage}
+                    title={t('masterControl.title')}
                     subtitle={'snow sensor program'}
                     messages={messages}
                     isMobile={isMobile}
@@ -209,8 +213,8 @@ const SnowSensor = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
+                    onClose={closeMessage}
+                    title={t('masterControl.title')}
                     subtitle={'snow sensor program'}
                     messages={messages}
                     isMobile={isMobile}
@@ -264,8 +268,8 @@ const SnowSensor = ({
             {openMessageBox && (
             <MessageBoxWrapper>
               <InputTempMessage
-                onClose={() => setOpenMessageBox(false)}
-                title={'master control'}
+                onClose={closeMessage}
+                title={t('masterControl.title')}
                 messages={messages}
               />
             </MessageBoxWrapper>

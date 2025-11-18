@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
 
@@ -23,6 +24,8 @@ import SelectLocations from './SelectLocations';
 import InputTempMessage from '../userMessages/inputTempMessage';
 import { selectUnits } from '../store/slices/settings/unitsSlice';
 import set from 'lodash/set';
+import { useMessageBox } from '../hooks/useMessageBox';
+import { validateTemperatureInput } from '../utils/temperatureValidation';
 
 const InstantHeat = ({
   swtName,
@@ -32,6 +35,7 @@ const InstantHeat = ({
   specificLocation,
   disabled
 }) => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
   // Global
 
@@ -52,22 +56,18 @@ const InstantHeat = ({
   // incase of tgs switch -> must select instant heat or
 
   const [isButtonSelected, setIsButtonSelected] = useState([false, false]);
-  const [openMessageBox, setOpenMessageBox] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const { openMessageBox, messages, showMessage, closeMessage } = useMessageBox();
 
   // ** temporary values until connect with BE (need API) **
   // const isF = false;
   // ** temporary values until connect with BE (need API) **
 
   const handleSubmit = (e) => {
-    // console.log(selectedOne,switchMiddleStatus.instantHeat,"handleSubmitXX")
-
     e.preventDefault();
+
     // instant Heat operating logic
     if (!selectedOne) {
-      // Message box
-      // please select locations first
-
+      // Message box - please select locations first
       handleOnClick(
         'instantHeat',
         'selectA',
@@ -78,78 +78,36 @@ const InstantHeat = ({
         specificLocation
       );
       setTempInput('');
-      setOpenMessageBox(true);
-      setMessages(['select locations', 'please select location to continue']);
-
+      showMessage([
+        t('masterControl.fanOnly.selectLocations'),
+        t('masterControl.fanOnly.selectLocationPrompt')
+      ]);
     } else {
-      const temp = Number(tempInput);
-      // check for the validation (minimum and maximum)
+      // Validate temperature input
+      const validation = validateTemperatureInput(tempInput, isF, 'HEATING_SCHEDULE');
 
-      if (isF) {
-        // fahrenheit(250°F/1830°F )
-        if (temp >= 250 && temp <= 1830) {
-          // id === instantHeat, state, scope, temp
-          handleOnClick('instantHeat', 'on', scope, temp);
-          // if mobile and location scope, close the expanded state
-          if (isMobile && scope !== 'switch') {
-            handleClose();
-          }
-        } else {
-          // message - minimum and maximum temperature!!!
-          setTempInput('');
-          handleOnClick(
-            'instantHeat',
-            'tempA',
-            scope,
-            0,
-            null,
-            null,
-            specificLocation
-          );
-          setOpenMessageBox(true);
-          setMessages([
-            'wrong temperature',
-            `in order to finalize instant heat program,`,
-            'please input your temperature first',
-            '( the minimum temperature is 121°C - 250°F )',
-            '( the maximum temperature is 999°C - 1830°F )',
-          ]);
-        }
+      if (!validation.isValid) {
+        // Invalid temperature
+        setTempInput('');
+        handleOnClick(
+          'instantHeat',
+          'tempA',
+          scope,
+          0,
+          null,
+          null,
+          specificLocation
+        );
+        showMessage(validation.errorKeys.map(key => t(key)));
       } else {
-        // check celsius(121°C/999°C)
-
-        if (temp >= 121 && temp <= 999) {
-          // id === instantHeat, state, scope, temp
-        
-          handleOnClick('instantHeat', 'on', scope, temp);
-
-          // if mobile and location scope, close the expanded state
-          if (isMobile && scope !== 'switch') {
-            handleClose();
-          }
-        } else {
-          // message - minimum and maximum temperature!!!
-
-          handleOnClick(
-            'instantHeat',
-            'tempA',
-            scope,
-            0,
-            null,
-            null,
-            specificLocation
-          );
-          setOpenMessageBox(true);
-          setMessages([
-            'wrong temperature',
-            `in order to finalize instant heat program,`,
-            'please input your temperature first',
-            '( the minimum temperature is 121°C - 250°F )',
-            '( the maximum temperature is 999°C - 1830°F )',
-          ]);
+        // Valid temperature - proceed
+        handleOnClick('instantHeat', 'on', scope, validation.temp);
+        setTempInput('');
+        // if mobile and location scope, close the expanded state
+        if (isMobile && scope !== 'switch') {
+          handleClose();
         }
       }
-      setTempInput('');
     }
 
     setIsButtonSelected([false, false]);
@@ -169,14 +127,15 @@ const InstantHeat = ({
 
     if (!isButtonSelected[0] && !isButtonSelected[1]) {
       // message box 'please select program first
-      setMessages(['select program', 'please select program first']);
-      setOpenMessageBox(true);
+      showMessage([
+        t('masterControl.commands.selectCreateNew'),
+        t('masterControl.commands.selectSystem')
+      ]);
     } else {
       if (isButtonSelected[1] && !isButtonSelected[0]) {
         // FanOnly operating logic
         if (!fanOnly.selectedOne) {
-          // message box
-          // please select locations first
+          // message box - please select locations first
           handleOnClick(
             'fanOnly',
             'selectA',
@@ -192,7 +151,6 @@ const InstantHeat = ({
         }
       } else {
         // instant heat
-
         handleSubmit(e);
       }
     }
@@ -272,8 +230,8 @@ const InstantHeat = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
+                    onClose={closeMessage}
+                    title={t('masterControl.title')}
                     subtitle={'instant heat program'}
                     messages={messages}
                     isMobile={isMobile}
@@ -333,8 +291,8 @@ const InstantHeat = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
+                    onClose={closeMessage}
+                    title={t('masterControl.title')}
                     subtitle={'instant heat program'}
                     messages={messages}
                     isMobile={isMobile}
@@ -463,8 +421,8 @@ const InstantHeat = ({
             {openMessageBox && (
             <MessageBoxWrapper>
               <InputTempMessage
-                onClose={() => setOpenMessageBox(false)}
-                title={'master control'}
+                onClose={closeMessage}
+                title={t('masterControl.title')}
                 messages={messages}
               />
             </MessageBoxWrapper>

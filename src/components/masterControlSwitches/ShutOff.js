@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { useTranslation } from 'react-i18next';
 import { selectMCBySwitch } from '../store/slices/masterControlBySwitchSelectSlice';
 import { selectMCByLocation } from '../store/slices/masterControlSelectByLocationSlice';
 
@@ -22,6 +23,7 @@ import styled, { css } from 'styled-components';
 
 import SelectLocations from './SelectLocations';
 import InputTempMessage from '../userMessages/inputTempMessage';
+import { useMessageBox } from '../hooks/useMessageBox';
 
 const ShutOff = ({
   scope,
@@ -32,6 +34,7 @@ const ShutOff = ({
   specificLocation,
   disabled
 }) => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
 
   // Global
@@ -44,14 +47,15 @@ const ShutOff = ({
 
   // local
   const [isExpanded, setIsExpanded] = useState(false);
-  const [openMessageBox, setOpenMessageBox] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const { openMessageBox, messages, showMessage, closeMessage } = useMessageBox();
 
   const handleApply = () => {
     if (!selectedOne) {
       // Message box
-      setOpenMessageBox(true);
-      setMessages(['select locations', 'please select location to continue']);
+      showMessage([
+        t('masterControl.fanOnly.selectLocations'),
+        t('masterControl.fanOnly.selectLocationPrompt')
+      ]);
       // please select locations first
       handleOnClick(
         'shutOff',
@@ -123,8 +127,8 @@ const ShutOff = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
+                    onClose={closeMessage}
+                    title={t('masterControl.title')}
                     subtitle={'m.c. off'}
                     messages={messages}
                     isMobile={isMobile}
@@ -153,8 +157,8 @@ const ShutOff = ({
               {openMessageBox && (
                 <MobileMessageBoxWrapper>
                   <InputTempMessage
-                    onClose={() => setOpenMessageBox(false)}
-                    title={'master control'}
+                    onClose={closeMessage}
+                    title={t('masterControl.title')}
                     subtitle={'m.c. off'}
                     messages={messages}
                     isMobile={isMobile}
