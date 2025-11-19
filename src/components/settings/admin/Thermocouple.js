@@ -119,23 +119,6 @@ function Thermocouple({
               />
             )
           )}
-
-          {/* <ActivateButton
-            handleButtons={() => handleActivateDeactivateButton(4)}
-            isSelected={isDeactivate}
-            buttonTitles={['deactivate', 'deactivated']}
-            isApplied={isApply}
-            selectedOne={selectedOne}
-            handleOpenMessageBox={handleOpenMessageBox}
-          />
-          <ActivateButton
-            handleButtons={() => handleActivateDeactivateButton(1)}
-            isSelected={isActivate}
-            buttonTitles={['activate', 'activated']}
-            isApplied={isApply}
-            selectedOne={selectedOne}
-            handleOpenMessageBox={handleOpenMessageBox}
-          /> */}
         </WrapperButtons>
         {openMessageBox && (
           <SettingAppliedMessage
