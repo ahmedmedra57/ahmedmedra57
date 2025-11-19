@@ -74,11 +74,17 @@
   },
   "contact": {
     "title": "Send Us a Message!",
+    "name": "Full Name",
     "fullName": "Full Name",
     "phone": "Phone",
     "email": "Email",
     "message": "Your Message",
-    "submit": "Submit"
+    "submit": "Submit",
+    "placeholder": "Type here",
+    "nameRequired": "Name is required",
+    "phoneRequired": "Phone number is required",
+    "emailRequired": "Email Address is required",
+    "messageRequired": "Minimum 10 words is required"
   },
   "landing": {
     "features": "Features",

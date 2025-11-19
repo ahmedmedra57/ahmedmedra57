@@ -74,11 +74,17 @@
   },
   "contact": {
     "title": "Contactez-Nous!",
+    "name": "Nom",
     "fullName": "Nom",
     "phone": "Téléphone",
     "email": "Email",
     "message": "Votre Message",
-    "submit": "Envoyer Le Message"
+    "submit": "Envoyer Le Message",
+    "placeholder": "Tapez ici",
+    "nameRequired": "Le nom est requis",
+    "phoneRequired": "Le numéro de téléphone est requis",
+    "emailRequired": "L'adresse e-mail est requise",
+    "messageRequired": "Minimum 10 mots requis"
   },
   "landing": {
     "features": "Fonctionnalités",

@@ -69,7 +69,7 @@ const Login = ({ isEnglish, handleClickScroll }) => {
             <Flex>
               <LoginBoxWrapper>
                 <LoginBoxInnerWrapper>
-                  <LoginBox isEnglish={isEnglish} />
+                  <LoginBox />
                 </LoginBoxInnerWrapper>
               </LoginBoxWrapper>
               <FlexRow>
