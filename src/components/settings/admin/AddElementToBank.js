@@ -13,7 +13,7 @@ import {
   layerA90Deg,
   layerB,
 } from '../../styles/commonStyles';
-import SaveButton from '../buttons/SaveButton';
+import { Button } from '../../ui';
 import { useMediaQuery } from 'react-responsive';
 
 const AddElementToBank = ({
@@ -254,7 +254,14 @@ const AddElementToBank = ({
             </ElementSpecWrapper>
           </SectionWrapper>
           <ButtonWrapper isMobile={true}>
-            <SaveButton handleSave={handleSave} isActivate={isActivate} />
+            <Button
+              variant="save"
+              size="small"
+              onClick={handleSave}
+              disabled={!isEdit}
+            >
+              {isActivate ? 'saved' : 'save'}
+            </Button>
           </ButtonWrapper>
           {messageBoxForBankInputs && (
             <SettingConfirmedMessage
@@ -413,7 +420,14 @@ const AddElementToBank = ({
               </ElementSpecInnerWrapper>
             </ElementSpecWrapper>
             <ButtonWrapper>
-              <SaveButton handleSave={handleSave} isActivate={isActivate} />
+              <Button
+                variant="save"
+                size="small"
+                onClick={handleSave}
+                disabled={!isEdit}
+              >
+                {isActivate ? 'saved' : 'save'}
+              </Button>
             </ButtonWrapper>
             {messageBoxForBankInputs && (
               <SettingConfirmedMessage
