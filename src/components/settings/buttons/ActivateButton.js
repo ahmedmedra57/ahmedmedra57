@@ -17,11 +17,7 @@ const ActivateButton = ({
 }) => {
   // media query
   const isMobile = useMediaQuery({ query: '(max-width:600px)' });
-    isSelected,
-    buttonTitles,
-    isApplied,
-    selectedOne,
-    handleOpenMessageBox,},"ActivateButton")
+
   return (
     <ButtonBaseLayer
       onClick={selectedOne ? handleButtons : handleOpenMessageBox}

@@ -70,16 +70,6 @@ export const mainSelectIndicatorHandler = (propObj) => {
     );
   } else if (option !== "all" && machine === undefined) {
     // ======= select location logic =====
-      {
-        data,
-        option,
-        locations,
-        isLocationSelected,
-        isMachineSelected,
-        selectedLocations,
-      },
-      "mainSelectIndicatorHandler"
-    );
     const {
       locationList,
       specificLocationList,

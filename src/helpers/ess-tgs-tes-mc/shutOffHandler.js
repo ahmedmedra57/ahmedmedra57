@@ -15,10 +15,6 @@ export const shutOffHandler = (
   swt,
   messageBoxHandler
 ) => {
-    specificLocation,
-    machine,
-    essZones: zones,
-    isF,},"shutOffHandler")
   if (state === 'on') {
     if (swt === 'ESS') {
       dispatch(

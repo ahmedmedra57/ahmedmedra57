@@ -17,11 +17,6 @@ export const selectSpecificLocationDispatchHandler = (
   machineList,
   newSpecificLocations
 ) => {
-    scope,
-    name,
-    specificLocationList,
-    machineList,
-    newSpecificLocations}, 'selectSpecificLocationDispatchHandler');
   // ======dispatches below======
   if (scope === 'switch') {
     // dispatch specific locations

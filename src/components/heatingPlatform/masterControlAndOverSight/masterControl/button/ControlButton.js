@@ -28,8 +28,7 @@ const ControlButton = ({ buttonData }) => {
           setButtonAltText(`ready ${id}`);
           break;
         default:
-            'something went wrong with the selected control button'
-          );
+          console.log('something went wrong with the selected control button');
           break;
       }
     } else {

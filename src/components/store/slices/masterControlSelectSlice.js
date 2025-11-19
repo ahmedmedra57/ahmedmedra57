@@ -149,9 +149,6 @@ const masterControlSelectSlice = createSlice({
       ][action.payload.machineIdx] = true;
     },
     handleMachineSelectWithSpecLocationAlt: (state, action) => {
-        'action.handleMachineSelectWithSpecLocationAlt',
-        action.payload
-      );
       state[action.payload.switch].isMachineSelected[
         action.payload.locationIdx
       ][action.payload.specLocationIdx][action.payload.machineIdx] = true;

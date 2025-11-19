@@ -20,12 +20,6 @@ export const selectMachineDispatchHandler = (
   newSelectedMachine
 ) => {
   // ======dispatches below======
-    extraOption,
-    locationIdx,
-    specLocationIdx,
-    machineIdx,
-    newSelectedMachine,
-  });
   if (scope === "switch") {
     if (extraOption) {
       // dispatch machines that have a specific location

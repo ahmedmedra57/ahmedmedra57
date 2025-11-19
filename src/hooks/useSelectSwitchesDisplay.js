@@ -168,9 +168,14 @@ export const useSelectSwitchesDisplay = (
     dispatch(handleAddSpecificLocations({ switch: swt, arr: newSelect }));
   } else {
     // 4. select individually
-      { option, machine, extraOption, data, selectedMachines },
-      "selectMachineHandler1"
-    );
+    console.log("selectMachineHandler1", {
+      option,
+      machine,
+      extraOption,
+      data,
+      selectedMachines
+    });
+
     const locationIdx = Object.keys(data).indexOf(option);
     const newSelectedMachineArr = [...selectedMachines];
     // 4.1 update isMachineSelected that has a specific location

@@ -36,9 +36,6 @@ const essDataConsumptionSlice = createSlice({
       state,
       action
     ) => {
-        action.payload,
-        "essDataConsumptionSpecificLocationUnselectMachineHandler"
-      );
       state.essDataConsumptionSwitch[action.payload.location][
         action.payload.specificLocation
       ][action.payload.machine] = false;

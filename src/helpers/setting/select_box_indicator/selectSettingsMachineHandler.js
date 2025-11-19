@@ -7,9 +7,14 @@ export const selectSettingsMachineHandler = (
 ) => {
   // ======= select machine logic =====
   // 4. select individually
-    { option, machine, extraOption, data, selectedMachines },
-    "selectMachineHandler1"
-  );
+  console.log("selectMachineHandler1", {
+    option,
+    machine,
+    extraOption,
+    data,
+    selectedMachines
+  });
+
   const locationIdx = Object.keys(data).indexOf(option);
   const newSelectedMachine = [...selectedMachines];
   // 4.1 update isMachineSelected that has a specific location

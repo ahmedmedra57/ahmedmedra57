@@ -6,11 +6,6 @@ export const selectSettingsLocationHandler = (
   isMachineSelected,
   selectedLocations
 ) => {
-    option,
-    locations,
-    isLocationSelected,
-    isMachineSelected,
-    selectedLocations},"selectSettingsLocationHandler")
   // ======= select location logic =====
   // 2. select location
   // 2.1 update the isLocationSelected

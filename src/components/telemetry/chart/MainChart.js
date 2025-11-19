@@ -43,7 +43,9 @@ const MainChart = ({
     doubleTelemetryKeys,
     setDoubleTelemetryKeys,
     scheduleData,
-    isSearch,},"MainChart")
+    isSearch
+  } = props;
+
   const isDc = selectedSystemTitle?.split(' - ')[1] === 'dc';
 
   const selectionOfSystem = useSelector(selectMC);
