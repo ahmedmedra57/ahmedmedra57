@@ -1,37 +1,28 @@
 // local
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// library dependencies
 import styled from 'styled-components';
 // components
 import NavBar from './NavBar';
 import Login from './Login';
 import Features from './Features';
 import About from './About';
-
 import ContactForm from './ContactForm';
 import LPFooter from './LPFooter';
 import AboutUs from './AboutUs';
 import Tempora from './tempora/Tempora';
 
+/**
+ * REFACTORED LandingPage Component
+ *
+ * IMPROVEMENTS:
+ * ✅ Removed isEnglish state management - i18n handles language automatically
+ * ✅ Removed URL-based language detection (/login/fr)
+ * ✅ Removed isEnglish prop from all child components
+ * ✅ Cleaner component with single responsibility
+ */
 const LandingPage = () => {
-  const URL = useLocation();
-
-  const [isEnglish, setIsEnglish] = useState(true);
-
-  useEffect(() => {
-    if (URL.pathname === '/' || URL.pathname === '/login') {
-      setIsEnglish(true);
-    } else if (URL.pathname === '/login/fr') {
-      setIsEnglish(false);
-    }
-  }, [URL.pathname]);
-
   const handleClickScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      // 👇 Will scroll smoothly to the top of the next section
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -39,25 +30,25 @@ const LandingPage = () => {
   return (
     <Wrapper>
       <div id='navbar'>
-        <NavBar isEnglish={isEnglish} handleClickScroll={handleClickScroll} />
+        <NavBar handleClickScroll={handleClickScroll} />
       </div>
       <div id='login'>
-        <Login isEnglish={isEnglish} handleClickScroll={handleClickScroll} />
+        <Login handleClickScroll={handleClickScroll} />
       </div>
       <div id='#features'>
-        <Features isEnglish={isEnglish} />
+        <Features />
       </div>
       <div id='#about'>
-        <About isEnglish={isEnglish} />
+        <About />
       </div>
       <div id='#tempora'>
-        <Tempora isEnglish={isEnglish} />
+        <Tempora />
       </div>
       <div id='#about-us'>
-        <AboutUs isEnglish={isEnglish} />
+        <AboutUs />
       </div>
       <div id='#contact'>
-        <ContactForm isEnglish={isEnglish} />
+        <ContactForm />
       </div>
       <div id='#footer'>
         <LPFooter />
