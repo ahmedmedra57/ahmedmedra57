@@ -5,7 +5,7 @@ import {
   justifyContentSpaceBetween,
   layerB,
 } from '../../styles/commonStyles';
-import OkButton from '../buttons/OkButton';
+import { Button } from '../../ui';
 
 const ErrorMessageBox = ({ message, handleClose }) => {
   return (
@@ -26,7 +26,12 @@ const ErrorMessageBox = ({ message, handleClose }) => {
           </MessageWrapper>
 
           <ButtonWrapper>
-            <OkButton name='ok' handleClose={handleClose} />
+            <Button
+              variant="confirm"
+              size="small"
+              translationKey="common.ok"
+              onClick={handleClose}
+            />
           </ButtonWrapper>
         </MessageInner>
       </MessageOuter>
