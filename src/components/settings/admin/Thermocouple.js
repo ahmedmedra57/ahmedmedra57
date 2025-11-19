@@ -9,7 +9,6 @@ import {
   layerA180Deg,
   layerB,
 } from '../../styles/commonStyles';
-import SaveButton from '../buttons/SaveButton';
 import SelectLocationsBox from '../SelectLocationsBox';
 import ActivateButton from '../buttons/ActivateButton';
 import { useSelector } from 'react-redux';
